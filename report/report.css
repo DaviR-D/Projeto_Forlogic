@@ -1,0 +1,33 @@
+button {
+    background-color: rgb(59, 59, 129);
+}
+
+@media print {
+    nav {
+        display: none;
+    }
+
+    header {
+        display: none;
+    }
+
+    #tableTop {
+        display: none;
+    }
+
+    #tableContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        overflow-inline: visible;
+        box-shadow: none;
+    }
+
+    #tableContainer > *{
+        height: 100%;
+        width: 100%;
+        overflow-inline: visible;
+    }
+}

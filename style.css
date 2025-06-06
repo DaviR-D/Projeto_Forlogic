@@ -1,0 +1,140 @@
+body {
+    max-height: 95vh;
+    background-color: rgb(225, 225, 225);
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.5fr 2fr 2fr;
+    color: rgb(74, 74, 74);
+}
+
+header {
+    width: 80vw;
+    height: 10vh;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+nav {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    background-color: white;
+    border-radius: 10px;
+    height: 95vh;
+    width: 15vw;
+    font-size: 1.5vw;
+}
+
+main {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+.login {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+#exit {
+    color: rgb(74, 74, 74);
+    font-size: 2rem;
+    border-left-style: solid;
+    border-left-color: rgb(165, 165, 165);
+    padding: 1vw;
+}
+
+#exit:hover {
+    color: firebrick;
+    border-left-color: firebrick;
+    border-bottom-style: none;
+}
+
+#userDisplay {
+    font-size: 1.5rem;
+    padding-right: 1vw;
+}
+
+#search {
+    padding: 1vw;
+    margin-left: 1vw;
+    border-radius: 10px;
+}
+
+.navLinks {
+    margin-left: 1.5vw;
+}
+
+
+a {
+    text-decoration: none;
+    color: rgb(74, 74, 74);
+
+}
+
+p>a:hover {
+    background-color: rgb(195, 195, 195);
+    transition-duration: 100ms;
+}
+
+#tableContainer {
+    height: 95%;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#tableTop {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    display: flex;
+}
+
+
+#tableWraper {
+    overflow-inline: scroll;
+    overflow-x: hidden;
+    height: 80%;
+}
+
+table {
+    width: 100%;
+    font-size: 1vw;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(203, 203, 203);
+}
+
+tr:hover {
+    background-color: rgb(195, 195, 195);
+    transition-duration: 100ms;
+}
+
+
+button {
+    color: white;
+    font-weight: bolder;
+    font-size: 1.5vw;
+    border-radius: 10px;
+    border-style: none;
+    width: 15vw;
+    margin: 10px;
+    margin-left: auto;
+}
