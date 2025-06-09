@@ -1,0 +1,89 @@
+:root {
+    --main-color: white;
+    --second-color: rgb(225, 225, 225);
+    --font-color: rgb(74, 74, 74);
+    --hover-color: rgb(195, 195, 195);
+    --border-color: rgb(203, 203, 203);
+}
+
+/* dark theme
+:root {
+    --main-color: rgb(24, 26, 27);
+    --second-color: rgb(44, 47, 49);
+    --font-color: rgb(210, 210, 210);
+    --hover-color: rgb(70, 75, 78);
+    --border-color: rgb(60, 64, 66);
+} */
+
+body {
+    background-color: var(--second-color);
+    color: var(--font-color);
+}
+
+header,
+nav,
+#tableContainer,
+.statsContainer {
+    background-color: var(--main-color);
+}
+
+#exit {
+    border-left-color: var(--border-color);
+}
+
+#exit:hover {
+    color: firebrick;
+    border-left-color: firebrick;
+}
+
+#search {
+    background-color: var(--second-color);
+}
+
+a {
+    color: var(--font-color);
+}
+
+p>a:hover,
+tr:hover {
+    background-color: var(--hover-color);
+}
+
+th,
+td {
+    border-bottom-color: var(--border-color);
+}
+
+
+button {
+    color: white;
+}
+
+#registerModal {
+    background-color: var(--main-color);
+    color: var(--font-color);
+    box-shadow: 4px 4px 4px black;
+}
+
+.aboutUser>input,
+.userData>input {
+    background-color: var(--second-color);
+    color: var(--font-color);
+}
+
+.loginBox {
+    background-color: var(--main-color);
+}
+
+.loginBox>* {
+    border-color: black;
+}
+
+.loginBox>input {
+    background-color: var(--second-color);
+}
+
+button {
+    color: white;
+    background-color: black;
+}

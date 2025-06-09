@@ -43,11 +43,14 @@ function addActions() {
     })
 }
 
-function saveRegistration(key = crypto.randomUUID()) {
-    [...registerForm.elements].forEach(field => {
-        field.style.borderColor = "black";
-    });
-    if (registerForm.checkValidity()) {
+function saveRegistration(event, key = crypto.randomUUID()) {
+    event.preventDefault();
+
+    resetFieldsColor();
+
+    if (checkExistingEmail(key)) alert("Email já cadastrado!");
+
+    else if (registerForm.checkValidity()) {
         localStorage.setItem(key, JSON.stringify({
             name: html.register.nameInput.value,
             email: html.register.emailInput.value,
@@ -61,20 +64,23 @@ function saveRegistration(key = crypto.randomUUID()) {
             feelings: html.register.feelingsInput.value,
             values: html.register.valuesInput.value,
         }));
+
+        registerForm.submit();
     }
     else {
         alert("Preencha todos os campos obrigatórios!");
-        let emptyFields = [...registerForm.elements].filter(field => !field.checkValidity());
-        emptyFields.forEach(field => {
-            field.style.borderColor = "red";
-        });
+        highlightBlankFields();
     }
 }
 
 function deleteRegistration(key) {
-    localStorage.removeItem(key);
-    loadTableContent();
-    addActions();
+    let deletedUser = JSON.parse(localStorage.getItem(key)).name
+    let response = confirm(`Deseja mesmo deletar ${deletedUser}?`)
+    if (response) {
+        localStorage.removeItem(key);
+        loadTableContent();
+        addActions();
+    }
 }
 
 function editRegistration(key) {
@@ -111,4 +117,24 @@ function clearFields() {
     html.register.interestsInput.value = "";
     html.register.feelingsInput.value = "";
     html.register.valuesInput.value = "";
+}
+
+function resetFieldsColor() {
+    [...registerForm.elements].forEach(field => {
+        field.style.borderColor = "black";
+    });
+}
+
+function highlightBlankFields() {
+    let emptyFields = [...registerForm.elements].filter(field => !field.checkValidity());
+    emptyFields.forEach(field => {
+        field.style.borderColor = "red";
+    });
+}
+
+function checkExistingEmail(key) {
+    let emailExists = registrations.map(registration => registration.email).includes(html.register.emailInput.value);
+    let sameKey = JSON.parse(localStorage.getItem(key))?.email == html.register.emailInput.value;
+
+    return (emailExists && !sameKey);
 }

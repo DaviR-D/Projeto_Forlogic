@@ -1,18 +1,15 @@
 body {
     max-height: 95vh;
-    background-color: rgb(225, 225, 225);
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 0.5fr 2fr 2fr;
-    color: rgb(74, 74, 74);
 }
 
 header {
     width: 80vw;
     height: 10vh;
     align-items: center;
-    background-color: white;
     border-radius: 10px;
     display: flex;
     grid-column-start: 2;
@@ -25,7 +22,6 @@ nav {
     grid-column-start: 1;
     grid-row-start: 1;
     grid-row-end: 4;
-    background-color: white;
     border-radius: 10px;
     height: 95vh;
     width: 15vw;
@@ -46,16 +42,12 @@ main {
 }
 
 #exit {
-    color: rgb(74, 74, 74);
     font-size: 2rem;
     border-left-style: solid;
-    border-left-color: rgb(165, 165, 165);
     padding: 1vw;
 }
 
 #exit:hover {
-    color: firebrick;
-    border-left-color: firebrick;
     border-bottom-style: none;
 }
 
@@ -77,19 +69,15 @@ main {
 
 a {
     text-decoration: none;
-    color: rgb(74, 74, 74);
-
 }
 
 p>a:hover {
-    background-color: rgb(195, 195, 195);
     transition-duration: 100ms;
 }
 
 #tableContainer {
     height: 95%;
     margin-top: 15px;
-    background-color: white;
     border-radius: 10px;
 }
 
@@ -119,17 +107,14 @@ td {
     padding: 10px;
     text-align: center;
     border-bottom-style: solid;
-    border-bottom-color: rgb(203, 203, 203);
 }
 
 tr:hover {
-    background-color: rgb(195, 195, 195);
     transition-duration: 100ms;
 }
 
 
 button {
-    color: white;
     font-weight: bolder;
     font-size: 1.5vw;
     border-radius: 10px;

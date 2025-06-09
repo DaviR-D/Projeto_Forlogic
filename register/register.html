@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="../theme.css">
     <link rel="stylesheet" href="register.css">
+    <script src="../token.js"></script>
 </head>
 
 <body>
@@ -39,12 +41,12 @@
                     <h1><strong>4° Valores</strong></h1>
                     <input type="text" id="values" required>
                 </div>
-                <button type="submit" style="margin-top: 40px; padding: 10px;" onclick="saveRegistration(registerModal.dataset.userKey)">GRAVAR</button>
+                <button type="submit" style="margin-top: 40px; padding: 10px;" onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
             </form>
         </dialog>
     </main>
 </body>
-<script src="../script.js" defer></script>
+<script src="../main.js" defer></script>
 <script src="register.js" defer></script>
 
 </html>

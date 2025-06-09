@@ -1,9 +1,10 @@
 let users = { name: "Davi Rodrigues", email: "davi@gmail.com", password: "senha123" };
 
+let pageTheme = localStorage.getItem("theme");
+
 document.addEventListener("DOMContentLoaded", function () {
-  if (localStorage.getItem("login")) {
-    window.location = "../dashboard/dashboard.html"
-  }
+
+  applyTheme(pageTheme ?? "default");
 
   createTestingDB();
 
@@ -24,8 +25,42 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 
+function applyTheme(theme = "default") {
+    let themeColors = {
+        default: {
+            '--main-color': "white",
+            '--second-color': "rgb(225, 225, 225)",
+            '--font-color': "rgb(74, 74, 74)",
+            '--hover-color': "rgb(195, 195, 195)",
+            '--border-color': "rgb(203, 203, 203)"
+        },
+        dark: {
+            '--main-color': "rgb(24, 26, 27)",
+            '--second-color': "rgb(44, 47, 49)",
+            '--font-color': "rgb(210, 210, 210)",
+            '--hover-color': "rgb(70, 75, 78)",
+            '--border-color': "rgb(60, 64, 66)"
+        }
+    };
+
+    let themeVariables = [
+        "--main-color",
+        "--second-color",
+        "--font-color",
+        "--hover-color",
+        "--border-color"
+    ]
+
+    themeVariables.forEach(variable => {
+        document.documentElement.style.setProperty(variable, themeColors[theme][variable])
+    });
+
+    localStorage.setItem("theme", theme)
+}
+
+
 function createTestingDB() {
-  if (localStorage.length == 0) {
+  if (localStorage.length <= 1) {
 
     localStorage.setItem(crypto.randomUUID(), JSON.stringify({
       name: "Mario",

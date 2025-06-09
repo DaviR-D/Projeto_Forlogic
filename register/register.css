@@ -24,7 +24,6 @@ button {
     height: 30vw;
     border-style: none;
     border-radius: 10px;
-    box-shadow: 4px 4px 4px gray;
     justify-content: center;
     text-align: center;
 }

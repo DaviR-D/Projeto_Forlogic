@@ -4,12 +4,11 @@ let html = {};
 
 let registrations = [];
 
+let pageTheme = localStorage.getItem("theme");
+
 document.addEventListener("DOMContentLoaded", function () {
-    if (!loggedUser) {
-        alert("Faça login para continuar!")
-        window.location = "../login/login.html"
-    }
     loadLayout();
+    applyTheme(pageTheme ?? "default");
 })
 
 function loadLayout() {
@@ -59,8 +58,22 @@ function loadNav() {
             <p><a href="../register/register.html">Cadastro</a></p>
             <p><a href="../report/report.html">Relatórios</a></p>
         </div>
+        <input type="checkbox" id="themeToggle">Tema Escuro</div>
     </nav>
     `);
+
+    let themeToggle = document.getElementById("themeToggle");
+
+    themeToggle.checked = (pageTheme == "dark" ? true : false);
+
+    themeToggle.addEventListener("change", function () {
+        if (themeToggle.checked) {
+            applyTheme("dark")
+        }
+        else {
+            applyTheme("default")
+        }
+    })
 }
 
 function loadTable() {
@@ -110,11 +123,44 @@ function loadTableContent() {
 function getStorageRegistrations() {
     for (let index = 0; index < localStorage.length; index++) {
         let key = localStorage.key(index);
-        if(key=="login") continue;
+        if (key == "login" || key == "theme") continue;
         let item = JSON.parse(localStorage.getItem(key));
         item.key = key;
         registrations.push(item);
     }
+}
+
+function applyTheme(theme = "default") {
+    let themeColors = {
+        default: {
+            '--main-color': "white",
+            '--second-color': "rgb(225, 225, 225)",
+            '--font-color': "rgb(74, 74, 74)",
+            '--hover-color': "rgb(195, 195, 195)",
+            '--border-color': "rgb(203, 203, 203)"
+        },
+        dark: {
+            '--main-color': "rgb(24, 26, 27)",
+            '--second-color': "rgb(44, 47, 49)",
+            '--font-color': "rgb(210, 210, 210)",
+            '--hover-color': "rgb(70, 75, 78)",
+            '--border-color': "rgb(60, 64, 66)"
+        }
+    };
+
+    let themeVariables = [
+        "--main-color",
+        "--second-color",
+        "--font-color",
+        "--hover-color",
+        "--border-color"
+    ]
+
+    themeVariables.forEach(variable => {
+        document.documentElement.style.setProperty(variable, themeColors[theme][variable])
+    });
+
+    localStorage.setItem("theme", theme)
 }
 
 
