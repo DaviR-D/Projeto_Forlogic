@@ -6,7 +6,7 @@ body {
     grid-template-rows: 0.5fr 2fr 2fr;
 }
 
-body > * {
+body>* {
     margin: 10px;
 }
 
@@ -29,7 +29,7 @@ nav {
     grid-row-start: 1;
     grid-row-end: 4;
     border-radius: 10px;
-    height: 100vh;
+    height: 95vh;
     width: 15vw;
     font-size: 1.25rem;
     min-height: 285px;
@@ -112,7 +112,7 @@ table {
     border-collapse: collapse;
 }
 
-#tableHeader{
+#tableHeader {
     border-style: solid;
 }
 
@@ -139,17 +139,29 @@ button {
     min-width: 150px;
 }
 
-.tableButtons{
+.tableButtons {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    place-items: center;
 }
 
-#nextButton{
-    grid-column-start: 2;
+#nextButton {
+    grid-column-start: 5;
+    grid-column-end: 6;
+}
+
+#previousButton {
+    grid-column-start: 1;
     grid-column-end: 2;
 }
 
-#previousButton{
-    grid-column-start: 0;
-    grid-column-end: 1;
+#pageNumber {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+#searchResults{
+    margin-left: 2vw;
+    font-size: 1.2rem;
+    font-weight: bold;
 }

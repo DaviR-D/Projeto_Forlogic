@@ -23,6 +23,7 @@ function loadHeader() {
         `
     <header>
         <input type="text" placeholder="Pesquisar..." id="search">
+        <span id="searchResults"></span>
         <div class="login">
             <span id="userDisplay"></span>
             <a href="../login/login.html" id="exit">SAIR</a>
@@ -33,6 +34,8 @@ function loadHeader() {
     html.exit = document.getElementById("exit");
 
     html.search = document.getElementById("search");
+
+    html.searchResults = document.getElementById("searchResults");
 
     html.userDisplay = document.getElementById("userDisplay");
     html.userDisplay.innerText = loggedUser.name;
@@ -86,6 +89,7 @@ function loadTable() {
             </div>
             <div class="tableButtons">
                 <button id="previousButton">←</button>
+                <span id="pageNumber"></span>
                 <button id="nextButton">→</button>
             </div>
         </article>
@@ -93,7 +97,7 @@ function loadTable() {
     )
 
 
-
+    html.pageNumber = document.getElementById("pageNumber");
     html.tableOrder = "";
     html.arrow = {};
     html.orderReverse = false;
@@ -104,7 +108,7 @@ function loadTableContent(order = "default") {
 
     renderedRegistrations = [];
     registrations.forEach(register => {
-        let rowContent = `${register.name} ${register.email.split("@")[0]}`;
+        let rowContent = `${register.name}${register.email.split("@")[0]}`;
 
         if (rowContent.includes(html.search.value)) {
             renderedRegistrations.push(
@@ -120,13 +124,29 @@ function loadTableContent(order = "default") {
                 </tr>`
             );
         }
+        if (search.value.length > 0) {
+            searchResults.innerText = `${renderedRegistrations.length} resultados`
+        } else {
+            searchResults.innerText = "";
+        }
 
     });
 
     loadPaging();
 }
 
-function loadPaging(start = 0, increment = 10) {
+function loadPaging(start = 0, increment = 8) {
+    if (start >= (renderedRegistrations.length))
+        start -= increment;
+
+    if (start < 0)
+        start = 0;
+
+    let totalPages = Math.ceil(renderedRegistrations.length / increment);
+    let currentPage = Math.round(start / increment) + 1;
+
+    html.pageNumber.innerText = `${currentPage}/${totalPages}`;
+
     html.registrations = document.getElementById("registrations");
 
     let nextButton = document.getElementById("nextButton");
@@ -135,11 +155,6 @@ function loadPaging(start = 0, increment = 10) {
     let previousButton = document.getElementById("previousButton");
     previousButton.onclick = () => loadPaging(start - increment);
 
-    if (start >= (registrations.length))
-        start -= increment;
-
-    if (start < 0)
-        start = 0;
 
     let stop = start + increment;
 
@@ -197,7 +212,7 @@ function sortTable(order = "default") {
 
 function getStorageRegistrations() {
     let registrationsKeys = [
-        'name','email', 'status',
+        'name', 'email', 'status',
         'pending', 'date', 'age',
         'adress', 'other', 'interests',
         'feelings', 'values',

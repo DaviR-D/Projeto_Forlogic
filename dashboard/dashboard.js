@@ -50,6 +50,8 @@ function insertDashboardData() {
     navLink = document.getElementById("dashboardNav")
     navLink.style.borderBottomStyle = "solid";
 
+    loadTableContent("date");
+
 }
 
 function calculateStats() {
