@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     html.register = {};
-    addActions();
     getRegisterElements();
     insertRegisterData();
+    html.addActions();
 })
 
 function getRegisterElements() {
@@ -33,14 +33,16 @@ function insertRegisterData() {
             <button onclick="showRegisterModal()">NOVO CADASTRO</button>
         `
     )
-}
 
+    navLink = document.getElementById("registerNav")
+    navLink.style.borderBottomStyle = "solid";
 
-function addActions() {
-    tableHeader.innerHTML += "<th>Ações</th>";
-    document.querySelectorAll(".actions").forEach(row => {
-        row.style.display = "table-cell";
-    })
+    html.addActions = () => {
+        tableHeader.insertAdjacentHTML("beforeend","<th>Ações</th>");
+        document.querySelectorAll(".actions").forEach(row => {
+            row.style.display = "table-cell";
+        })
+    }
 }
 
 function saveRegistration(event, key = crypto.randomUUID()) {
@@ -48,27 +50,29 @@ function saveRegistration(event, key = crypto.randomUUID()) {
 
     resetFieldsColor();
 
-    if (checkExistingEmail(key)) alert("Email já cadastrado!");
-
-    else if (registerForm.checkValidity()) {
-        localStorage.setItem(key, JSON.stringify({
+    if (registerForm.checkValidity()) {
+        let existingRegister = JSON.parse(localStorage.getItem(key));
+        let newRegister = {
             name: html.register.nameInput.value,
             email: html.register.emailInput.value,
             status: html.register.statusCheck.checked ? "Ativo" : "Inativo",
             pending: true,
-            date: new Date(),
+            date: existingRegister?.date ? existingRegister?.date : new Date(),
             age: html.register.ageInput.value,
             adress: html.register.adressInput.value,
             other: html.register.otherInput.value,
             interests: html.register.interestsInput.value,
             feelings: html.register.feelingsInput.value,
             values: html.register.valuesInput.value,
-        }));
+        };
 
-        registerForm.submit();
+        if (checkFieldsValidity(key, newRegister)) {
+            localStorage.setItem(key, JSON.stringify(newRegister));
+            registerForm.submit();
+        }
     }
     else {
-        alert("Preencha todos os campos obrigatórios!");
+        alert("Preencha todos os campos!");
         highlightBlankFields();
     }
 }
@@ -79,12 +83,12 @@ function deleteRegistration(key) {
     if (response) {
         localStorage.removeItem(key);
         loadTableContent();
-        addActions();
     }
 }
 
 function editRegistration(key) {
     registerModal.dataset.userKey = key;
+    resetFieldsColor();
     registerModal.showModal();
     let editItem = JSON.parse(localStorage.getItem(key));
 
@@ -132,9 +136,33 @@ function highlightBlankFields() {
     });
 }
 
-function checkExistingEmail(key) {
-    let emailExists = registrations.map(registration => registration.email).includes(html.register.emailInput.value);
-    let sameKey = JSON.parse(localStorage.getItem(key))?.email == html.register.emailInput.value;
+function checkFieldsValidity(key, newRegister) {
+    if (checkExistingEmail(key, newRegister.email)) {
+        alert("Email já cadastrado!");
+        return false;
+    } else if (!checkValidEmail(newRegister)) {
+        alert("Insira um email válido!");
+        return false;
+    } else if (!checkValidName(newRegister)) {
+        alert("Insira um nome válido!");
+        return false;
+    }
+    return true;
+}
+
+function checkExistingEmail(key, email) {
+    let emailExists = registrations.map(registration => registration.email).includes(email);
+    let sameKey = JSON.parse(localStorage.getItem(key))?.email == email;
 
     return (emailExists && !sameKey);
+}
+
+function checkValidEmail(newRegister) {
+    regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    return regex.test(newRegister.email);
+}
+
+function checkValidName(newRegister) {
+    regex = /^[^0-9]*$/
+    return regex.test(newRegister.name);
 }

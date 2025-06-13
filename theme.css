@@ -2,7 +2,7 @@
     --main-color: white;
     --second-color: rgb(225, 225, 225);
     --font-color: rgb(74, 74, 74);
-    --hover-color: rgb(195, 195, 195);
+    --hover-color: lightgray;
     --border-color: rgb(203, 203, 203);
 }
 
@@ -49,6 +49,15 @@ tr:hover {
     background-color: var(--hover-color);
 }
 
+#tableHeader {
+    background-color: var(--second-color);
+    border-color: var(--main-color);
+}
+
+.column:active {
+    background-color: var(--main-color);
+}
+
 th,
 td {
     border-bottom-color: var(--border-color);
@@ -62,10 +71,11 @@ button {
 #registerModal {
     background-color: var(--main-color);
     color: var(--font-color);
-    box-shadow: 4px 4px 4px black;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.400);
 }
 
 .aboutUser>input,
+textarea,
 .userData>input {
     background-color: var(--second-color);
     color: var(--font-color);

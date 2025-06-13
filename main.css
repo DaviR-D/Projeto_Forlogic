@@ -6,6 +6,10 @@ body {
     grid-template-rows: 0.5fr 2fr 2fr;
 }
 
+body > * {
+    margin: 10px;
+}
+
 header {
     width: 80vw;
     height: 10vh;
@@ -16,6 +20,8 @@ header {
     grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 2;
+    min-width: 600px;
+    min-height: 60px;
 }
 
 nav {
@@ -23,9 +29,11 @@ nav {
     grid-row-start: 1;
     grid-row-end: 4;
     border-radius: 10px;
-    height: 95vh;
+    height: 100vh;
     width: 15vw;
-    font-size: 1.5vw;
+    font-size: 1.25rem;
+    min-height: 285px;
+    min-width: 150px;
 }
 
 main {
@@ -42,7 +50,7 @@ main {
 }
 
 #exit {
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-left-style: solid;
     padding: 1vw;
 }
@@ -60,6 +68,7 @@ main {
     padding: 1vw;
     margin-left: 1vw;
     border-radius: 10px;
+    width: 50%;
 }
 
 .navLinks {
@@ -76,9 +85,10 @@ p>a:hover {
 }
 
 #tableContainer {
-    height: 95%;
+    height: fit-content;
     margin-top: 15px;
     border-radius: 10px;
+    min-width: 600px;
 }
 
 #tableTop {
@@ -97,9 +107,13 @@ p>a:hover {
 
 table {
     width: 100%;
-    font-size: 1vw;
+    font-size: 1rem;
     overflow: hidden;
     border-collapse: collapse;
+}
+
+#tableHeader{
+    border-style: solid;
 }
 
 th,
@@ -116,10 +130,26 @@ tr:hover {
 
 button {
     font-weight: bolder;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     border-radius: 10px;
     border-style: none;
     width: 15vw;
     margin: 10px;
     margin-left: auto;
+    min-width: 150px;
+}
+
+.tableButtons{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#nextButton{
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+#previousButton{
+    grid-column-start: 0;
+    grid-column-end: 1;
 }

@@ -39,11 +39,10 @@ function loadHeader() {
 
     html.search.addEventListener("input", function () {
         loadTableContent();
-        addActions?.();
     });
 
     html.exit.addEventListener("click", function () {
-        localStorage.removeItem("login")
+        localStorage.removeItem("login");
     })
 
 }
@@ -54,20 +53,20 @@ function loadNav() {
     <nav>
         <p style="text-align: center;">Operação Curiosidade</p>
         <div class="navLinks">
-            <p><a href="../dashboard/dashboard.html">Home</a></p>
-            <p><a href="../register/register.html">Cadastro</a></p>
-            <p><a href="../report/report.html">Relatórios</a></p>
+            <p><a id="dashboardNav" href="../dashboard/dashboard.html"> <span style="font-size: 1.8rem;">⌂</span> Home</a></p>
+            <p><a id="registerNav" href="../register/register.html"> <span style="font-size: 1.6rem;">🗄 </span>Cadastro </a></p>
+            <p><a id="reportNav" href="../report/report.html"> <span style="font-size: 1.6rem;">🗒 </span>Relatórios </a></p>
+            <p style="margin-top: 55px;"><span id="themeIcon"></span></p>
         </div>
-        <input type="checkbox" id="themeToggle">Tema Escuro</div>
+        
     </nav>
     `);
 
-    let themeToggle = document.getElementById("themeToggle");
+    html.themeIcon = document.getElementById("themeIcon");
 
-    themeToggle.checked = (pageTheme == "dark" ? true : false);
 
-    themeToggle.addEventListener("change", function () {
-        if (themeToggle.checked) {
+    html.themeIcon.addEventListener("click", function () {
+        if (pageTheme == "default") {
             applyTheme("dark")
         }
         else {
@@ -85,27 +84,35 @@ function loadTable() {
             <div id="tableWraper">
                 <table id="registrations"></table>
             </div>
+            <div class="tableButtons">
+                <button id="previousButton">←</button>
+                <button id="nextButton">→</button>
+            </div>
         </article>
         `
     )
+
+
+
+    html.tableOrder = "";
+    html.arrow = {};
+    html.orderReverse = false;
 }
 
-function loadTableContent() {
-    registrations = [];
-    getStorageRegistrations();
+function loadTableContent(order = "default") {
+    sortTable(order);
 
-    html.registrations = document.getElementById("registrations");
-
-    registrationList = ['<tr id="tableHeader"><th>Nome</th><th>Email</th><th>Status</th></tr>'];
+    renderedRegistrations = [];
     registrations.forEach(register => {
         let rowContent = `${register.name} ${register.email.split("@")[0]}`;
 
         if (rowContent.includes(html.search.value)) {
-            registrationList.push(
+            renderedRegistrations.push(
                 `<tr>
                     <td>${register.name}</td>
                     <td>${register.email}</td>
-                    <td>${register.status}</td>
+                    <td style="color:${register.status == "Ativo" ? "rgb(52, 255, 52)" : "rgb(255, 39, 39)"};">${register.status}</td>
+                     <td>${new Date(register.date).toLocaleDateString('pt-BR')}</td>
                     <td class="actions" style="display: none;">
                         <button class="editButton" onclick="editRegistration('${register.key}')">&#9998</button>
                         <button class="deleteButton" onclick="deleteRegistration('${register.key}')">X</button>
@@ -116,15 +123,91 @@ function loadTableContent() {
 
     });
 
-    html.registrations.innerHTML = registrationList.join('');
+    loadPaging();
 }
 
+function loadPaging(start = 0, increment = 10) {
+    html.registrations = document.getElementById("registrations");
+
+    let nextButton = document.getElementById("nextButton");
+    nextButton.onclick = () => loadPaging(start + increment);
+
+    let previousButton = document.getElementById("previousButton");
+    previousButton.onclick = () => loadPaging(start - increment);
+
+    if (start >= (registrations.length))
+        start -= increment;
+
+    if (start < 0)
+        start = 0;
+
+    let stop = start + increment;
+
+    let page = renderedRegistrations.slice(start, stop);
+    page.unshift(`
+        <tr id="tableHeader">
+            <th class="column" onclick="loadTableContent('name')">Nome ${html.arrow.name ? html.arrow.name : ""}</th>
+            <th class="column" onclick="loadTableContent('email')">Email ${html.arrow.email ? html.arrow.email : ""}</th>
+            <th class="column" onclick="loadTableContent('status')">Status ${html.arrow.status ? html.arrow.status : ""}</th>
+            <th class="column" onclick="loadTableContent('date')">Data ${html.arrow.date ? html.arrow.date : ""}</th>
+        </tr>
+        `);
+
+    html.registrations.innerHTML = page.join('');
+    html.addActions?.();
+}
+
+function sortTable(order = "default") {
+    let sortBy = {
+        "name": (registrations) => {
+            html.arrow.name = "";
+            return registrations.sort((a, b) => a.name.localeCompare(b.name))
+        },
+        "email": (registrations) => {
+            html.arrow.email = "";
+            return registrations.sort((a, b) => a.email.localeCompare(b.email))
+        },
+        "status": (registrations) => {
+            html.arrow.status = "";
+            return registrations.sort((a, b) => a.status.localeCompare(b.status))
+        },
+        "date": (registrations) => {
+            html.arrow.date = "";
+            return registrations.sort((a, b) => new Date(b.date) - new Date(a.date));
+        },
+    }
+
+    if (order == "default") {
+        registrations = [];
+        getStorageRegistrations();
+    } else if (order == html.tableOrder) {
+        html.orderReverse = !html.orderReverse;
+        registrations.reverse();
+    } else {
+        html.arrow = {};
+        sortBy[order](registrations);
+        html.orderReverse = false;
+    }
+
+    let selectedColumn = Object.keys(html.arrow)[0];
+    html.arrow[selectedColumn] = html.orderReverse ? "↓" : "↑";
+
+    html.tableOrder = order;
+}
 
 function getStorageRegistrations() {
+    let registrationsKeys = [
+        'name','email', 'status',
+        'pending', 'date', 'age',
+        'adress', 'other', 'interests',
+        'feelings', 'values',
+    ]
     for (let index = 0; index < localStorage.length; index++) {
         let key = localStorage.key(index);
-        if (key == "login" || key == "theme") continue;
-        let item = JSON.parse(localStorage.getItem(key));
+        let content = localStorage.getItem(key);
+        let isRegistration = registrationsKeys.every(k => content.includes(k));
+        if (!isRegistration) continue;
+        let item = JSON.parse(content);
         item.key = key;
         registrations.push(item);
     }
@@ -160,7 +243,10 @@ function applyTheme(theme = "default") {
         document.documentElement.style.setProperty(variable, themeColors[theme][variable])
     });
 
-    localStorage.setItem("theme", theme)
+    localStorage.setItem("theme", theme);
+    pageTheme = theme;
+
+    html.themeIcon.innerHTML = theme == "dark" ? `<span style="font-size: 1.8rem;">☼</span>` : `<span style="font-size: 2rem;">☾</span>`;
 }
 
 

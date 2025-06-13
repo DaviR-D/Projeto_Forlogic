@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../main.css">
     <link rel="stylesheet" href="../theme.css">
     <link rel="stylesheet" href="register.css">
-    <script src="../token.js"></script>
+    <script src="../token.js" defer></script>
 </head>
 
 <body>
@@ -21,9 +21,9 @@
                     <p>Nome</p>
                     <input type="text" id="name" required>
                     <p>Idade</p>
-                    <input type="number" id="age" required>
+                    <input type="number" id="age" min="14" max="120" required>
                     <p>Email</p>
-                    <input type="email" id="email" required>
+                    <input type="text" id="email" required>
                     <p>Endereço</p>
                     <input type="text" id="adress" required>
                     <p>Outras informações</p>
@@ -31,17 +31,18 @@
                 </div>
                 <div class="aboutUser">
                     <h1><strong>2° Interesses</strong></h1>
-                    <input type="" id="interests" required>
+                    <textarea id="interests" required></textarea>
                 </div>
                 <div class="aboutUser">
                     <h1><strong>3° Sentimentos</strong></h1>
-                    <input type="text" id="feelings" required>
+                    <textarea id="feelings" required></textarea>
                 </div>
                 <div class="aboutUser">
                     <h1><strong>4° Valores</strong></h1>
-                    <input type="text" id="values" required>
+                    <textarea id="values" required></textarea>
                 </div>
-                <button type="submit" style="margin-top: 40px; padding: 10px;" onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
+                <button type="submit" style="margin-top: 40px; padding: 10px;"
+                    onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
             </form>
         </dialog>
     </main>

@@ -4,10 +4,12 @@ button {
 
 .deleteButton {
     color: red;
+    min-width: 10px;
 }
 
 .editButton {
     color: gray;
+    min-width: 10px;
 }
 
 .deleteButton,
@@ -16,7 +18,7 @@ button {
     border-style: none;
     width: 1vw;
     height: 1vh;
-    font-size: 1vw;
+    font-size: 1rem;
 }
 
 #registerModal {
@@ -28,14 +30,16 @@ button {
     text-align: center;
 }
 
-.aboutUser>input {
+.aboutUser>input, textarea {
     border-radius: 10px;
     width: 30vw;
     height: 15vh;
+    font-size: 1.5rem;
 }
 
 .userData>input {
     border-radius: 10px;
-    width: 20vw;
-    height: 5vh;
+    width: 22vw;
+    height: 8vh;
+    font-size: 1.5rem;
 }
