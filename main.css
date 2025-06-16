@@ -32,7 +32,7 @@ nav {
     height: 95vh;
     width: 15vw;
     font-size: 1.25rem;
-    min-height: 285px;
+    min-height: 700px;
     min-width: 150px;
 }
 
@@ -65,10 +65,12 @@ main {
 }
 
 #search {
-    padding: 1vw;
     margin-left: 1vw;
     border-radius: 10px;
-    width: 50%;
+    width: 40vw;
+    max-height: 55px;
+    min-height: 45px;
+    min-width: 300px;
 }
 
 .navLinks {
@@ -80,8 +82,26 @@ a {
     text-decoration: none;
 }
 
+a:hover{
+    font-weight: bold;
+}
+
 p>a:hover {
     transition-duration: 100ms;
+}
+
+
+#themeIconContainer {
+    justify-items: center;
+    align-items: center;
+    margin-top: 55px;
+    border-top-style: solid;
+    border-width: 1px;
+}
+
+#themeIcon {
+    padding: 20px;
+    border-radius: 15px;
 }
 
 #tableContainer {
@@ -114,6 +134,7 @@ table {
 
 #tableHeader {
     border-style: solid;
+    cursor: default;
 }
 
 th,
@@ -137,6 +158,7 @@ button {
     margin: 10px;
     margin-left: auto;
     min-width: 150px;
+    cursor: pointer;
 }
 
 .tableButtons {
@@ -160,7 +182,7 @@ button {
     grid-column-end: 4;
 }
 
-#searchResults{
+#searchResults {
     margin-left: 2vw;
     font-size: 1.2rem;
     font-weight: bold;

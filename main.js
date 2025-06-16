@@ -59,9 +59,8 @@ function loadNav() {
             <p><a id="dashboardNav" href="../dashboard/dashboard.html"> <span style="font-size: 1.8rem;">⌂</span> Home</a></p>
             <p><a id="registerNav" href="../register/register.html"> <span style="font-size: 1.6rem;">🗄 </span>Cadastro </a></p>
             <p><a id="reportNav" href="../report/report.html"> <span style="font-size: 1.6rem;">🗒 </span>Relatórios </a></p>
-            <p style="margin-top: 55px;"><span id="themeIcon"></span></p>
         </div>
-        
+        <div id="themeIconContainer"><p><span id="themeIcon"></span></p></div>
     </nav>
     `);
 
@@ -235,14 +234,16 @@ function applyTheme(theme = "default") {
             '--second-color': "rgb(225, 225, 225)",
             '--font-color': "rgb(74, 74, 74)",
             '--hover-color': "rgb(195, 195, 195)",
-            '--border-color': "rgb(203, 203, 203)"
+            '--border-color': "rgb(203, 203, 203)",
+            "--border-style" : "solid"
         },
         dark: {
             '--main-color': "rgb(24, 26, 27)",
             '--second-color': "rgb(44, 47, 49)",
             '--font-color': "rgb(210, 210, 210)",
             '--hover-color': "rgb(70, 75, 78)",
-            '--border-color': "rgb(60, 64, 66)"
+            '--border-color': "rgb(60, 64, 66)",
+            "--border-style" : "none"
         }
     };
 
@@ -251,7 +252,8 @@ function applyTheme(theme = "default") {
         "--second-color",
         "--font-color",
         "--hover-color",
-        "--border-color"
+        "--border-color",
+        "--border-style"
     ]
 
     themeVariables.forEach(variable => {

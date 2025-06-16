@@ -15,11 +15,15 @@ button {
         display: none;
     }
 
+    .tableButtons{
+        display: none;
+    }
+
     #tableContainer {
         position: absolute;
         top: 0;
         left: 0;
-        height: 100%;
+        height: auto;
         width: 100%;
         overflow-inline: visible;
         box-shadow: none;

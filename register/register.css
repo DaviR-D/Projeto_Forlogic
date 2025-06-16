@@ -22,19 +22,24 @@ button {
 }
 
 #registerModal {
-    width: 40vw;
-    height: 30vw;
+    width: 30vw;
+    height: 40vh;
     border-style: none;
     border-radius: 10px;
     justify-content: center;
     text-align: center;
+    min-width: 350px;
+    min-height: 350px;
 }
 
-.aboutUser>input, textarea {
+.aboutUser>input,
+textarea {
     border-radius: 10px;
-    width: 30vw;
+    width: 25vw;
     height: 15vh;
     font-size: 1.5rem;
+    min-width: 230px;
+    min-height: 60px;
 }
 
 .userData>input {
@@ -42,4 +47,6 @@ button {
     width: 22vw;
     height: 8vh;
     font-size: 1.5rem;
+    min-width: 230px;
+    min-height: 60px;
 }

@@ -4,6 +4,7 @@
     --font-color: rgb(74, 74, 74);
     --hover-color: lightgray;
     --border-color: rgb(203, 203, 203);
+    --border-style: solid;
 }
 
 /* dark theme
@@ -44,7 +45,6 @@ a {
     color: var(--font-color);
 }
 
-p>a:hover,
 tr:hover {
     background-color: var(--hover-color);
 }
@@ -96,4 +96,17 @@ textarea,
 button {
     color: white;
     background-color: black;
+}
+
+input {
+    border-style: var(--border-style);
+}
+
+textarea {
+    border-style: var(--border-style);
+}
+
+#themeIcon:hover{
+    background-color: var(--second-color);
+    cursor: pointer;
 }
