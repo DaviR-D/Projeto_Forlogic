@@ -35,7 +35,7 @@ function tryLogin() {
       window.location = "../dashboard/dashboard.html";
     }
     else {
-      alert("Login errado!");
+      alert("Login incorreto!");
     }
   }
 }
@@ -77,9 +77,9 @@ function applyTheme(theme = "default") {
   ]
 
   themeVariables.forEach(variable => {
-    document.documentElement.style.setProperty(variable, themeColors[theme][variable])
+    document.documentElement.style.setProperty(variable, themeColors[theme][variable]);
   });
 
-  localStorage.setItem("theme", theme)
+  localStorage.setItem("theme", theme);
 }
 

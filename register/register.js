@@ -30,7 +30,7 @@ function insertRegisterData() {
     html.register.tableTop.insertAdjacentHTML('beforeend',
         `
             <h1><strong>Cadastros</strong></h1>
-            <button onclick="showRegisterModal()">NOVO CADASTRO</button>
+            <button onclick="showRegisterModal()"> + NOVO CADASTRO</button>
         `
     )
 
@@ -163,6 +163,6 @@ function checkValidEmail(newRegister) {
 }
 
 function checkValidName(newRegister) {
-    regex = /^[^0-9]*$/
+    regex = /^[^0-9!@#$%*+={}?<>()]*$/
     return regex.test(newRegister.name);
 }

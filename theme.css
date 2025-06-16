@@ -39,6 +39,7 @@ nav,
 
 #search {
     background-color: var(--second-color);
+    color: var(--font-color);
 }
 
 a {
@@ -98,8 +99,13 @@ button {
     background-color: black;
 }
 
+.tableButtons>button {
+    color: var(--font-color);
+}
+
 input {
     border-style: var(--border-style);
+    color: var(--font-color);
 }
 
 textarea {

@@ -50,7 +50,7 @@ main {
 }
 
 #exit {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border-left-style: solid;
     padding: 1vw;
 }
@@ -60,7 +60,7 @@ main {
 }
 
 #userDisplay {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding-right: 1vw;
 }
 
@@ -82,7 +82,7 @@ a {
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     font-weight: bold;
 }
 
@@ -91,17 +91,12 @@ p>a:hover {
 }
 
 
-#themeIconContainer {
-    justify-items: center;
-    align-items: center;
-    margin-top: 55px;
-    border-top-style: solid;
-    border-width: 1px;
-}
-
 #themeIcon {
-    padding: 20px;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
     border-radius: 15px;
+
 }
 
 #tableContainer {
@@ -118,6 +113,10 @@ p>a:hover {
     display: flex;
 }
 
+#tableTop>button{
+    font-size: 1rem;
+    width: 12vw;
+}
 
 #tableWraper {
     overflow-inline: scroll;
@@ -162,25 +161,16 @@ button {
 }
 
 .tableButtons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    place-items: center;
+    justify-items: center;
+    align-items: center;
+    justify-self: center;
 }
 
-#nextButton {
-    grid-column-start: 5;
-    grid-column-end: 6;
+.tableButtons>button {
+    background-color: transparent;
+    max-width: 1px;
 }
 
-#previousButton {
-    grid-column-start: 1;
-    grid-column-end: 2;
-}
-
-#pageNumber {
-    grid-column-start: 3;
-    grid-column-end: 4;
-}
 
 #searchResults {
     margin-left: 2vw;
