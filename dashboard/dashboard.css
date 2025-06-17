@@ -27,9 +27,10 @@
     grid-column-start: 1;
     grid-column-end: 5;
     text-align: center;
+    font-size: var(--big-font);
 }
 
-.statsContainersWraper{
+.statsContainersWrapper{
     display: flex;
     justify-content: center;
     align-items: center;

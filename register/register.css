@@ -1,3 +1,7 @@
+:root {
+    --register-font: 1.5rem;
+}
+
 button {
     background-color: rgb(0, 181, 0);
 }
@@ -18,12 +22,14 @@ button {
     border-style: none;
     width: 1vw;
     height: 1vh;
-    font-size: 1rem;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 1vw;
+    font-size: var(--small-font);
 }
 
 #registerModal {
-    width: 30vw;
-    height: 40vh;
+    width: 60vw;
+    height: 80vh;
     border-style: none;
     border-radius: 10px;
     justify-content: center;
@@ -32,21 +38,65 @@ button {
     min-height: 350px;
 }
 
-.aboutUser>input,
-textarea {
-    border-radius: 10px;
-    width: 25vw;
-    height: 15vh;
+#modalTop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+#closeButton {
+    grid-column-start: 0;
+    grid-column-end: 1;
+    margin-right: auto;
+    font-weight: bolder;
     font-size: 1.5rem;
+}
+
+#closeButton:hover {
+    color: red;
+}
+
+#activeCheck {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-left: auto;
+    font-size: 1.5rem;
+}
+
+.registerSection {
+    display: inline-block;
+    margin: 1.5vw;
+}
+
+.inputTitle {
+    text-align: left;
+    font-size: var(--register-font);
+}
+
+.registerSection>input {
+    border-radius: 10px;
+    width: 22vw;
+    height: 8vh;
+    font-size: var(--register-font);
     min-width: 230px;
     min-height: 60px;
 }
 
-.userData>input {
+.registerSection>textarea {
     border-radius: 10px;
-    width: 22vw;
-    height: 8vh;
-    font-size: 1.5rem;
+    width: 25vw;
+    height: 15vh;
+    font-size: var(--register-font);
     min-width: 230px;
     min-height: 60px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: var(--big-font);
+    position: absolute;
+}
+
+#submitButton{
+    margin-top: 40px; padding: 15px;
 }

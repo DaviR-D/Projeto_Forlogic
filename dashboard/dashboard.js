@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let content = document.getElementById("mainContent")
     content.insertAdjacentHTML('afterbegin',
         `
-        <div class="statsContainersWraper">
+        <div class="statsContainersWrapper">
             <article class="statsContainer">
                 <p id="total" class="stats" style="color: rgb(79, 79, 255);"></p>
                 <span class="statsTitle">Total de cadastros</span>
@@ -48,7 +48,7 @@ function insertDashboardData() {
     html.dashboard.lastMonth.innerText = lastMonthRegistrations;
 
     navLink = document.getElementById("dashboardNav")
-    navLink.style.borderBottomStyle = "solid";
+    navLink.style.backgroundColor = "var(--hover-color)";
 
     loadTableContent("date");
 

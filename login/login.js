@@ -14,6 +14,7 @@ function getLoginElements() {
   html.loginButton = document.getElementById("login");
   html.emailInput = document.getElementById("email");
   html.passwordInput = document.getElementById("password");
+  html.errorMessage = document.getElementById("errorMessage");
 
   html.emailInput.addEventListener("keydown", e => {
     if (e.key === "Enter") html.passwordInput.focus();
@@ -35,7 +36,7 @@ function tryLogin() {
       window.location = "../dashboard/dashboard.html";
     }
     else {
-      alert("Login incorreto!");
+      html.errorMessage.innerText = "Login incorreto!";
     }
   }
 }
@@ -45,7 +46,7 @@ function checkValidEmail(email) {
 
   let validEmail = regex.test(email);
 
-  if (!validEmail) alert("Insira um email válido!");
+  if (!validEmail) html.errorMessage.innerText = "Insira um email válido!";;
 
   return validEmail;
 }

@@ -55,11 +55,11 @@ function loadNav() {
     document.body.insertAdjacentHTML('beforeend',
         `
     <nav>
-        <p style="text-align: center;">Operação Curiosidade</p>
+        <p style="text-align: center;">Operação<br>Curiosidade</p>
         <div class="navLinks">
-            <p><a id="dashboardNav" href="../dashboard/dashboard.html"> <span style="font-size: 1.8rem;"></span> Home</a></p>
-            <p><a id="registerNav" href="../register/register.html"> <span style="font-size: 1.6rem;"> </span>Cadastro </a></p>
-            <p><a id="reportNav" href="../report/report.html"> <span style="font-size: 1.6rem;"> </span>Relatórios </a></p>
+            <a id="dashboardNav" href="../dashboard/dashboard.html">Home</a>
+            <a id="registerNav" href="../register/register.html">Cadastro</a>
+            <a id="reportNav" href="../report/report.html">Relatórios</a>
         </div>
     </nav>
     `);
@@ -83,10 +83,10 @@ function loadTable() {
         `
         <article id="tableContainer">
             <div id="tableTop"></div>
-            <div id="tableWraper">
+            <div id="tableWrapper">
                 <table id="registrations"></table>
             </div>
-            <div class="tableButtons">
+            <div class="tablePaging">
                 <button id="previousButton">←</button>
                 <span id="pageNumber"></span>
                 <button id="nextButton">→</button>
@@ -114,7 +114,7 @@ function loadTableContent(order = "default") {
                 `<tr>
                     <td>${register.name}</td>
                     <td>${register.email}</td>
-                    <td style="color:${register.status == "Ativo" ? "rgb(52, 255, 52)" : "rgb(255, 39, 39)"};">${register.status}</td>
+                    <td style="font-weight: bold; color:${register.status == "Ativo" ? "rgb(52, 255, 52)" : "rgb(255, 39, 39)"};">${register.status}</td>
                      <td>${new Date(register.date).toLocaleDateString('pt-BR')}</td>
                     <td class="actions" style="display: none;">
                         <button class="editButton" onclick="editRegistration('${register.key}')">&#9998</button>
@@ -134,7 +134,7 @@ function loadTableContent(order = "default") {
     loadPaging();
 }
 
-function loadPaging(start = 0, increment = 8) {
+function loadPaging(start = 0, increment = 10) {
     if (start >= (renderedRegistrations.length))
         start -= increment;
 
@@ -213,7 +213,7 @@ function getStorageRegistrations() {
     let registrationsKeys = [
         'name', 'email', 'status',
         'pending', 'date', 'age',
-        'adress', 'other', 'interests',
+        'address', 'other', 'interests',
         'feelings', 'values',
     ]
     for (let index = 0; index < localStorage.length; index++) {

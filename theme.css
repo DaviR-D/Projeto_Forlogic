@@ -75,9 +75,7 @@ button {
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.400);
 }
 
-.aboutUser>input,
-textarea,
-.userData>input {
+.registerSection>input,textarea {
     background-color: var(--second-color);
     color: var(--font-color);
 }
@@ -99,7 +97,7 @@ button {
     background-color: black;
 }
 
-.tableButtons>button {
+.tablePaging>button {
     color: var(--font-color);
 }
 

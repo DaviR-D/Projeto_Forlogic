@@ -15,34 +15,54 @@
     <main id="mainContent">
         <dialog id="registerModal">
             <form id="registerForm">
-                <div class="userData">
-                    <div style="margin-left: 90%; margin-top: 5vh;">Ativo <input type="checkbox" id="status"></div>
+                <div id="modalTop"><span id="closeButton" onclick="hideRegisterModal()">X</span> <span
+                        id="activeCheck">Ativo<input type="checkbox" id="status"></span></div>
+                <div>
                     <h1><strong>1° Fatos e dados</strong></h1>
-                    <p>Nome</p>
-                    <input type="text" id="name" required>
-                    <p>Idade</p>
-                    <input type="number" id="age" min="14" max="120" required>
-                    <p>Email</p>
-                    <input type="text" id="email" required>
-                    <p>Endereço</p>
-                    <input type="text" id="adress" required>
-                    <p>Outras informações</p>
-                    <input type="text" id="other" required>
+                    <span class="registerSection">
+                        <div class="inputTitle">Nome</div>
+                        <input type="text" id="name" required>
+                        <div id="nameError" class="errorMessage"></div>
+                    </span>
+                    <span class="registerSection">
+                        <div class="inputTitle">Idade</div>
+                        <input type="number" id="age" min="14" max="120" required>
+                        <div id="ageError" class="errorMessage"></div>
+                    </span>
+                    <span class="registerSection">
+                        <div class="inputTitle">Email</div>
+                        <input type="text" id="email" required>
+                        <div id="emailError" class="errorMessage"></div>
+                    </span>
+                    <span class="registerSection">
+                        <div class="inputTitle">Endereço</div>
+                        <input type="text" id="address" required>
+                        <div id="addressError" class="errorMessage"></div>
+                    </span>
+                    <span class="registerSection">
+                        <div class="inputTitle">Outras informações</div>
+                        <input type="text" id="other" required>
+                        <div id="otherError" class="errorMessage"></div>
+                    </span>
                 </div>
-                <div class="aboutUser">
-                    <h1><strong>2° Interesses</strong></h1>
-                    <textarea id="interests" required></textarea>
+                <div>
+                    <span class="registerSection">
+                        <h1><strong>2° Interesses</strong></h1>
+                        <textarea id="interests" required></textarea>
+                        <div id="interestsError" class="errorMessage"></div>
+                    </span>
+                    <span class="registerSection">
+                        <h1><strong>3° Sentimentos</strong></h1>
+                        <textarea id="feelings" required></textarea>
+                        <div id="feelingsError" class="errorMessage"></div>
+                    </span>
+                    <span class="registerSection">
+                        <h1><strong>4° Valores</strong></h1>
+                        <textarea id="values" required></textarea>
+                        <div id="valuesError" class="errorMessage"></div>
+                    </span>
                 </div>
-                <div class="aboutUser">
-                    <h1><strong>3° Sentimentos</strong></h1>
-                    <textarea id="feelings" required></textarea>
-                </div>
-                <div class="aboutUser">
-                    <h1><strong>4° Valores</strong></h1>
-                    <textarea id="values" required></textarea>
-                </div>
-                <button type="submit" style="margin-top: 40px; padding: 10px;"
-                    onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
+                <button type="submit" id="submitButton" onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
             </form>
         </dialog>
     </main>

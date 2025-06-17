@@ -6,6 +6,5 @@ if (window.location.pathname.split("/").pop() == "login.html") {
 
 else if (!localStorage.getItem("login")) {
     window.location = "../login/login.html"
-    alert("Faça login para continuar!")
 }
 
