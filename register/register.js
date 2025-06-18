@@ -36,7 +36,7 @@ function insertRegisterData() {
     )
 
     navLink = document.getElementById("registerNav")
-    navLink.style.backgroundColor = "var(--hover-color)";
+    navLink.style.backgroundColor = "var(--highlight-color)";
 
     html.addActions = () => {
         tableHeader.insertAdjacentHTML("beforeend", "<th>Ações</th>");
@@ -48,6 +48,7 @@ function insertRegisterData() {
 
 function saveRegistration(event, key = crypto.randomUUID()) {
     event.preventDefault();
+    resetFieldsStyle();
 
     if (registerForm.checkValidity()) {
         let existingRegister = JSON.parse(localStorage.getItem(key));
@@ -135,7 +136,7 @@ function highlightBlankFields() {
     let errorMessage;
     emptyFields.forEach(field => {
         field.style.borderColor = "red";
-        errorMessage = document.getElementById(`${field.id}Error`)
+        errorMessage = document.getElementById(`${field.id}Error`)  ?? {};
         errorMessage.innerText = "Campo obrigatório";
     });
 

@@ -55,6 +55,7 @@ function loadNav() {
     document.body.insertAdjacentHTML('beforeend',
         `
     <nav>
+        <p id="navIcon">OC</p>
         <p style="text-align: center;">Operação<br>Curiosidade</p>
         <div class="navLinks">
             <a id="dashboardNav" href="../dashboard/dashboard.html">Home</a>
@@ -233,7 +234,7 @@ function applyTheme(theme = "default") {
             '--main-color': "white",
             '--second-color': "rgb(225, 225, 225)",
             '--font-color': "rgb(74, 74, 74)",
-            '--hover-color': "rgb(195, 195, 195)",
+            '--highlight-color': "rgb(195, 195, 195)",
             '--border-color': "rgb(203, 203, 203)",
             "--border-style" : "solid"
         },
@@ -241,7 +242,7 @@ function applyTheme(theme = "default") {
             '--main-color': "rgb(24, 26, 27)",
             '--second-color': "rgb(44, 47, 49)",
             '--font-color': "rgb(210, 210, 210)",
-            '--hover-color': "rgb(70, 75, 78)",
+            '--highlight-color': "rgb(70, 75, 78)",
             '--border-color': "rgb(60, 64, 66)",
             "--border-style" : "none"
         }
@@ -251,7 +252,7 @@ function applyTheme(theme = "default") {
         "--main-color",
         "--second-color",
         "--font-color",
-        "--hover-color",
+        "--highlight-color",
         "--border-color",
         "--border-style"
     ]

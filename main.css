@@ -5,7 +5,6 @@
 }
 
 body {
-    max-height: 95vh;
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -26,7 +25,7 @@ header {
     grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 2;
-    min-width: 600px;
+    min-width: 650px;
     min-height: 60px;
 }
 
@@ -56,6 +55,7 @@ header {
     padding-left: 25px;
     padding-right: 25px;
     border-radius: 15px;
+    user-select: none;
 
 }
 
@@ -80,12 +80,28 @@ nav {
     grid-row-start: 1;
     grid-row-end: 4;
     border-radius: 10px;
-    height: 95vh;
+    height: 100%;
     width: 15vw;
     font-size: var(--big-font);
     min-height: 700px;
     min-width: 150px;
 }
+
+#navIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    background-color: var(--highlight-color);
+    font-size: 3rem;
+    font-weight: bolder;
+    justify-self: center;
+}
+
 
 .navLinks>a {
     display: block;
@@ -116,7 +132,7 @@ main {
 
 
 #tableContainer {
-    height: 95%;
+    height: fit-content;
     margin-top: 15px;
     border-radius: 10px;
     min-width: 600px;
@@ -150,11 +166,12 @@ table {
 #tableHeader {
     border-style: solid;
     cursor: default;
+    user-select: none;
 }
 
 th,
 td {
-    padding: 8px;
+    padding: 1vh;
     text-align: center;
     border-bottom-style: solid;
 }
@@ -186,4 +203,3 @@ button {
     min-width: 150px;
     cursor: pointer;
 }
-

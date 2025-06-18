@@ -17,7 +17,7 @@ function insertReportData() {
     )
 
     navLink = document.getElementById("reportNav")
-    navLink.style.backgroundColor = "var(--hover-color)";
+    navLink.style.backgroundColor = "var(--highlight-color)";
 }
 
 function printTable() {

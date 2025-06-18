@@ -2,7 +2,7 @@
     --main-color: white;
     --second-color: rgb(225, 225, 225);
     --font-color: rgb(74, 74, 74);
-    --hover-color: lightgray;
+    --highlight-color: lightgray;
     --border-color: rgb(203, 203, 203);
     --border-style: solid;
 }
@@ -12,7 +12,7 @@
     --main-color: rgb(24, 26, 27);
     --second-color: rgb(44, 47, 49);
     --font-color: rgb(210, 210, 210);
-    --hover-color: rgb(70, 75, 78);
+    --highlight-color: rgb(70, 75, 78);
     --border-color: rgb(60, 64, 66);
 } */
 
@@ -47,12 +47,12 @@ a {
 }
 
 tr:hover {
-    background-color: var(--hover-color);
+    background-color: var(--second-color);
 }
 
 #tableHeader {
-    background-color: var(--second-color);
-    border-color: var(--main-color);
+    background-color: var(--highlight-color);
+    border-color: var(--highlight-color);
 }
 
 .column:active {
