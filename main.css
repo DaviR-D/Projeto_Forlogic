@@ -128,12 +128,13 @@ main {
     grid-column-end: 5;
     grid-row-start: 2;
     grid-row-end: 4;
+    margin-top: 0;
 }
 
 
 #tableContainer {
-    height: fit-content;
-    margin-top: 15px;
+    height: 80vh;
+    min-height: 550px;
     border-radius: 10px;
     min-width: 600px;
     padding: 5px;
@@ -153,7 +154,8 @@ main {
 #tableWrapper {
     overflow-inline: scroll;
     overflow-x: hidden;
-    height: 80%;
+    height: 62vh;
+    min-height: 400px;
 }
 
 table {
@@ -164,7 +166,6 @@ table {
 }
 
 #tableHeader {
-    border-style: solid;
     cursor: default;
     user-select: none;
 }

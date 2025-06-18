@@ -1,15 +1,16 @@
 .statsContainer{
-    height: 35vh;
-    width: 30vw;
-    margin: 1vw;
+    height: 25vh;
+    width: 35vw;
+    margin: 0;
+    margin-bottom: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    min-height: 220px;
-    min-width: 190px;
+    min-height: 200px;
+    min-width: 210px;
 }
 
 .stats{
@@ -34,8 +35,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
     grid-row-start: 2;
     grid-row-end: 3;
+}
+
+#centerCard{
+    margin-inline: 10px;
 }
 

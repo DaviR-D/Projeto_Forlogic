@@ -108,9 +108,9 @@ function loadTableContent(order = "default") {
 
     renderedRegistrations = [];
     registrations.forEach(register => {
-        let rowContent = `${register.name}${register.email.split("@")[0]}`;
+        let rowContent = `${register.name}${register.email.split("@")[0]}`.toLowerCase();
 
-        if (rowContent.includes(html.search.value)) {
+        if (rowContent.includes(html.search.value.toLowerCase())) {
             renderedRegistrations.push(
                 `<tr>
                     <td>${register.name}</td>
