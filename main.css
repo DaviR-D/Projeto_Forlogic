@@ -163,6 +163,7 @@ table {
     font-size: var(--normal-font);
     overflow: hidden;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 #tableHeader {

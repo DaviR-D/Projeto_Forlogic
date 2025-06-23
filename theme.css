@@ -7,15 +7,6 @@
     --border-style: solid;
 }
 
-/* dark theme
-:root {
-    --main-color: rgb(24, 26, 27);
-    --second-color: rgb(44, 47, 49);
-    --font-color: rgb(210, 210, 210);
-    --highlight-color: rgb(70, 75, 78);
-    --border-color: rgb(60, 64, 66);
-} */
-
 body {
     background-color: var(--second-color);
     color: var(--font-color);

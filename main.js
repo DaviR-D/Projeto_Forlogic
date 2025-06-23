@@ -193,6 +193,7 @@ function sortTable(order = "default") {
     }
 
     if (order == "default") {
+        html.arrow = {};
         registrations = [];
         getStorageRegistrations();
     } else if (order == html.tableOrder) {
