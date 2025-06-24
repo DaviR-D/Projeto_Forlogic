@@ -9,11 +9,13 @@ button {
 .deleteButton {
     color: red;
     min-width: 10px;
+    font-size: var(--normal-font);
 }
 
 .editButton {
     color: gray;
     min-width: 10px;
+    font-size: var(--big-font);
 }
 
 .deleteButton,
@@ -23,8 +25,12 @@ button {
     width: 1vw;
     height: 1vh;
     padding: 0px 0px 0px 0px;
-    margin: 0px 1vw;
-    font-size: var(--small-font);
+    margin: 0px 10px;
+}
+
+th,
+td {
+    padding: 1.2vh;
 }
 
 #registerModal {
