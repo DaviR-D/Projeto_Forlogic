@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <span class="statsTitle">Total de cadastros</span>
             </article>
             <article class="statsContainer" id="centerCard">
-                <p id="lastMonth" class="stats" style="color: rgb(52, 255, 52);"></p>
+                <p id="lastMonth" class="stats" style="color: rgb(0, 181, 0);"></p>
                 <span class="statsTitle">Cadastros no último mês</span>
             </article>
             <article class="statsContainer">

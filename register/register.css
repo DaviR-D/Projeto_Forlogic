@@ -1,5 +1,5 @@
 :root {
-    --register-font: 1.5rem;
+    --register-font: var(--big-font);
 }
 
 button {
@@ -7,13 +7,17 @@ button {
 }
 
 .deleteButton {
-    color: red;
+    color: var(--font-color);
     min-width: 10px;
     font-size: var(--normal-font);
 }
 
+.deleteButton:hover{
+    color: red;
+}
+
 .editButton {
-    color: gray;
+    color: var(--font-color);
     min-width: 10px;
     font-size: var(--big-font);
 }
@@ -51,9 +55,9 @@ td {
 }
 
 #closeButton {
-    grid-column-start: 0;
-    grid-column-end: 1;
-    margin-right: auto;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-left: auto;
     font-weight: bolder;
     font-size: 1.5rem;
 }
@@ -63,9 +67,9 @@ td {
 }
 
 #activeCheck {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    margin-left: auto;
+    grid-column-start: 0;
+    grid-column-end: 1;
+    margin-right: auto;
     font-size: 1.5rem;
 }
 
@@ -103,6 +107,7 @@ td {
     position: absolute;
 }
 
-#submitButton{
-    margin-top: 40px; padding: 15px;
+#submitButton {
+    margin-top: 40px;
+    padding: 15px;
 }

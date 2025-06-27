@@ -10,14 +10,17 @@
     <script src="../testingDB.js" defer></script>
 </head>
 <body>
-    <header>
-            Bem vindo!
-    </header>
-    <main class="loginBox">   
-        <input type="text" id="email" placeholder="Email"/>
-        <span id="errorMessage"></span>
-        <input type="password" id="password" placeholder="Senha"/>
-        <button id="login" onclick="tryLogin()">ENTRAR</button>
+    <main class="loginBox">
+        <div id="navIconContainer">
+            <p id="navIcon">OC</p>
+            <p style="text-align: center;">Operação<br>Curiosidade</p>
+        </div>  
+        <div id="loginInfo">
+            <input type="text" id="email" placeholder="Email"/>
+            <span id="errorMessage"></span>
+            <input type="password" id="password" placeholder="Senha"/>
+            <button id="login" onclick="tryLogin()">ENTRAR</button>
+        </div>
     </main>
 </body>
 <script src="login.js" defer></script>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../main.css">
     <link rel="stylesheet" href="../theme.css">
     <link rel="stylesheet" href="register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script src="../token.js" defer></script>
 </head>
 
@@ -20,49 +21,50 @@
                 <div>
                     <h1><strong>1° Fatos e dados</strong></h1>
                     <span class="registerSection">
-                        <div class="inputTitle">Nome</div>
+                        <div class="inputTitle">Nome*</div>
                         <input type="text" id="name" required>
                         <div id="nameError" class="errorMessage"></div>
                     </span>
                     <span class="registerSection">
-                        <div class="inputTitle">Idade</div>
+                        <div class="inputTitle">Idade*</div>
                         <input type="number" id="age" min="14" max="120" required>
                         <div id="ageError" class="errorMessage"></div>
                     </span>
                     <span class="registerSection">
-                        <div class="inputTitle">Email</div>
+                        <div class="inputTitle">Email*</div>
                         <input type="text" id="email" required>
                         <div id="emailError" class="errorMessage"></div>
                     </span>
                     <span class="registerSection">
-                        <div class="inputTitle">Endereço</div>
+                        <div class="inputTitle">Endereço*</div>
                         <input type="text" id="address" required>
                         <div id="addressError" class="errorMessage"></div>
                     </span>
                     <span class="registerSection">
                         <div class="inputTitle">Outras informações</div>
-                        <input type="text" id="other" required>
+                        <input type="text" id="other">
                         <div id="otherError" class="errorMessage"></div>
                     </span>
                 </div>
                 <div>
                     <span class="registerSection">
-                        <h1><strong>2° Interesses</strong></h1>
+                        <h1><strong>2° Interesses*</strong></h1>
                         <textarea id="interests" required></textarea>
                         <div id="interestsError" class="errorMessage"></div>
                     </span>
                     <span class="registerSection">
-                        <h1><strong>3° Sentimentos</strong></h1>
+                        <h1><strong>3° Sentimentos*</strong></h1>
                         <textarea id="feelings" required></textarea>
                         <div id="feelingsError" class="errorMessage"></div>
                     </span>
                     <span class="registerSection">
-                        <h1><strong>4° Valores</strong></h1>
+                        <h1><strong>4° Valores*</strong></h1>
                         <textarea id="values" required></textarea>
                         <div id="valuesError" class="errorMessage"></div>
                     </span>
                 </div>
-                <button type="submit" id="submitButton" onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
+                <button type="submit" id="submitButton"
+                    onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
             </form>
         </dialog>
     </main>

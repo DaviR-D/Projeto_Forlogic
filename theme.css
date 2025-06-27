@@ -15,8 +15,10 @@ body {
 header,
 nav,
 #tableContainer,
-.statsContainer {
+.statsContainer,
+.loginBox {
     background-color: var(--main-color);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.400);
 }
 
 #exit {
@@ -69,10 +71,6 @@ button {
 .registerSection>input,textarea {
     background-color: var(--second-color);
     color: var(--font-color);
-}
-
-.loginBox {
-    background-color: var(--main-color);
 }
 
 .loginBox>* {

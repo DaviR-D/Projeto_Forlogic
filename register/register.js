@@ -140,7 +140,7 @@ function highlightBlankFields() {
         errorMessage.innerText = "Campo obrigatório";
     });
 
-
+    emptyFields[0].scrollIntoView({behavior:"smooth", block:"center"});
 }
 
 function checkFieldsValidity(key, newRegister) {
@@ -149,16 +149,19 @@ function checkFieldsValidity(key, newRegister) {
         errorMessage = document.getElementById(`emailError`)
         errorMessage.innerText = "Email já cadastrado!";
         html.register.emailInput.style.borderColor = "red";
+        html.register.emailInput.scrollIntoView({behavior:"smooth", block:"center"});
         return false;
     } else if (!checkValidEmail(newRegister)) {
         errorMessage = document.getElementById(`emailError`)
         errorMessage.innerText = "Insira um email válido!";
         html.register.emailInput.style.borderColor = "red";
+        html.register.emailInput.scrollIntoView({behavior:"smooth", block:"center"});
         return false;
     } else if (!checkValidName(newRegister)) {
         errorMessage = document.getElementById(`nameError`)
         errorMessage.innerText = "Insira um nome válido!";
         html.register.nameInput.style.borderColor = "red";
+        html.register.nameInput.scrollIntoView({behavior:"smooth", block:"center"});
         return false;
     }
     return true;
