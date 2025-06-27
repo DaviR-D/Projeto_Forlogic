@@ -18,10 +18,11 @@ body {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-template-rows: repeat(3, auto);
+    width: 100vw;
 }
 
 header {
-    width: 80vw;
+    width: 82vw;
     height: 10vh;
     align-items: center;
     border-radius: 10px;
@@ -110,6 +111,12 @@ nav {
 }
 
 
+.navLinks {
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: var(--highlight-color);
+}
+
 .navLinks>a {
     display: flex;
     align-items: center;
@@ -145,8 +152,8 @@ main {
     height: 85vh;
     min-height: 550px;
     border-radius: 10px;
-    width: 80vw;
-    min-width: 600px;
+    width: 82vw;
+    min-width: 650px;
 }
 
 #tableTop {

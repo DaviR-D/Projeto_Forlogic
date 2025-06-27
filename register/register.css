@@ -42,10 +42,24 @@ td {
     height: 80vh;
     border-style: none;
     border-radius: 10px;
-    justify-content: center;
-    text-align: center;
+    justify-content: left;
+    text-align: left;
     min-width: 350px;
     min-height: 350px;
+    overflow: hidden;
+}
+
+#registerForm{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.onionLayer{
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--font-color);
 }
 
 #modalTop {
@@ -74,27 +88,26 @@ td {
 }
 
 .registerSection {
-    display: inline-block;
-    margin: 1.5vw;
+    display: block;
+    margin-bottom: 2.5vw;
 }
 
 .inputTitle {
-    text-align: left;
     font-size: var(--register-font);
 }
 
 .registerSection>input {
     border-radius: 10px;
-    width: 22vw;
-    height: 8vh;
+    width: 95%;
+    height: 6vh;
     font-size: var(--register-font);
     min-width: 230px;
-    min-height: 60px;
+    min-height: 40px;
 }
 
 .registerSection>textarea {
     border-radius: 10px;
-    width: 25vw;
+    width: 95%;
     height: 15vh;
     font-size: var(--register-font);
     min-width: 230px;
@@ -104,7 +117,10 @@ td {
 .errorMessage {
     color: red;
     font-size: var(--big-font);
-    position: absolute;
+}
+
+#buttonContainer{
+    text-align: center;
 }
 
 #submitButton {

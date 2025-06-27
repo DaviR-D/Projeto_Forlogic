@@ -2,13 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    grid-column-start: 2;
-    grid-column-end: 5;
     margin-top: 0px;
     margin-bottom: 10px;
-    width: 80vw;
+    width: 82vw;
+    min-width: 650px;
 }
 
 .statsContainer {

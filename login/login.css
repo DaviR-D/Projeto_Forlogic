@@ -41,6 +41,7 @@ body {
 
 #loginInfo {
     margin: auto;
+    width: 100%;
 }
 
 #loginInfo>input,
@@ -48,12 +49,13 @@ button {
     margin: auto;
     display: block;
     height: 8vh;
-    width: 25vw;
+    width: 90%;
     border-style: solid;
     border-color: black;
     border-radius: 10px;
     padding: 5px;
     min-height: 45px;
+    margin-bottom: 5vh;
 }
 
 .loginBox>input {
@@ -61,16 +63,14 @@ button {
 }
 
 #errorMessage {
-    margin: auto;
+    text-align: center;
     display: block;
-    height: 8vh;
-    width: 40vw;
     color: red;
     font-size: var(--normal-font);
 }
 
 button {
     font-weight: bold;
-    margin-top: 8vh;
     font-size: var(--normal-font);
+    margin-bottom: 0;
 }
