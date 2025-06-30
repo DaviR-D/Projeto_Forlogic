@@ -16,19 +16,20 @@
     <main id="mainContent">
         <dialog id="registerModal">
             <form id="registerForm">
-                <div id="modalTop"><span id="closeButton" onclick="hideRegisterModal()">X</span> <span
-                        id="activeCheck">Ativo<input type="checkbox" id="status"></span></div>
+                <div id="modalTop">
+                    <span id="closeButton" class="material-symbols-outlined" onclick="hideRegisterModal()">close</span>
+                </div>
                 <div>
-                    <h1 class="onionLayer"><strong>1° Fatos e dados</strong></h1>
+                    <h1 class="onionLayer"><strong>1° Fatos e dados</strong><span id="activeCheck">Ativo<input type="checkbox" id="status"></span></h1>
                     <div style="display: flex;">
-                        <div class="registerSection" style="width: 65%;">
+                        <div class="registerSection" style="width: 70%;">
                             <div class="inputTitle">Nome*</div>
                             <input type="text" id="name" required>
                             <div id="nameError" class="errorMessage"></div>
                         </div>
                         <div class="registerSection" style="width: 20%; margin-left: 5%;">
                             <div class="inputTitle">Idade*</div>
-                            <input type="number" id="age" min="14" max="120" required>
+                            <input type="number" id="age" min="14" max="120" style="min-width: 10px;" required>
                             <div id="ageError" class="errorMessage"></div>
                         </div>
                     </div>

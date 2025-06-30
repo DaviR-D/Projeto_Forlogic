@@ -18,7 +18,8 @@ nav,
 .statsContainer,
 .loginBox {
     background-color: var(--main-color);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.400);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.200);
+    /* border: 1px solid rgba(0, 0, 0, 0.300); */
 }
 
 #exit {

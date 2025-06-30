@@ -2,6 +2,11 @@
     --register-font: var(--big-font);
 }
 
+body.blur{
+    filter: blur(2px);
+    transition: 0.2s;
+}
+
 button {
     background-color: rgb(0, 181, 0);
 }
@@ -41,10 +46,10 @@ td {
     width: 60vw;
     height: 80vh;
     border-style: none;
-    border-radius: 10px;
+    border-radius: 8px;
     justify-content: left;
     text-align: left;
-    min-width: 350px;
+    min-width: 450px;
     min-height: 350px;
     overflow: hidden;
 }
@@ -53,6 +58,8 @@ td {
     height: 100%;
     width: 100%;
     overflow-y: scroll;
+    outline: none;
+    position: relative;
 }
 
 .onionLayer{
@@ -65,7 +72,6 @@ td {
 #modalTop {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: center;
 }
 
 #closeButton {
@@ -74,6 +80,7 @@ td {
     margin-left: auto;
     font-weight: bolder;
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
 #closeButton:hover {
@@ -81,15 +88,21 @@ td {
 }
 
 #activeCheck {
-    grid-column-start: 0;
-    grid-column-end: 1;
-    margin-right: auto;
-    font-size: 1.5rem;
+    position: absolute;
+    right: 5%;
+    top: 65px;
+    font-size: var(--register-font);
+}
+
+#status{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
 }
 
 .registerSection {
     display: block;
-    margin-bottom: 2.5vw;
+    margin-bottom: 2vh;
 }
 
 .inputTitle {
@@ -97,16 +110,16 @@ td {
 }
 
 .registerSection>input {
-    border-radius: 10px;
+    border-radius: 8px;
     width: 95%;
-    height: 6vh;
+    height: 4vh;
     font-size: var(--register-font);
     min-width: 230px;
     min-height: 40px;
 }
 
 .registerSection>textarea {
-    border-radius: 10px;
+    border-radius: 8px;
     width: 95%;
     height: 15vh;
     font-size: var(--register-font);
