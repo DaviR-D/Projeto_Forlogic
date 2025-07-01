@@ -2,7 +2,7 @@
     --register-font: var(--big-font);
 }
 
-body.blur{
+body.blur {
     filter: blur(2px);
     transition: 0.2s;
 }
@@ -17,7 +17,7 @@ button {
     font-size: var(--normal-font);
 }
 
-.deleteButton:hover{
+.deleteButton:hover {
     color: red;
 }
 
@@ -54,19 +54,19 @@ td {
     overflow: hidden;
 }
 
-#registerForm{
+#registerForm {
     height: 100%;
     width: 100%;
     overflow-y: scroll;
     outline: none;
-    position: relative;
 }
 
-.onionLayer{
+.onionLayer {
     border-bottom-style: solid;
     border-bottom-color: black;
     border-bottom-width: 2px;
     border-bottom-color: var(--font-color);
+    display: flex;
 }
 
 #modalTop {
@@ -88,15 +88,15 @@ td {
 }
 
 #activeCheck {
-    position: absolute;
-    right: 5%;
-    top: 65px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: 5%;
     font-size: var(--register-font);
 }
 
-#status{
-    width: 15px;
-    height: 15px;
+#status {
+    width: 16px;
+    height: 16px;
     cursor: pointer;
 }
 
@@ -132,11 +132,56 @@ td {
     font-size: var(--big-font);
 }
 
-#buttonContainer{
+#buttonContainer {
     text-align: center;
 }
 
 #submitButton {
     margin-top: 40px;
     padding: 15px;
+}
+
+#confirmDelete {
+    height: max(25vh, 195px);
+    width: max(35vw, 430px);
+
+    border-style: none;
+    border-radius: 8px;
+}
+
+#confirmWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: var(--font-color);
+    font-size: var(--normal-font);
+}
+
+#confirmTitle {
+    align-self: flex-start;
+    border-bottom: 1px solid var(--font-color);
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+#confirmationButtons {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+#confirmDeleteButton {
+    background-color: rgb(255, 39, 39);
+}
+
+#cancelDeleteButton {
+    background-color: rgba(0, 0, 0, 0.800);
+}
+
+#cancelDeleteButton,
+#confirmDeleteButton {
+    height: max(4vh, 22px);
+    width: max(8vw, 150px);
 }

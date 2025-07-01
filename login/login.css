@@ -67,7 +67,7 @@ button {
     margin-bottom: 5vh;
 }
 
-.loginInfo>input {
+#loginInfo>input {
     font-size: var(--normal-font);
 }
 

@@ -20,7 +20,10 @@
                     <span id="closeButton" class="material-symbols-outlined" onclick="hideRegisterModal()">close</span>
                 </div>
                 <div>
-                    <h1 class="onionLayer"><strong>1° Fatos e dados</strong><span id="activeCheck">Ativo<input type="checkbox" id="status"></span></h1>
+                    <h1 class="onionLayer">
+                        <strong>1° Fatos e dados</strong>
+                        <span id="activeCheck">Ativo<input type="checkbox" id="status"></span>
+                    </h1>
                     <div style="display: flex;">
                         <div class="registerSection" style="width: 70%;">
                             <div class="inputTitle">Nome*</div>
@@ -71,6 +74,16 @@
                         onclick="saveRegistration(event, registerModal.dataset.userKey)">GRAVAR</button>
                 </div>
             </form>
+        </dialog>
+        <dialog id="confirmDelete">
+            <div id="confirmWrapper">
+                <p id="confirmTitle"></p>
+                Essa ação não pode ser desfeita
+                <div id="confirmationButtons">
+                    <button id="cancelDeleteButton" onclick="hideDeleteConfirmation()">CANCELAR</button>
+                    <button id="confirmDeleteButton">DELETAR</button>
+                </div>
+            </div>
         </dialog>
     </main>
 </body>

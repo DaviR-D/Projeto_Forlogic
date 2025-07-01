@@ -76,6 +76,7 @@ header {
 }
 
 #search {
+    text-indent: 8px;
     margin-left: 1vw;
     border-radius: 8px;
     width: 40vw;

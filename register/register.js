@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function getRegisterElements() {
     html.register.tableTop = document.getElementById("tableTop");
 
-    html.register.registerModal = document.getElementById("registerModal")
+    html.register.registerModal = document.getElementById("registerModal");
+    html.register.deleteConfirmModal = document.getElementById("confirmDelete");
 
     html.register.statusCheck = document.getElementById("status");
     html.register.nameInput = document.getElementById("name");
@@ -19,6 +20,14 @@ function getRegisterElements() {
     html.register.interestsInput = document.getElementById("interests");
     html.register.feelingsInput = document.getElementById("feelings");
     html.register.valuesInput = document.getElementById("values");
+
+    html.register.confirmTitle = document.getElementById("confirmTitle");
+    html.register.confirmDeleteButton = document.getElementById("confirmDeleteButton");
+    html.register.cancelDeleteButton = document.getElementById("cancelDeleteButton");
+
+    html.register.deleteConfirmModal.addEventListener("close", function () {
+        document.body.classList.remove("blur");
+    });
 
     html.register.registerModal.addEventListener("close", function () {
         document.body.classList.remove("blur");
@@ -80,17 +89,14 @@ function saveRegistration(event, key = crypto.randomUUID()) {
 }
 
 function deleteRegistration(key) {
-    let deletedUser = JSON.parse(localStorage.getItem(key)).name
-    let response = confirm(`Deseja mesmo deletar ${deletedUser}?`)
-    if (response) {
-        localStorage.removeItem(key);
-        loadTableContent();
-    }
+    localStorage.removeItem(key);
+    loadTableContent();
+    hideDeleteConfirmation()
 }
 
 function editRegistration(key) {
     registerModal.dataset.userKey = key;
-    registerModal.showModal();
+    showRegisterModal();
     let editItem = JSON.parse(localStorage.getItem(key));
 
     html.register.nameInput.value = editItem.name;
@@ -111,6 +117,18 @@ function showRegisterModal() {
 
 function hideRegisterModal() {
     registerModal.close();
+}
+
+function showDeleteConfirmation(key) {
+    let deletedUser = JSON.parse(localStorage.getItem(key)).name
+    html.register.confirmTitle.innerText = `Você tem certeza que deseja deletar ${deletedUser}?`;
+    document.body.classList.add("blur");
+    html.register.deleteConfirmModal.showModal();
+    html.register.confirmDeleteButton.onclick = () => deleteRegistration(key);
+}
+
+function hideDeleteConfirmation() {
+    html.register.deleteConfirmModal.close();
 }
 
 function clearFields() {
