@@ -22,8 +22,8 @@ body {
     align-self: center;
 }
 
-@media(max-width: 800px){
-    .loginBox{
+@media(max-width: 800px) {
+    .loginBox {
         width: 80vw;
     }
 }
@@ -53,22 +53,18 @@ body {
     width: 100%;
 }
 
-#loginInfo>input,
+input,
 button {
     margin: auto;
     display: block;
     height: 4vh;
     min-height: 25px;
     width: 90%;
-    border-style: solid;
-    border-color: black;
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 5vh;
-}
-
-#loginInfo>input {
     font-size: var(--normal-font);
+
 }
 
 #errorMessage {
@@ -78,9 +74,9 @@ button {
     font-size: var(--normal-font);
 }
 
+
 button {
     font-weight: bold;
-    font-size: var(--normal-font);
     margin-top: 8vh;
     margin-bottom: 0;
     height: 6vh;

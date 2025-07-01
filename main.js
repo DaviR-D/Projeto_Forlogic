@@ -88,9 +88,9 @@ function loadTable() {
                 <table id="registrations"></table>
             </div>
             <div class="tablePaging">
-                <button id="previousButton">←</button>
+                <button id="previousButton" class="material-symbols-outlined">arrow_back</button>
                 <span id="pageNumber"></span>
-                <button id="nextButton">→</button>
+                <button id="nextButton" class="material-symbols-outlined">arrow_forward</button>
             </div>
         </article>
         `

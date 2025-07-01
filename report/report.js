@@ -21,7 +21,9 @@ function insertReportData() {
 }
 
 function printTable() {
+    document.body.classList.add("blur");
     loadPaging(0, registrations.length);
     window.print()
     loadPaging();
+    document.body.classList.remove("blur");
 }

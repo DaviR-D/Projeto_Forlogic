@@ -2,11 +2,6 @@
     --register-font: var(--big-font);
 }
 
-body.blur {
-    filter: blur(2px);
-    transition: 0.2s;
-}
-
 button {
     background-color: rgb(0, 181, 0);
 }
@@ -30,7 +25,6 @@ button {
 .deleteButton,
 .editButton {
     background-color: transparent;
-    border-style: none;
     width: 1vw;
     height: 1vh;
     padding: 0px 0px 0px 0px;
@@ -45,7 +39,6 @@ td {
 #registerModal {
     width: 60vw;
     height: 80vh;
-    border-style: none;
     border-radius: 8px;
     justify-content: left;
     text-align: left;
@@ -129,7 +122,7 @@ td {
 
 .errorMessage {
     color: red;
-    font-size: var(--big-font);
+    font-size: var(--normal-font);
 }
 
 #buttonContainer {
@@ -144,8 +137,6 @@ td {
 #confirmDelete {
     height: max(25vh, 195px);
     width: max(35vw, 430px);
-
-    border-style: none;
     border-radius: 8px;
 }
 
@@ -163,6 +154,12 @@ td {
     border-bottom: 1px solid var(--font-color);
     font-size: 1.5rem;
     width: 100%;
+    font-weight: bold;
+}
+
+#confirmText{
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 #confirmationButtons {

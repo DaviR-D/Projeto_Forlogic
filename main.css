@@ -21,6 +21,11 @@ body {
     width: 100vw;
 }
 
+body.blur {
+    filter: blur(2px);
+    transition: 0.2s;
+}
+
 header,
 #tableContainer,
 .statsContainersWrapper {
@@ -170,8 +175,7 @@ main {
 }
 
 #tableWrapper {
-    overflow-inline: scroll;
-    overflow-x: hidden;
+    overflow-y: auto;
     height: 65vh;
     min-height: 400px;
 }
@@ -201,16 +205,20 @@ tr:hover {
 }
 
 .tablePaging {
+    display: flex;
     justify-items: center;
     align-items: center;
+    justify-content: space-between;
+    gap: 40px;
     justify-self: center;
+    margin-top: 2vh;
 }
 
 .tablePaging>button {
     background-color: transparent;
     font-size: var(--big-font);
-    max-width: 8px;
-    min-width: 25px;
+    max-width: 0px;
+    min-width: 0px;
 }
 
 button {

@@ -3,6 +3,10 @@ button {
 }
 
 @media print {
+    body.blur{
+        filter: none;
+    }
+
     nav {
         display: none;
     }

@@ -9,7 +9,6 @@
 
 body {
     background-color: var(--second-color);
-    color: var(--font-color);
 }
 
 header,
@@ -17,10 +16,11 @@ nav,
 #tableContainer,
 .statsContainer,
 .loginBox,
+#registerModal,
 #confirmDelete {
     background-color: var(--main-color);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.200);
-    /* border: 1px solid rgba(0, 0, 0, 0.300); */
+    border: 1px solid rgba(0, 0, 0, 0.300);
+    color: var(--font-color);
 }
 
 #exit {
@@ -34,7 +34,6 @@ nav,
 
 #search {
     background-color: var(--second-color);
-    color: var(--font-color);
 }
 
 a {
@@ -64,42 +63,25 @@ button {
     color: white;
 }
 
-#registerModal {
-    background-color: var(--main-color);
-    color: var(--font-color);
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.400);
-}
-
-.registerSection>input,
+input,
 textarea {
     background-color: var(--second-color);
     color: var(--font-color);
+    border: 1px solid rgba(0, 0, 0, 0.300);
 }
 
-.loginBox>* {
-    border-color: black;
-}
-
-#loginInfo>input {
-    background-color: var(--second-color);
+input:focus, textarea:focus{
+    outline: 1px solid rgba(0, 0, 0, 0.300);
 }
 
 button {
     color: white;
     background-color: black;
+    border: none;
 }
 
 .tablePaging>button {
     color: var(--font-color);
-}
-
-input {
-    border-style: var(--border-style);
-    color: var(--font-color);
-}
-
-textarea {
-    border-style: var(--border-style);
 }
 
 #themeIcon:hover {
