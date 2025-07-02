@@ -1,3 +1,10 @@
+header,
+#tableContainer,
+.statsContainersWrapper {
+    width: max(81vw, 650px);
+    margin-left: 0;
+}
+
 .statsContainersWrapper {
     display: flex;
     justify-content: center;

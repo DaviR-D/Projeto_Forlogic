@@ -70,7 +70,8 @@ textarea {
     border: 1px solid rgba(0, 0, 0, 0.300);
 }
 
-input:focus, textarea:focus{
+input:focus,
+textarea:focus {
     outline: 1px solid rgba(0, 0, 0, 0.300);
 }
 
@@ -87,4 +88,16 @@ button {
 #themeIcon:hover {
     background-color: var(--second-color);
     cursor: pointer;
+}
+
+#tableContainer>::-webkit-scrollbar,
+#registerModal>::-webkit-scrollbar {
+    width: 4px;
+    background-color: rgba(255, 255, 255, 0)
+}
+
+#tableContainer>::-webkit-scrollbar-thumb,
+#registerModal>::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 16px;
 }
