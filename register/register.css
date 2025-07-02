@@ -1,5 +1,5 @@
 :root {
-    --register-font: var(--big-font);
+    --register-font: var(--normal-font);
 }
 
 button {
@@ -10,6 +10,8 @@ button {
     color: var(--font-color);
     min-width: 10px;
     font-size: var(--normal-font);
+    margin: 0;
+    margin-left: 12px;
 }
 
 .deleteButton:hover {
@@ -19,16 +21,17 @@ button {
 .editButton {
     color: var(--font-color);
     min-width: 10px;
-    font-size: var(--big-font);
+    font-size: var(--normal-font);
+    margin: 0;
+    margin-right: 12px;
 }
 
 .deleteButton,
 .editButton {
     background-color: transparent;
-    width: 1vw;
-    height: 1vh;
-    padding: 0px 0px 0px 0px;
-    margin: 0px 10px;
+    width: min-content;
+    height: min-content;
+    padding: 0;
 }
 
 th,
@@ -122,7 +125,7 @@ td {
 
 .errorMessage {
     color: red;
-    font-size: var(--normal-font);
+    font-size: var(--register-font);
 }
 
 #buttonContainer {

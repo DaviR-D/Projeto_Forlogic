@@ -89,7 +89,6 @@ header {
     min-height: 35px;
     min-width: 300px;
     font-size: var(--normal-font);
-    border-style: none;
 }
 
 nav {
@@ -158,7 +157,7 @@ main {
 
 
 #tableContainer {
-    height: 85vh;
+    height: 86vh;
     min-height: 550px;
     border-radius: 8px;
 }
@@ -232,4 +231,9 @@ button {
     min-width: 150px;
     cursor: pointer;
     outline: none;
+}
+
+input,
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
 }

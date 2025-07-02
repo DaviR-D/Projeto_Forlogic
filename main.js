@@ -118,8 +118,8 @@ function loadTableContent(order = "default") {
                     <td><span style="border-radius:5px; padding:5px; background-color:${register.status == "Ativo" ? "rgba(204, 255, 204, 0.85)" : "rgb(255, 215, 204, 0.85)"}; color:${register.status == "Ativo" ? "rgb(17, 209, 17)" : "rgb(232, 12, 12)"};">${register.status}</span></td>
                      <td>${new Date(register.date).toLocaleDateString('pt-BR')}</td>
                     <td class="actions" style="display: none;">
-                        <button class="editButton" onclick="editRegistration('${register.key}')"><span class="material-symbols-outlined">edit</span></button>
-                        <button class="deleteButton" onclick="showDeleteConfirmation('${register.key}')"><span class="material-symbols-outlined">delete</span></button>
+                        <button class="editButton material-symbols-outlined" onclick="editRegistration('${register.key}')">edit</button>
+                        <button class="deleteButton material-symbols-outlined" onclick="showDeleteConfirmation('${register.key}')">delete</button>
                     </td>
                 </tr>`
             );

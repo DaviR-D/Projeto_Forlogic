@@ -51,7 +51,7 @@ function insertRegisterData() {
     navLink.style.backgroundColor = "var(--highlight-color)";
 
     html.addActions = () => {
-        tableHeader.insertAdjacentHTML("beforeend", "<th>Ações</th>");
+        tableHeader.insertAdjacentHTML("beforeend", "<th style='cursor: default;'>Ações</th>");
         document.querySelectorAll(".actions").forEach(row => {
             row.style.display = "table-cell";
         })
