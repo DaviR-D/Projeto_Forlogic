@@ -4,7 +4,10 @@
     --font-color: rgb(74, 74, 74);
     --highlight-color: lightgray;
     --border-color: rgb(203, 203, 203);
-    --border-style: solid;
+    --activeBackground: rgb(204, 255, 204);
+    --activeFontColor: rgb(0, 100, 0);
+    --inactiveBackground: rgb(255, 215, 204);
+    --inactiveFontColor: rgb(150, 0, 0);
 }
 
 body {
@@ -50,14 +53,22 @@ tr:hover {
 }
 
 .column:active {
-    background-color: var(--main-color);
+    background-color: var(--second-color);
 }
 
-th,
 td {
     border-bottom-color: var(--border-color);
 }
 
+.active {
+    background-color: var(--activeBackground);
+    color: var(--activeFontColor);
+}
+
+.inactive {
+    background-color: var(--inactiveBackground);
+    color: var(--inactiveFontColor);
+}
 
 button {
     color: white;

@@ -197,6 +197,9 @@ th,
 td {
     line-height: max(5.5vh, 40px);
     text-align: center;
+}
+
+td {
     border-bottom-style: solid;
 }
 

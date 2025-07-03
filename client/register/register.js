@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     html.register = {};
     getRegisterElements();
     insertRegisterData();
-    html.addActions();
+    //html.addActions();
 })
 
 function getRegisterElements() {
@@ -58,12 +58,12 @@ function insertRegisterData() {
     }
 }
 
-function saveRegistration(event, key = crypto.randomUUID()) {
+function saveRegistration(event, id = crypto.randomUUID()) {
     event.preventDefault();
     resetFieldsStyle();
 
     if (registerForm.checkValidity()) {
-        let existingRegister = JSON.parse(localStorage.getItem(key));
+        let existingRegister = registrations.filter((register) => register.id == id)[0];
         let newRegister = {
             name: html.register.nameInput.value,
             email: html.register.emailInput.value,
@@ -78,8 +78,15 @@ function saveRegistration(event, key = crypto.randomUUID()) {
             values: html.register.valuesInput.value,
         };
 
-        if (checkFieldsValidity(key, newRegister)) {
-            localStorage.setItem(key, JSON.stringify(newRegister));
+        if (checkFieldsValidity(id, newRegister)) {
+            newRegister.id = id;
+            fetch(`${apiUrl}/register/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newRegister)
+            }).then(response => { console.log(response) })
             registerForm.submit();
         }
     }
@@ -88,16 +95,18 @@ function saveRegistration(event, key = crypto.randomUUID()) {
     }
 }
 
-function deleteRegistration(key) {
-    localStorage.removeItem(key);
+async function deleteRegistration(id) {
+    await fetch(`${apiUrl}/register/${id}`, {
+        method: 'DELETE'
+    })
     loadTableContent();
     hideDeleteConfirmation()
 }
 
-function editRegistration(key) {
-    registerModal.dataset.userKey = key;
+function editRegistration(id) {
+    registerModal.dataset.userId = id;
     showRegisterModal();
-    let editItem = JSON.parse(localStorage.getItem(key));
+    let editItem = registrations.filter((register) => register.id == id)[0];
 
     html.register.nameInput.value = editItem.name;
     html.register.emailInput.value = editItem.email;
@@ -119,12 +128,12 @@ function hideRegisterModal() {
     registerModal.close();
 }
 
-function showDeleteConfirmation(key) {
-    let deletedUser = JSON.parse(localStorage.getItem(key)).name
+function showDeleteConfirmation(id) {
+    let deletedUser = registrations.filter((register) => register.id == id)[0].name
     html.register.confirmTitle.innerText = `Você tem certeza que deseja deletar ${deletedUser}?`;
     document.body.classList.add("blur");
     html.register.deleteConfirmModal.showModal();
-    html.register.confirmDeleteButton.onclick = () => deleteRegistration(key);
+    html.register.confirmDeleteButton.onclick = () => deleteRegistration(id);
 }
 
 function hideDeleteConfirmation() {
@@ -132,7 +141,7 @@ function hideDeleteConfirmation() {
 }
 
 function clearFields() {
-    registerModal.dataset.userKey = undefined;
+    registerModal.dataset.userId = undefined;
     html.register.nameInput.value = "";
     html.register.emailInput.value = "";
     html.register.ageInput.value = "";
@@ -174,11 +183,11 @@ function highlightBlankFields() {
     emptyFields[0].scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
-function checkFieldsValidity(key, newRegister) {
+function checkFieldsValidity(id, newRegister) {
     html.invalidFields = [];
     checkValidName(newRegister.name);
     checkValidEmail(newRegister.email);
-    checkExistingEmail(key, newRegister.email);
+    checkExistingEmail(id, newRegister.email);
 
     if (html.invalidFields.length) {
         html.invalidFields[0].scrollIntoView({ behavior: "smooth", block: "center" });
@@ -187,10 +196,10 @@ function checkFieldsValidity(key, newRegister) {
     return true;
 }
 
-function checkExistingEmail(key, email) {
+function checkExistingEmail(id, email) {
     let emailExists = registrations.map(registration => registration.email).includes(email);
-    let sameKey = JSON.parse(localStorage.getItem(key))?.email == email;
-    let exists = (emailExists && !sameKey)
+    let sameId = registrations.filter((register) => register.id == id)[0]?.email == email;
+    let exists = (emailExists && !sameId)
     if (exists) {
         highlightInvalidField(html.register.emailInput, "Email já cadastrado");
         html.invalidFields.push(html.register.emailInput);
@@ -235,6 +244,6 @@ function addInputEvents() {
     html.register.emailInput.addEventListener("input", function () {
         resetFieldStyle(html.register.emailInput);
         checkValidEmail(html.register.emailInput.value);
-        checkExistingEmail(registerModal.dataset.userKey, html.register.emailInput.value);
+        checkExistingEmail(registerModal.dataset.userId, html.register.emailInput.value);
     })
 }
