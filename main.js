@@ -115,7 +115,7 @@ function loadTableContent(order = "default") {
                 `<tr>
                     <td>${register.name}</td>
                     <td>${register.email}</td>
-                    <td><span style="border-radius:5px; padding:5px; background-color:${register.status == "Ativo" ? "rgba(204, 255, 204, 0.85)" : "rgb(255, 215, 204, 0.85)"}; color:${register.status == "Ativo" ? "rgb(17, 209, 17)" : "rgb(232, 12, 12)"};">${register.status}</span></td>
+                    <td><span style="border-radius:5px; padding:5px;" class=${register.status == "Ativo" ? "active" : "inactive"}>${register.status}</span></td>
                      <td>${new Date(register.date).toLocaleDateString('pt-BR')}</td>
                     <td class="actions" style="display: none;">
                         <button class="editButton material-symbols-outlined" onclick="editRegistration('${register.key}')">edit</button>
@@ -237,7 +237,10 @@ function applyTheme(theme = "default") {
             '--font-color': "rgb(74, 74, 74)",
             '--highlight-color': "rgb(195, 195, 195)",
             '--border-color': "rgb(203, 203, 203)",
-            "--border-style": "solid"
+            "--activeBackground": "rgb(204, 255, 204)",
+            "--activeFontColor": "rgb(0, 100, 0)",
+            "--inactiveBackground": "rgb(255, 215, 204)",
+            "--inactiveFontColor": "rgb(150, 0, 0)",
         },
         dark: {
             '--main-color': "rgb(24, 26, 27)",
@@ -245,7 +248,10 @@ function applyTheme(theme = "default") {
             '--font-color': "rgb(210, 210, 210)",
             '--highlight-color': "rgb(70, 75, 78)",
             '--border-color': "rgb(60, 64, 66)",
-            "--border-style": "none"
+            "--activeBackground": "rgb(154, 205, 154)",
+            "--activeFontColor": "rgb(0, 100, 0)",
+            "--inactiveBackground": "rgb(205, 165, 154)",
+            "--inactiveFontColor": "rgb(150, 0, 0)",
         }
     };
 
@@ -255,7 +261,8 @@ function applyTheme(theme = "default") {
         "--font-color",
         "--highlight-color",
         "--border-color",
-        "--border-style"
+        "--activeBackground",
+        "--inactiveBackground"
     ]
 
     themeVariables.forEach(variable => {
