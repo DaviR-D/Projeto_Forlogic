@@ -26,15 +26,18 @@ app.UseHttpsRedirection();
 
 var registrations = new Dictionary<string, Registration>();
 
-app.MapGet("/register", () => { return registrations; });
-
 app.MapPost("/register/{id}", (Registration registration, string id) =>
 {
-    if (registrations.TryAdd(id, registration)) { }
-    else
-    {
-        registrations[id] = registration;
-    }
+    registrations.Add(id, registration);
+
+});
+
+app.MapGet("/register", () => { return registrations; });
+
+app.MapPut("/register/{id}", (Registration registration, string id) =>
+{
+    registrations[id] = registration;
+
 });
 
 app.MapDelete("/register/{id}", (string id) => { registrations.Remove(id); });
@@ -42,16 +45,16 @@ app.MapDelete("/register/{id}", (string id) => { registrations.Remove(id); });
 app.Run();
 
 public record Registration(
-    string id,
-    string name,
-    string email,
-    string status,
-    bool pending,
-    string date,
-    int age,
-    string address,
-    string other,
-    string interests,
-    string feelings,
-    string values
+    string Id,
+    string Name,
+    string Email,
+    string Status,
+    bool Pending,
+    string Date,
+    int Age,
+    string Address,
+    string Other,
+    string Interests,
+    string Feelings,
+    string Values
 );

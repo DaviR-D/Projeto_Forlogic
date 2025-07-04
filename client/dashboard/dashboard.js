@@ -34,7 +34,10 @@ function getDashboardElements() {
 }
 
 
-function insertDashboardData() {
+async function insertDashboardData() {
+    await loadTableContent();
+    await loadTableContent("date");
+    
     const [totalRegistrations, pendingRegistrations, lastMonthRegistrations] = calculateStats();
 
     html.dashboard.tableTop.insertAdjacentHTML('beforeend',
@@ -49,9 +52,6 @@ function insertDashboardData() {
 
     navLink = document.getElementById("dashboardNav")
     navLink.style.backgroundColor = "var(--highlight-color)";
-
-    loadTableContent("date");
-
 }
 
 function calculateStats() {

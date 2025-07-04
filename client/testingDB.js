@@ -1,283 +1,292 @@
- if (localStorage.length <= 1) {
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Mario",
-      email: "mario@gmail.com",
-      status: "Ativo",
-      pending: true,
-      date: "2025-05-04T09:27:58",
-      age: 29,
-      address: "Rua ABC, 123",
-      other: "Gosta de livros",
-      interests: "Tecnologia",
-      feelings: "Motivado",
-      values: "Honestidade"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "João",
-      email: "joao@gmail.com",
-      status: "Ativo",
-      pending: true,
-      date: "2025-05-04T09:27:53",
-      age: 29,
-      address: "Rua das Flores, 123",
-      other: "Gosta de café",
-      interests: "Tecnologia",
-      feelings: "Motivado",
-      values: "Honestidade"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Maria",
-      email: "maria@gmail.com",
-      status: "Inativo",
-      pending: false,
-      date: "2025-01-06T14:03:12",
-      age: 34,
-      address: "Av. Paulista, 987",
-      other: "Tem um gato",
-      interests: "Literatura",
-      feelings: "Tranquila",
-      values: "Respeito"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Carlos",
-      email: "carlos@gmail.com",
-      status: "Ativo",
-      pending: true,
-      date: "2025-02-08T11:23:45",
-      age: 41,
-      address: "Rua A, 45",
-      other: "Corre maratonas",
-      interests: "Esportes",
-      feelings: "Energético",
-      values: "Determinação"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Rafael",
-      email: "rafael@gmail.com",
-      status: "Inativo",
-      pending: false,
-      date: "2025-03-19T04:57:12",
-      age: 28,
-      address: "Rua do Comércio, 88",
-      other: "Viaja muito",
-      interests: "Fotografia",
-      feelings: "Reflexivo",
-      values: "Liberdade"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Fernanda",
-      email: "fernanda@gmail.com",
-      status: "Ativo",
-      pending: true,
-      date: "2025-06-01T08:15:30",
-      age: 32,
-      address: "Travessa Central, 11",
-      other: "Vegetariana",
-      interests: "Culinária",
-      feelings: "Feliz",
-      values: "Saúde"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Bruno",
-      email: "bruno@gmail.com",
-      status: "Inativo",
-      pending: false,
-      date: "2025-04-12T19:42:10",
-      age: 36,
-      address: "Rua Nova, 99",
-      other: "Toca violão",
-      interests: "Música",
-      feelings: "Calmo",
-      values: "Criatividade"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Luciana",
-      email: "luciana@gmail.com",
-      status: "Ativo",
-      pending: false,
-      date: "2025-05-22T13:09:55",
-      age: 40,
-      address: "Alameda Verde, 27",
-      other: "Fala 3 idiomas",
-      interests: "Idiomas",
-      feelings: "Confiante",
-      values: "Conhecimento"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Eduardo",
-      email: "eduardo@gmail.com",
-      status: "Ativo",
-      pending: true,
-      date: "2025-03-03T07:21:18",
-      age: 25,
-      address: "Rua Azul, 300",
-      other: "Ama filmes antigos",
-      interests: "Cinema",
-      feelings: "Curioso",
-      values: "Tradição"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Paula",
-      email: "paula@gmail.com",
-      status: "Inativo",
-      pending: true,
-      date: "2025-02-27T16:33:47",
-      age: 37,
-      address: "Rua das Palmeiras, 50",
-      other: "Tem um blog",
-      interests: "Escrita",
-      feelings: "Criativa",
-      values: "Expressão"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "André",
-      email: "andre@gmail.com",
-      status: "Ativo",
-      pending: false,
-      date: "2025-04-05T10:12:40",
-      age: 30,
-      address: "Rua Oeste, 15",
-      other: "Surfista",
-      interests: "Natureza",
-      feelings: "Livre",
-      values: "Aventura"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Camila",
-      email: "camila@gmail.com",
-      status: "Inativo",
-      pending: true,
-      date: "2025-01-18T22:44:07",
-      age: 31,
-      address: "Av. Central, 221",
-      other: "Trabalha com moda",
-      interests: "Design",
-      feelings: "Inspirada",
-      values: "Estilo"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Thiago",
-      email: "thiago@gmail.com",
-      status: "Ativo",
-      pending: false,
-      date: "2025-03-09T09:57:33",
-      age: 38,
-      address: "Rua do Sol, 10",
-      other: "Pai de dois",
-      interests: "Família",
-      feelings: "Realizado",
-      values: "Compromisso"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Juliana",
-      email: "juliana@gmail.com",
-      status: "Ativo",
-      pending: true,
-      date: "2025-05-11T17:03:26",
-      age: 27,
-      address: "Rua Leste, 3",
-      other: "Faz voluntariado",
-      interests: "Ação social",
-      feelings: "Solidária",
-      values: "Empatia"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Fábio",
-      email: "fabio@gmail.com",
-      status: "Inativo",
-      pending: false,
-      date: "2025-06-02T06:28:55",
-      age: 44,
-      address: "Av. Sul, 77",
-      other: "Gosta de jardinagem",
-      interests: "Natureza",
-      feelings: "Paciente",
-      values: "Simplicidade"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Tatiane",
-      email: "tatiane@gmail.com",
-      status: "Ativo",
-      pending: false,
-      date: "2025-02-15T15:14:11",
-      age: 35,
-      address: "Rua Bela Vista, 56",
-      other: "Tem uma startup",
-      interests: "Inovação",
-      feelings: "Ambiciosa",
-      values: "Progresso"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Marcelo",
-      email: "marcelo@gmail.com",
-      status: "Inativo",
-      pending: true,
-      date: "2025-04-29T21:19:38",
-      age: 42,
-      address: "Rua Velha, 81",
-      other: "Faz podcasts",
-      interests: "Comunicação",
-      feelings: "Expressivo",
-      values: "Transparência"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Vanessa",
-      email: "vanessa@gmail.com",
-      status: "Ativo",
-      pending: true,
-      date: "2025-03-25T12:07:59",
-      age: 33,
-      address: "Av. do Lago, 66",
-      other: "Faz yoga",
-      interests: "Bem-estar",
-      feelings: "Equilibrada",
-      values: "Harmonia"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Igor",
-      email: "igor@gmail.com",
-      status: "Inativo",
-      pending: false,
-      date: "2025-01-30T03:51:02",
-      age: 39,
-      address: "Rua Industrial, 101",
-      other: "Coleciona vinis",
-      interests: "Música",
-      feelings: "Nostálgico",
-      values: "Autenticidade"
-    }));
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify({
-      name: "Renata",
-      email: "renata@gmail.com",
-      status: "Ativo",
-      pending: false,
-      date: "2025-05-17T14:39:00",
-      age: 26,
-      address: "Rua do Parque, 5",
-      other: "Corre nas manhãs",
-      interests: "Saúde",
-      feelings: "Animada",
-      values: "Disciplina"
-    }));
-
+db = [
+  {
+    "id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "name": "Mario",
+    "email": "mario@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "date": "2025-05-04T09:27:58",
+    "age": 29,
+    "address": "Rua ABC, 123",
+    "other": "Gosta de livros",
+    "interests": "Tecnologia",
+    "feelings": "Motivado",
+    "values": "Honestidade"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-8901-2345-67890abcdef0",
+    "name": "João",
+    "email": "joao@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "date": "2025-05-04T09:27:53",
+    "age": 29,
+    "address": "Rua das Flores, 123",
+    "other": "Gosta de café",
+    "interests": "Tecnologia",
+    "feelings": "Motivado",
+    "values": "Honestidade"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+    "name": "Maria",
+    "email": "maria@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "date": "2025-01-06T14:03:12",
+    "age": 34,
+    "address": "Av. Paulista, 987",
+    "other": "Tem um gato",
+    "interests": "Literatura",
+    "feelings": "Tranquila",
+    "values": "Respeito"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-0123-4567-890abcdef012",
+    "name": "Carlos",
+    "email": "carlos@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "date": "2025-02-08T11:23:45",
+    "age": 41,
+    "address": "Rua A, 45",
+    "other": "Corre maratonas",
+    "interests": "Esportes",
+    "feelings": "Energético",
+    "values": "Determinação"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-1234-5678-90abcdef0123",
+    "name": "Rafael",
+    "email": "rafael@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "date": "2025-03-19T04:57:12",
+    "age": 28,
+    "address": "Rua do Comércio, 88",
+    "other": "Viaja muito",
+    "interests": "Fotografia",
+    "feelings": "Reflexivo",
+    "values": "Liberdade"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-2345-6789-0abcdef01234",
+    "name": "Fernanda",
+    "email": "fernanda@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "date": "2025-06-01T08:15:30",
+    "age": 32,
+    "address": "Travessa Central, 11",
+    "other": "Vegetariana",
+    "interests": "Culinária",
+    "feelings": "Feliz",
+    "values": "Saúde"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-3456-7890-abcdef012345",
+    "name": "Bruno",
+    "email": "bruno@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "date": "2025-04-12T19:42:10",
+    "age": 36,
+    "address": "Rua Nova, 99",
+    "other": "Toca violão",
+    "interests": "Música",
+    "feelings": "Calmo",
+    "values": "Criatividade"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4567-8901-abcdef0123456",
+    "name": "Luciana",
+    "email": "luciana@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "date": "2025-05-22T13:09:55",
+    "age": 40,
+    "address": "Alameda Verde, 27",
+    "other": "Fala 3 idiomas",
+    "interests": "Idiomas",
+    "feelings": "Confiante",
+    "values": "Conhecimento"
+  },
+  {
+    "id": "c9d0e1f2-a3b4-5678-9012-bcdef01234567",
+    "name": "Eduardo",
+    "email": "eduardo@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "date": "2025-03-03T07:21:18",
+    "age": 25,
+    "address": "Rua Azul, 300",
+    "other": "Ama filmes antigos",
+    "interests": "Cinema",
+    "feelings": "Curioso",
+    "values": "Tradição"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-6789-0123-cdef012345678",
+    "name": "Paula",
+    "email": "paula@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "date": "2025-02-27T16:33:47",
+    "age": 37,
+    "address": "Rua das Palmeiras, 50",
+    "other": "Tem um blog",
+    "interests": "Escrita",
+    "feelings": "Criativa",
+    "values": "Expressão"
+  },
+  {
+    "id": "e1f2a3b4-c5d6-7890-1234-def0123456789",
+    "name": "André",
+    "email": "andre@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "date": "2025-04-05T10:12:40",
+    "age": 30,
+    "address": "Rua Oeste, 15",
+    "other": "Surfista",
+    "interests": "Natureza",
+    "feelings": "Livre",
+    "values": "Aventura"
+  },
+  {
+    "id": "f2a3b4c5-d6e7-8901-2345-ef01234567890",
+    "name": "Camila",
+    "email": "camila@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "date": "2025-01-18T22:44:07",
+    "age": 31,
+    "address": "Av. Central, 221",
+    "other": "Trabalha com moda",
+    "interests": "Design",
+    "feelings": "Inspirada",
+    "values": "Estilo"
+  },
+  {
+    "id": "a3b4c5d6-e7f8-9012-3456-f012345678901",
+    "name": "Thiago",
+    "email": "thiago@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "date": "2025-03-09T09:57:33",
+    "age": 38,
+    "address": "Rua do Sol, 10",
+    "other": "Pai de dois",
+    "interests": "Família",
+    "feelings": "Realizado",
+    "values": "Compromisso"
+  },
+  {
+    "id": "b4c5d6e7-f8a9-0123-4567-0123456789012",
+    "name": "Juliana",
+    "email": "juliana@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "date": "2025-05-11T17:03:26",
+    "age": 27,
+    "address": "Rua Leste, 3",
+    "other": "Faz voluntariado",
+    "interests": "Ação social",
+    "feelings": "Solidária",
+    "values": "Empatia"
+  },
+  {
+    "id": "c5d6e7f8-a9b0-1234-5678-1234567890123",
+    "name": "Fábio",
+    "email": "fabio@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "date": "2025-06-02T06:28:55",
+    "age": 44,
+    "address": "Av. Sul, 77",
+    "other": "Gosta de jardinagem",
+    "interests": "Natureza",
+    "feelings": "Paciente",
+    "values": "Simplicidade"
+  },
+  {
+    "id": "d6e7f8a9-b0c1-2345-6789-2345678901234",
+    "name": "Tatiane",
+    "email": "tatiane@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "date": "2025-02-15T15:14:11",
+    "age": 35,
+    "address": "Rua Bela Vista, 56",
+    "other": "Tem uma startup",
+    "interests": "Inovação",
+    "feelings": "Ambiciosa",
+    "values": "Progresso"
+  },
+  {
+    "id": "e7f8a9b0-c1d2-3456-7890-3456789012345",
+    "name": "Marcelo",
+    "email": "marcelo@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "date": "2025-04-29T21:19:38",
+    "age": 42,
+    "address": "Rua Velha, 81",
+    "other": "Faz podcasts",
+    "interests": "Comunicação",
+    "feelings": "Expressivo",
+    "values": "Transparência"
+  },
+  {
+    "id": "f8a9b0c1-d2e3-4567-8901-4567890123456",
+    "name": "Vanessa",
+    "email": "vanessa@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "date": "2025-03-25T12:07:59",
+    "age": 33,
+    "address": "Av. do Lago, 66",
+    "other": "Faz yoga",
+    "interests": "Bem-estar",
+    "feelings": "Equilibrada",
+    "values": "Harmonia"
+  },
+  {
+    "id": "a9b0c1d2-e3f4-5678-9012-5678901234567",
+    "name": "Igor",
+    "email": "igor@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "date": "2025-01-30T03:51:02",
+    "age": 39,
+    "address": "Rua Industrial, 101",
+    "other": "Coleciona vinis",
+    "interests": "Música",
+    "feelings": "Nostálgico",
+    "values": "Autenticidade"
+  },
+  {
+    "id": "b0c1d2e3-f4a5-6789-0123-6789012345678",
+    "name": "Renata",
+    "email": "renata@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "date": "2025-05-17T14:39:00",
+    "age": 26,
+    "address": "Rua do Parque, 5",
+    "other": "Corre nas manhãs",
+    "interests": "Saúde",
+    "feelings": "Animada",
+    "values": "Disciplina"
   }
+]
+
+db.forEach(register => {
+  fetch(`http://localhost:5204/register/${register.id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(register)
+  })
+});

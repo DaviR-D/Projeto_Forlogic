@@ -197,7 +197,7 @@ async function sortTable(order = "default") {
     if (order == "default") {
         html.arrow = {};
         registrations = [];
-        await getStorageRegistrations();
+        await getRegistrations();
     } else if (order == html.tableOrder) {
         html.orderReverse = !html.orderReverse;
         registrations.reverse();
@@ -213,7 +213,7 @@ async function sortTable(order = "default") {
     html.tableOrder = order;
 }
 
-async function getStorageRegistrations() {
+async function getRegistrations() {
     await fetch(`${apiUrl}/register`)
         .then(response => { return response.json() })
         .then(data => {

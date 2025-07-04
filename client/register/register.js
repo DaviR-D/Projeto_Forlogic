@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     html.register = {};
     getRegisterElements();
     insertRegisterData();
-    //html.addActions();
+    try { html.addActions(); }
+    catch (error) { if (!(error instanceof ReferenceError)) throw error; }
 })
 
 function getRegisterElements() {
@@ -80,8 +81,10 @@ function saveRegistration(event, id = crypto.randomUUID()) {
 
         if (checkFieldsValidity(id, newRegister)) {
             newRegister.id = id;
+            httpMethod = registerModal.dataset.userId == undefined ? "POST" : "PUT";
+
             fetch(`${apiUrl}/register/${id}`, {
-                method: "POST",
+                method: httpMethod,
                 headers: {
                     "Content-Type": "application/json"
                 },
