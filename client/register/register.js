@@ -59,18 +59,18 @@ function insertRegisterData() {
     }
 }
 
-function saveRegistration(event, id = crypto.randomUUID()) {
+function saveRegistration(event, id = undefined) {
     event.preventDefault();
     resetFieldsStyle();
 
     if (registerForm.checkValidity()) {
-        let existingRegister = registrations.filter((register) => register.id == id)[0];
         let newRegister = {
+            id: id,
             name: html.register.nameInput.value,
             email: html.register.emailInput.value,
             status: html.register.statusCheck.checked ? "Ativo" : "Inativo",
             pending: true,
-            date: existingRegister?.date ? existingRegister?.date : new Date(),
+            date: id ? registrations.filter((register) => register.id == id)[0].date : new Date(),
             age: html.register.ageInput.value,
             address: html.register.addressInput.value,
             other: html.register.otherInput.value,
@@ -80,16 +80,15 @@ function saveRegistration(event, id = crypto.randomUUID()) {
         };
 
         if (checkFieldsValidity(id, newRegister)) {
-            newRegister.id = id;
-            httpMethod = registerModal.dataset.userId == undefined ? "POST" : "PUT";
+            httpMethod = id == undefined ? "POST" : "PUT";
 
-            fetch(`${apiUrl}/register/${id}`, {
+            fetch(`${apiUrl}/api/registration/`, {
                 method: httpMethod,
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(newRegister)
-            }).then(response => { console.log(response) })
+            })
             registerForm.submit();
         }
     }
@@ -99,7 +98,7 @@ function saveRegistration(event, id = crypto.randomUUID()) {
 }
 
 async function deleteRegistration(id) {
-    await fetch(`${apiUrl}/register/${id}`, {
+    await fetch(`${apiUrl}/api/registration/${id}`, {
         method: 'DELETE'
     })
     loadTableContent();

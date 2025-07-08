@@ -1,6 +1,5 @@
 db = [
   {
-    "id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
     "name": "Mario",
     "email": "mario@gmail.com",
     "status": "Ativo",
@@ -14,7 +13,6 @@ db = [
     "values": "Honestidade"
   },
   {
-    "id": "b2c3d4e5-f6a7-8901-2345-67890abcdef0",
     "name": "João",
     "email": "joao@gmail.com",
     "status": "Ativo",
@@ -28,7 +26,6 @@ db = [
     "values": "Honestidade"
   },
   {
-    "id": "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
     "name": "Maria",
     "email": "maria@gmail.com",
     "status": "Inativo",
@@ -42,7 +39,6 @@ db = [
     "values": "Respeito"
   },
   {
-    "id": "d4e5f6a7-b8c9-0123-4567-890abcdef012",
     "name": "Carlos",
     "email": "carlos@gmail.com",
     "status": "Ativo",
@@ -56,7 +52,6 @@ db = [
     "values": "Determinação"
   },
   {
-    "id": "e5f6a7b8-c9d0-1234-5678-90abcdef0123",
     "name": "Rafael",
     "email": "rafael@gmail.com",
     "status": "Inativo",
@@ -70,7 +65,6 @@ db = [
     "values": "Liberdade"
   },
   {
-    "id": "f6a7b8c9-d0e1-2345-6789-0abcdef01234",
     "name": "Fernanda",
     "email": "fernanda@gmail.com",
     "status": "Ativo",
@@ -84,7 +78,6 @@ db = [
     "values": "Saúde"
   },
   {
-    "id": "a7b8c9d0-e1f2-3456-7890-abcdef012345",
     "name": "Bruno",
     "email": "bruno@gmail.com",
     "status": "Inativo",
@@ -98,7 +91,6 @@ db = [
     "values": "Criatividade"
   },
   {
-    "id": "b8c9d0e1-f2a3-4567-8901-abcdef0123456",
     "name": "Luciana",
     "email": "luciana@gmail.com",
     "status": "Ativo",
@@ -112,7 +104,6 @@ db = [
     "values": "Conhecimento"
   },
   {
-    "id": "c9d0e1f2-a3b4-5678-9012-bcdef01234567",
     "name": "Eduardo",
     "email": "eduardo@gmail.com",
     "status": "Ativo",
@@ -126,7 +117,6 @@ db = [
     "values": "Tradição"
   },
   {
-    "id": "d0e1f2a3-b4c5-6789-0123-cdef012345678",
     "name": "Paula",
     "email": "paula@gmail.com",
     "status": "Inativo",
@@ -140,7 +130,6 @@ db = [
     "values": "Expressão"
   },
   {
-    "id": "e1f2a3b4-c5d6-7890-1234-def0123456789",
     "name": "André",
     "email": "andre@gmail.com",
     "status": "Ativo",
@@ -154,7 +143,6 @@ db = [
     "values": "Aventura"
   },
   {
-    "id": "f2a3b4c5-d6e7-8901-2345-ef01234567890",
     "name": "Camila",
     "email": "camila@gmail.com",
     "status": "Inativo",
@@ -168,7 +156,6 @@ db = [
     "values": "Estilo"
   },
   {
-    "id": "a3b4c5d6-e7f8-9012-3456-f012345678901",
     "name": "Thiago",
     "email": "thiago@gmail.com",
     "status": "Ativo",
@@ -182,7 +169,6 @@ db = [
     "values": "Compromisso"
   },
   {
-    "id": "b4c5d6e7-f8a9-0123-4567-0123456789012",
     "name": "Juliana",
     "email": "juliana@gmail.com",
     "status": "Ativo",
@@ -196,7 +182,6 @@ db = [
     "values": "Empatia"
   },
   {
-    "id": "c5d6e7f8-a9b0-1234-5678-1234567890123",
     "name": "Fábio",
     "email": "fabio@gmail.com",
     "status": "Inativo",
@@ -210,7 +195,6 @@ db = [
     "values": "Simplicidade"
   },
   {
-    "id": "d6e7f8a9-b0c1-2345-6789-2345678901234",
     "name": "Tatiane",
     "email": "tatiane@gmail.com",
     "status": "Ativo",
@@ -224,7 +208,6 @@ db = [
     "values": "Progresso"
   },
   {
-    "id": "e7f8a9b0-c1d2-3456-7890-3456789012345",
     "name": "Marcelo",
     "email": "marcelo@gmail.com",
     "status": "Inativo",
@@ -238,7 +221,6 @@ db = [
     "values": "Transparência"
   },
   {
-    "id": "f8a9b0c1-d2e3-4567-8901-4567890123456",
     "name": "Vanessa",
     "email": "vanessa@gmail.com",
     "status": "Ativo",
@@ -252,7 +234,6 @@ db = [
     "values": "Harmonia"
   },
   {
-    "id": "a9b0c1d2-e3f4-5678-9012-5678901234567",
     "name": "Igor",
     "email": "igor@gmail.com",
     "status": "Inativo",
@@ -266,7 +247,6 @@ db = [
     "values": "Autenticidade"
   },
   {
-    "id": "b0c1d2e3-f4a5-6789-0123-6789012345678",
     "name": "Renata",
     "email": "renata@gmail.com",
     "status": "Ativo",
@@ -282,7 +262,7 @@ db = [
 ]
 
 db.forEach(register => {
-  fetch(`http://localhost:5204/register/${register.id}`, {
+  fetch(`http://localhost:5204/api/registration/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

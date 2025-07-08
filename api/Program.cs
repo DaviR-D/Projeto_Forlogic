@@ -1,4 +1,10 @@
+using Api.Modules.Registrations;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var registrationsMock = new List<RegistrationDto>();
+
+builder.Services.AddSingleton(registrationsMock);
 
 builder.Services.AddCors(options =>
 {
@@ -10,9 +16,15 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+
+builder.Services.AddControllers();
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.MapControllers();
 
 
 if (app.Environment.IsDevelopment())
@@ -24,37 +36,4 @@ app.UseCors("policy");
 
 app.UseHttpsRedirection();
 
-var registrations = new Dictionary<string, Registration>();
-
-app.MapPost("/register/{id}", (Registration registration, string id) =>
-{
-    registrations.Add(id, registration);
-
-});
-
-app.MapGet("/register", () => { return registrations; });
-
-app.MapPut("/register/{id}", (Registration registration, string id) =>
-{
-    registrations[id] = registration;
-
-});
-
-app.MapDelete("/register/{id}", (string id) => { registrations.Remove(id); });
-
 app.Run();
-
-public record Registration(
-    string Id,
-    string Name,
-    string Email,
-    string Status,
-    bool Pending,
-    string Date,
-    int Age,
-    string Address,
-    string Other,
-    string Interests,
-    string Feelings,
-    string Values
-);

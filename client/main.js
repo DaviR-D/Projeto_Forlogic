@@ -214,10 +214,10 @@ async function sortTable(order = "default") {
 }
 
 async function getRegistrations() {
-    await fetch(`${apiUrl}/register`)
+    await fetch(`${apiUrl}/api/registration`)
         .then(response => { return response.json() })
         .then(data => {
-            registrations = Object.values(data);
+            registrations = data;
         });
 }
 
