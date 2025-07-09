@@ -105,10 +105,21 @@ function loadTable() {
     html.orderReverse = false;
 }
 
-async function loadTableContent(order = "default") {
-    await sortTable(order);
+async function loadTableContent(order = "default", start = 0, increment = 10) {
+    await getRegistrations(order, start, increment);
+    loadPaging(order, start, increment);
 
-    renderedRegistrations = [];
+
+    renderedRegistrations =
+        [`
+        <tr id="tableHeader">
+            <th class="column" onclick="sortTable('Name')">Nome ${html.arrow.name ? html.arrow.name : ""}</th>
+            <th class="column" onclick="sortTable('Email')">Email ${html.arrow.email ? html.arrow.email : ""}</th>
+            <th class="column" onclick="sortTable('Status')">Status ${html.arrow.status ? html.arrow.status : ""}</th>
+            <th class="column" onclick="sortTable('Date')">Data ${html.arrow.date ? html.arrow.date : ""}</th>
+        </tr>`
+
+        ];
     registrations.forEach(register => {
         let rowContent = `${register.name}${register.email.split("@")[0]}`.toLowerCase();
 
@@ -134,17 +145,15 @@ async function loadTableContent(order = "default") {
 
     });
 
-    loadPaging();
+
+    html.registrations.innerHTML = renderedRegistrations.join('');
+    html.addActions?.();
 }
 
-function loadPaging(start = 0, increment = 10) {
-    if (start >= (renderedRegistrations.length))
-        start -= increment;
+async function loadPaging(order = "default", start = 0, increment = 10) {
+    let length = html.registrationsLength;
 
-    if (start < 0)
-        start = 0;
-
-    let totalPages = Math.ceil(renderedRegistrations.length / increment);
+    let totalPages = Math.ceil(length / increment);
     let currentPage = Math.round(start / increment) + 1;
 
     html.pageNumber.innerText = `${currentPage}/${totalPages}`;
@@ -152,58 +161,34 @@ function loadPaging(start = 0, increment = 10) {
     html.registrations = document.getElementById("registrations");
 
     let nextButton = document.getElementById("nextButton");
-    nextButton.onclick = () => loadPaging(start + increment);
+    nextButton.onclick = () => loadTableContent(order, (start + increment) >= length ? start : (start + increment));
 
     let previousButton = document.getElementById("previousButton");
-    previousButton.onclick = () => loadPaging(start - increment);
-
-
-    let stop = start + increment;
-
-    let page = renderedRegistrations.slice(start, stop);
-    page.unshift(`
-        <tr id="tableHeader">
-            <th class="column" onclick="loadTableContent('name')">Nome ${html.arrow.name ? html.arrow.name : ""}</th>
-            <th class="column" onclick="loadTableContent('email')">Email ${html.arrow.email ? html.arrow.email : ""}</th>
-            <th class="column" onclick="loadTableContent('status')">Status ${html.arrow.status ? html.arrow.status : ""}</th>
-            <th class="column" onclick="loadTableContent('date')">Data ${html.arrow.date ? html.arrow.date : ""}</th>
-        </tr>
-        `);
-
-    html.registrations.innerHTML = page.join('');
-    html.addActions?.();
+    previousButton.onclick = () => loadTableContent(order, (start - increment) < 0 ? 0 : (start - increment));
 }
 
-async function sortTable(order = "default") {
+function sortTable(order = "default") {
     let sortBy = {
-        "name": (registrations) => {
+        "Name": () => {
             html.arrow.name = "";
-            return registrations.sort((a, b) => a.name.localeCompare(b.name))
         },
-        "email": (registrations) => {
+        "Email": () => {
             html.arrow.email = "";
-            return registrations.sort((a, b) => a.email.localeCompare(b.email))
         },
-        "status": (registrations) => {
+        "Status": () => {
             html.arrow.status = "";
-            return registrations.sort((a, b) => a.status.localeCompare(b.status))
         },
-        "date": (registrations) => {
+        "Date": () => {
             html.arrow.date = "";
-            return registrations.sort((a, b) => new Date(b.date) - new Date(a.date));
         },
     }
-
     if (order == "default") {
         html.arrow = {};
-        registrations = [];
-        await getRegistrations();
     } else if (order == html.tableOrder) {
         html.orderReverse = !html.orderReverse;
-        registrations.reverse();
     } else {
         html.arrow = {};
-        sortBy[order](registrations);
+        sortBy[order]();
         html.orderReverse = false;
     }
 
@@ -211,13 +196,15 @@ async function sortTable(order = "default") {
     html.arrow[selectedColumn] = html.orderReverse ? "↓" : "↑";
 
     html.tableOrder = order;
+    loadTableContent(order);
 }
 
-async function getRegistrations() {
-    await fetch(`${apiUrl}/api/registration`)
+async function getRegistrations(order = "default", start = 0, increment = 10) {
+    await fetch(`${apiUrl}/api/registration/page?start=${start}&increment=${increment}&sortKey=${order}&descending=${html.orderReverse}`)
         .then(response => { return response.json() })
         .then(data => {
-            registrations = data;
+            registrations = data.registrations;
+            html.registrationsLength = data.registrationsLength;
         });
 }
 

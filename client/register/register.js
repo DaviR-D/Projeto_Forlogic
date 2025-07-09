@@ -10,7 +10,7 @@ function getRegisterElements() {
     html.register.tableTop = document.getElementById("tableTop");
 
     html.register.registerModal = document.getElementById("registerModal");
-    html.register.deleteConfirmModal = document.getElementById("confirmDelete");
+    html.register.alertModal = document.getElementById("alertModal");
 
     html.register.statusCheck = document.getElementById("status");
     html.register.nameInput = document.getElementById("name");
@@ -22,11 +22,11 @@ function getRegisterElements() {
     html.register.feelingsInput = document.getElementById("feelings");
     html.register.valuesInput = document.getElementById("values");
 
-    html.register.confirmTitle = document.getElementById("confirmTitle");
-    html.register.confirmDeleteButton = document.getElementById("confirmDeleteButton");
+    html.register.alertTitle = document.getElementById("alertTitle");
+    html.register.alertDeleteButton = document.getElementById("alertDeleteButton");
     html.register.cancelDeleteButton = document.getElementById("cancelDeleteButton");
 
-    html.register.deleteConfirmModal.addEventListener("close", function () {
+    html.register.alertModal.addEventListener("close", function () {
         document.body.classList.remove("blur");
     });
 
@@ -132,14 +132,14 @@ function hideRegisterModal() {
 
 function showDeleteConfirmation(id) {
     let deletedUser = registrations.filter((register) => register.id == id)[0].name
-    html.register.confirmTitle.innerText = `Você tem certeza que deseja deletar ${deletedUser}?`;
+    html.register.alertTitle.innerText = `Você tem certeza que deseja deletar ${deletedUser}?`;
     document.body.classList.add("blur");
-    html.register.deleteConfirmModal.showModal();
-    html.register.confirmDeleteButton.onclick = () => deleteRegistration(id);
+    html.register.alertModal.showModal();
+    html.register.alertDeleteButton.onclick = () => deleteRegistration(id);
 }
 
 function hideDeleteConfirmation() {
-    html.register.deleteConfirmModal.close();
+    html.register.alertModal.close();
 }
 
 function clearFields() {

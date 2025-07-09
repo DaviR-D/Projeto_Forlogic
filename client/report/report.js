@@ -20,10 +20,10 @@ function insertReportData() {
     navLink.style.backgroundColor = "var(--highlight-color)";
 }
 
-function printTable() {
+async function printTable() {
     document.body.classList.add("blur");
-    loadPaging(0, registrations.length);
+    await loadTableContent("default", 0, html.registrationsLength);
     window.print()
-    loadPaging();
+    loadTableContent();
     document.body.classList.remove("blur");
 }

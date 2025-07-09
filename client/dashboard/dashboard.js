@@ -36,7 +36,7 @@ function getDashboardElements() {
 
 async function insertDashboardData() {
     await loadTableContent();
-    await loadTableContent("date");
+    await sortTable("Date");
     
     const [totalRegistrations, pendingRegistrations, lastMonthRegistrations] = calculateStats();
 
@@ -55,7 +55,7 @@ async function insertDashboardData() {
 }
 
 function calculateStats() {
-    let totalRegistrations = registrations.length;
+    let totalRegistrations = html.registrationsLength;
     let pendingRegistrations = registrations.filter(registration => registration.pending === true).length;
     let lastMonthRegistrations = registrations.filter(registration => checkLastMonth(registration.date)).length;
 

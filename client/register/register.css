@@ -136,13 +136,13 @@ button {
     padding: 15px;
 }
 
-#confirmDelete {
+#alertModal {
     height: max(25vh, 195px);
     width: max(35vw, 430px);
     border-radius: 8px;
 }
 
-#confirmWrapper {
+#alertWrapper {
     height: 100%;
     width: 100%;
     display: flex;
@@ -151,7 +151,7 @@ button {
     font-size: var(--normal-font);
 }
 
-#confirmTitle {
+#alertTitle {
     align-self: flex-start;
     border-bottom: 1px solid var(--font-color);
     font-size: 1.5rem;
@@ -159,19 +159,19 @@ button {
     font-weight: bold;
 }
 
-#confirmText{
+#alertText{
     margin-top: auto;
     margin-bottom: auto;
 }
 
-#confirmationButtons {
+#alertButtons {
     display: flex;
     flex-wrap: nowrap;
     margin-top: auto;
     align-self: flex-end;
 }
 
-#confirmDeleteButton {
+#alertDeleteButton {
     background-color: rgb(255, 39, 39);
 }
 
@@ -180,7 +180,7 @@ button {
 }
 
 #cancelDeleteButton,
-#confirmDeleteButton {
+#alertDeleteButton {
     height: max(4vh, 22px);
     width: max(8vw, 150px);
 }

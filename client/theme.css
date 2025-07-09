@@ -20,7 +20,7 @@ nav,
 .statsContainer,
 .loginBox,
 #registerModal,
-#confirmDelete {
+#alertModal {
     background-color: var(--main-color);
     border: 1px solid rgba(0, 0, 0, 0.300);
     color: var(--font-color);
