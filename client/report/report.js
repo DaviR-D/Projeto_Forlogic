@@ -22,8 +22,8 @@ function insertReportData() {
 
 async function printTable() {
     document.body.classList.add("blur");
-    await loadTableContent("default", 0, html.registrationsLength);
+    await updateTable("default", 0, html.registrationsLength);
     window.print()
-    loadTableContent();
+    updateTable();
     document.body.classList.remove("blur");
 }

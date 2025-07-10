@@ -27,9 +27,9 @@ public class RegistrationController : ControllerBase
     }
 
     [HttpGet("page")]
-    public IActionResult GetPage(int start, int increment, string sortKey, bool descending)
+    public IActionResult GetPage(int start, int increment, string sortKey, bool descending, string query = "")
     {
-        var page = _service.GetRegistrationsPage(start, increment, sortKey, descending);
+        var page = _service.GetRegistrationsPage(start, increment, sortKey, descending, query);
         return Ok(page);
     }
 
@@ -52,5 +52,12 @@ public class RegistrationController : ControllerBase
     {
         _service.DeleteRegistration(id);
         return Ok();
+    }
+
+    [HttpGet("checkEmail")]
+    public IActionResult CheckEmail(Guid id, string email)
+    {
+        var emailAvailable = _service.VerifyAvailableEmail(id, email);
+        return Ok(emailAvailable);
     }
 }

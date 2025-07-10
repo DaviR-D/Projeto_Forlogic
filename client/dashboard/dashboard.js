@@ -35,8 +35,8 @@ function getDashboardElements() {
 
 
 async function insertDashboardData() {
-    await loadTableContent();
-    await sortTable("Date");
+    await updateTable();
+    await sortTable("date");
     
     const [totalRegistrations, pendingRegistrations, lastMonthRegistrations] = calculateStats();
 

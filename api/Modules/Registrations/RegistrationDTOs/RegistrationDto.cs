@@ -1,6 +1,6 @@
 namespace Api.Modules.Registrations
 {
-    public class Registration
+    public class RegistrationDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -15,7 +15,7 @@ namespace Api.Modules.Registrations
         public string Feelings { get; set; }
         public string Values { get; set; }
 
-        public Registration(
+        public RegistrationDto(
         Guid id,
         string name,
         string email,
@@ -43,5 +43,6 @@ namespace Api.Modules.Registrations
             Feelings = feelings;
             Values = values;
         }
+
     }
 }
