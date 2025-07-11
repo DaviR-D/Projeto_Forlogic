@@ -2,13 +2,17 @@
 {
     public class RegistrationsPageDto
     {
-        public List<RegistrationPreviewDto> registrations { get; set; }
-        public int registrationsLength { get; set; }
+        public List<RegistrationPreviewDto> Registrations { get; set; }
+        public int RegistrationsLength { get; set; }
+        public int LastMonthRegistrations { get; set; }
+        public int PendingRegistrations { get; set; }
 
-        public RegistrationsPageDto(List<RegistrationPreviewDto> r, int length)
+        public RegistrationsPageDto(List<RegistrationPreviewDto> registrations, int length, int lastMonth, int pending)
         {
-            registrations = r;
-            registrationsLength = length;
+            Registrations = registrations;
+            RegistrationsLength = length;
+            LastMonthRegistrations = lastMonth;
+            PendingRegistrations = pending;
         }
     }
 }

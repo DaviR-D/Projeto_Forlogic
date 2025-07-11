@@ -6,14 +6,14 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public string Status { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         public RegistrationPreviewDto(
             Guid id,
             string name,
             string email,
             string status,
-            string date
+            DateTime date
             )
         {
             Id = id;

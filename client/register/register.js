@@ -37,7 +37,6 @@ function getRegisterElements() {
     });
 
     addInputEvents();
-
 }
 
 function insertRegisterData() {
@@ -205,7 +204,7 @@ async function checkFieldsValidity(id, newRegister) {
     return true;
 }
 
-async function checkExistingEmail(id, email) {
+async function checkExistingEmail(id = crypto.randomUUID(), email) {
     let availableEmail;
     await fetch(`${apiUrl}/api/registration/checkEmail?id=${id}&email=${email}`)
         .then(response => { return response.json() })

@@ -7,7 +7,7 @@ namespace Api.Modules.Registrations
         public string Email { get; set; }
         public string Status { get; set; }
         public bool Pending { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public int Age { get; set; }
         public string Address { get; set; }
         public string Other { get; set; }
@@ -21,7 +21,7 @@ namespace Api.Modules.Registrations
         string email,
         string status,
         bool pending,
-        string date,
+        DateTime date,
         int age,
         string address,
         string other,
