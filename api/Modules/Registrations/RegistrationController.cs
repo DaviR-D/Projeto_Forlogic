@@ -3,7 +3,7 @@ namespace Api.Modules.Registrations;
 
 [ApiController]
 [Route("api/[controller]")]
-public class RegistrationController(IRegistrationService service) : ControllerBase
+public class RegistrationController(IRegistrationService service, List<RegistrationDto> registrations) : ControllerBase
 {
     [HttpPost]
     public IActionResult Create([FromBody] RegistrationDto registration)
@@ -20,10 +20,24 @@ public class RegistrationController(IRegistrationService service) : ControllerBa
     }
 
     [HttpGet("page")]
-    public IActionResult GetPage(int start, int increment, string sortKey, bool descending, string query = "")
+    public IActionResult GetPage(int start, int increment)
     {
-        var page = service.GetRegistrationsPage(start, increment, sortKey, descending, query);
+        var page = service.GetPagedRegistrations(start, increment, registrations);
         return Ok(page);
+    }
+
+    [HttpGet("page/sorted")]
+    public IActionResult GetSortedPage(string sortKey, bool descending, int start, int increment)
+    {
+        var page = service.GetSortedRegistrations(sortKey, descending, start, increment);
+        return Ok(page);
+    }
+
+    [HttpGet("page/search")]
+    public IActionResult SearchRegistrations(int start, int increment, string query = "")
+    {
+        var results = service.SearchRegistrations(query, start, increment);
+        return Ok(results);
     }
 
     [HttpGet]

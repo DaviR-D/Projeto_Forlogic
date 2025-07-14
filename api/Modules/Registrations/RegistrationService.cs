@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 
@@ -6,6 +7,7 @@ namespace Api.Modules.Registrations
     public class RegistrationService(List<RegistrationDto> registrations) : IRegistrationService
     {
         private static readonly Lock _lock = new();
+        private readonly DtoMapper _dtoMapper = new();
 
         public void CreateRegistration(RegistrationDto registration)
         {
@@ -22,13 +24,11 @@ namespace Api.Modules.Registrations
             return registration;
         }
 
-        public RegistrationsPageDto GetRegistrationsPage(int start, int increment, string sortKey, bool descending, string query)
+        public RegistrationsPageDto GetPagedRegistrations(int start, int increment, List<RegistrationDto> registrations)
         {
-            List<RegistrationDto> activeRegistrations = FilterDeletedRegistrations(registrations);
-            List<RegistrationDto> filteredRegistrations = SearchRegistrations(activeRegistrations, query);
-            List<RegistrationDto> sortedRegistrations = SortRegistrations(filteredRegistrations, sortKey, descending);
-            List<RegistrationDto> slicedRegistrations = SliceRegistrations(sortedRegistrations, start, increment);
-            List<RegistrationPreviewDto> registrationPreviewList = MapPreview(slicedRegistrations);
+            List<RegistrationDto> activeRegistrations = [.. registrations.Where(registration => registration.Deleted == false)];
+            List<RegistrationDto> slicedRegistrations = [.. activeRegistrations.Skip(start).Take(increment)];
+            List<RegistrationPreviewDto> registrationPreviewList = _dtoMapper.MapPreview(slicedRegistrations);
 
             int lastMonth = activeRegistrations.Where(registration => registration.Date >= DateTime.Now.AddMonths(-1)).Count();
             int pending = activeRegistrations.Where(registration => registration.Pending == true).Count();
@@ -64,43 +64,23 @@ namespace Api.Modules.Registrations
             return true;
         }
 
-        public List<RegistrationDto> FilterDeletedRegistrations(List<RegistrationDto> registrations)
+        public RegistrationsPageDto GetSortedRegistrations(string sortKey, bool descending, int start, int increment)
         {
-            return [.. registrations.Where(registration => registration.Deleted == false)];
-        }
-
-        public List<RegistrationDto> SortRegistrations(List<RegistrationDto> registrations, string sortKey, bool descending)
-        {
+            List<RegistrationDto> activeRegistrations = [.. registrations.Where(registration => registration.Deleted == false)];
             PropertyInfo? sortProperty = sortKey == "default" ? typeof(RegistrationDto).GetProperty("Id") : typeof(RegistrationDto).GetProperty(sortKey, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
-            IOrderedEnumerable<RegistrationDto> sortedRegistrations = descending ? registrations.OrderByDescending(sortProperty.GetValue) : registrations.OrderBy(sortProperty.GetValue);
+            IOrderedEnumerable<RegistrationDto> sortedRegistrations = descending ? activeRegistrations.OrderByDescending(sortProperty.GetValue) : activeRegistrations.OrderBy(sortProperty.GetValue);
 
-            return [.. sortedRegistrations];
+            return GetPagedRegistrations(start, increment, [.. sortedRegistrations]);
         }
 
-        public List<RegistrationDto> SearchRegistrations(List<RegistrationDto> registrations, string query)
+        public RegistrationsPageDto SearchRegistrations(string query, int start, int increment)
         {
-            return [.. registrations
+            List<RegistrationDto> activeRegistrations = [.. registrations.Where(registration => registration.Deleted == false)];
+            List<RegistrationDto> filteredRegistrations = [.. activeRegistrations
                 .Where(registration => $"{registration.Name} {registration.Email.Split("@")[0]}"
                 .Contains(query, StringComparison.CurrentCultureIgnoreCase))];
-        }
 
-        public List<RegistrationDto> SliceRegistrations(List<RegistrationDto> registrations, int start, int increment)
-        {
-            return [.. registrations.Skip(start).Take(increment)];
-        }
-
-        public List<RegistrationPreviewDto> MapPreview(List<RegistrationDto> registrations)
-        {
-            return [.. registrations
-                .Select(registration =>
-                new RegistrationPreviewDto(
-                    registration.Id,
-                    registration.Name,
-                    registration.Email,
-                    registration.Status,
-                    registration.Date
-                    )
-                )];
+            return GetPagedRegistrations(start, increment, filteredRegistrations);
         }
     }
 }
