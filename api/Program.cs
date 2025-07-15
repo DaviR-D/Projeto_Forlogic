@@ -1,14 +1,42 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Api.Modules.Authentication;
 using Api.Modules.Registrations;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-var registrationsMock = new List<RegistrationDto>();
+var key = AuthenticationSettings.PrivateKey;
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+        };
+    });
+
+List<RegistrationDto> registrationsMock = [];
+List<User> usersMock = [new User("Davi", "davi@gmail.com", "senha123")];
+
+builder.Services.AddTransient<AuthenticationService>();
 
 builder.Services.AddSingleton(registrationsMock);
+builder.Services.AddSingleton(usersMock);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("policy", builder =>
+    options.AddPolicy("localhost", builder =>
     {
         builder.WithOrigins("http://127.0.0.1:5500")
                .AllowAnyHeader()
@@ -24,6 +52,10 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+app.UseAuthentication();
+
+app.UseAuthorization();
+
 app.MapControllers();
 
 
@@ -32,7 +64,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseCors("policy");
+app.UseCors("localhost");
 
 app.UseHttpsRedirection();
 

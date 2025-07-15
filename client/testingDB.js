@@ -238,15 +238,378 @@ db = [
     "interests": "Saúde",
     "feelings": "Animada",
     "values": "Disciplina"
+  },
+  {
+    "name": "Pedro",
+    "email": "pedro@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 22,
+    "address": "Rua das Rosas, 789",
+    "other": "Joga futebol",
+    "interests": "Games",
+    "feelings": "Animado",
+    "values": "Amizade"
+  },
+  {
+    "name": "Alice",
+    "email": "alice@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 50,
+    "address": "Av. Brasil, 1000",
+    "other": "Aprecia arte",
+    "interests": "Arte",
+    "feelings": "Contemplativa",
+    "values": "Beleza"
+  },
+  {
+    "name": "Gabriel",
+    "email": "gabriel@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 33,
+    "address": "Rua da Paz, 444",
+    "other": "Programa computadores",
+    "interests": "Programação",
+    "feelings": "Focado",
+    "values": "Eficiência"
+  },
+  {
+    "name": "Laura",
+    "email": "laura@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 24,
+    "address": "Travessa das Estrelas, 20",
+    "other": "Escreve poesia",
+    "interests": "Poesia",
+    "feelings": "Sensível",
+    "values": "Originalidade"
+  },
+  {
+    "name": "Daniel",
+    "email": "daniel@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 45,
+    "address": "Rua do Porto, 555",
+    "other": "Navega em barcos",
+    "interests": "Viagens",
+    "feelings": "Aventureiro",
+    "values": "Exploração"
+  },
+  {
+    "name": "Sofia",
+    "email": "sofia@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "age": 21,
+    "address": "Av. dos Coqueiros, 1",
+    "other": "Canta em coral",
+    "interests": "Canto",
+    "feelings": "Jubilosa",
+    "values": "Expressão"
+  },
+  {
+    "name": "Lucas",
+    "email": "lucas@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "age": 29,
+    "address": "Rua da Serra, 999",
+    "other": "Faz trilhas",
+    "interests": "Aventura",
+    "feelings": "Vigoroso",
+    "values": "Resiliência"
+  },
+  {
+    "name": "Beatriz",
+    "email": "beatriz@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 30,
+    "address": "Praça Central, 7",
+    "other": "Fotografa paisagens",
+    "interests": "Natureza",
+    "feelings": "Serena",
+    "values": "Paz"
+  },
+  {
+    "name": "Gustavo",
+    "email": "gustavo@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 36,
+    "address": "Rua da Inovação, 200",
+    "other": "Investe no mercado",
+    "interests": "Finanças",
+    "feelings": "Estrategista",
+    "values": "Prosperidade"
+  },
+  {
+    "name": "Manuela",
+    "email": "manuela@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 23,
+    "address": "Alameda dos Anjos, 12",
+    "other": "Desenha quadrinhos",
+    "interests": "Ilustração",
+    "feelings": "Imaginativa",
+    "values": "Criatividade"
+  },
+  {
+    "name": "Vitor",
+    "email": "vitor@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 31,
+    "address": "Rua do Progresso, 777",
+    "other": "Aprendeu mandarim",
+    "interests": "Idiomas",
+    "feelings": "Curioso",
+    "values": "Aprendizado"
+  },
+  {
+    "name": "Isabela",
+    "email": "isabela@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "age": 38,
+    "address": "Av. da Liberdade, 321",
+    "other": "Faz cerâmica",
+    "interests": "Artesanato",
+    "feelings": "Tranquila",
+    "values": "Paciência"
+  },
+  {
+    "name": "Leo",
+    "email": "leo@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "age": 27,
+    "address": "Rua do Saber, 101",
+    "other": "Lê enciclopédias",
+    "interests": "Conhecimento",
+    "feelings": "Racional",
+    "values": "Sabedoria"
+  },
+  {
+    "name": "Clara",
+    "email": "clara@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 40,
+    "address": "Rua dos Sonhos, 80",
+    "other": "Sonha alto",
+    "interests": "Psicologia",
+    "feelings": "Esperançosa",
+    "values": "Realização"
+  },
+  {
+    "name": "Felipe",
+    "email": "felipe@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 26,
+    "address": "Rua da Harmonia, 13",
+    "other": "Pratica meditação",
+    "interests": "Espiritualidade",
+    "feelings": "Equilibrado",
+    "values": "Paz Interior"
+  },
+  {
+    "name": "Marina",
+    "email": "marina@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "age": 34,
+    "address": "Av. da Criatividade, 42",
+    "other": "Cria joias",
+    "interests": "Joalheria",
+    "feelings": "Inspirada",
+    "values": "Beleza"
+  },
+  {
+    "name": "Diego",
+    "email": "diego@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "age": 39,
+    "address": "Rua dos Desafios, 22",
+    "other": "Escala montanhas",
+    "interests": "Esportes Radicais",
+    "feelings": "Determinado",
+    "values": "Superação"
+  },
+  {
+    "name": "Helena",
+    "email": "helena@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 28,
+    "address": "Rua da Sustentabilidade, 111",
+    "other": "Cultiva horta",
+    "interests": "Meio Ambiente",
+    "feelings": "Consciente",
+    "values": "Sustentabilidade"
+  },
+  {
+    "name": "Cauã",
+    "email": "caua@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 25,
+    "address": "Rua da Agilidade, 500",
+    "other": "Joga basquete",
+    "interests": "Esportes Coletivos",
+    "feelings": "Competitivo",
+    "values": "Trabalho em Equipe"
+  },
+  {
+    "name": "Luiza",
+    "email": "luiza@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "age": 43,
+    "address": "Av. da Gratidão, 90",
+    "other": "Ajuda os outros",
+    "interests": "Voluntariado",
+    "feelings": "Grata",
+    "values": "Generosidade"
+  },
+  {
+    "name": "Giovanna",
+    "email": "giovanna.souza@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "age": 22,
+    "address": "Alameda dos Ipês, 25",
+    "other": "Estuda astrologia",
+    "interests": "Esoterismo",
+    "feelings": "Intuitiva",
+    "values": "Mistério"
+  },
+  {
+    "name": "Arthur",
+    "email": "arthur.pereira@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 35,
+    "address": "Rua do Cometa, 70",
+    "other": "Observa estrelas",
+    "interests": "Astronomia",
+    "feelings": "Admirado",
+    "values": "Curiosidade"
+  },
+  {
+    "name": "Carla",
+    "email": "carla.ribeiro@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 41,
+    "address": "Praça do Sol Poente, 5",
+    "other": "Pinta quadros",
+    "interests": "Pintura",
+    "feelings": "Expressiva",
+    "values": "Estética"
+  },
+  {
+    "name": "Ricardo",
+    "email": "ricardo.martins@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "age": 29,
+    "address": "Rua do Futuro, 888",
+    "other": "Desenvolve robôs",
+    "interests": "Robótica",
+    "feelings": "Inovador",
+    "values": "Tecnologia"
+  },
+  {
+    "name": "Patrícia",
+    "email": "patricia.costa@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "age": 33,
+    "address": "Av. do Passado, 1950",
+    "other": "Estuda história",
+    "interests": "História",
+    "feelings": "Reflexiva",
+    "values": "Memória"
+  },
+  {
+    "name": "Sergio",
+    "email": "sergio.almeida@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 47,
+    "address": "Rua da Sabedoria, 33",
+    "other": "Ensina filosofia",
+    "interests": "Filosofia",
+    "feelings": "Pensativo",
+    "values": "Razão"
+  },
+  {
+    "name": "Viviane",
+    "email": "viviane.gomes@gmail.com",
+    "status": "Inativo",
+    "pending": false,
+    "age": 26,
+    "address": "Rua do Coração, 77",
+    "other": "Aconselha pessoas",
+    "interests": "Psicologia",
+    "feelings": "Empática",
+    "values": "Compaixão"
+  },
+  {
+    "name": "Fernando",
+    "email": "fernando.lima@gmail.com",
+    "status": "Ativo",
+    "pending": false,
+    "age": 32,
+    "address": "Rua do Espírito, 9",
+    "other": "Pratica ioga",
+    "interests": "Bem-estar",
+    "feelings": "Calmo",
+    "values": "Serenidade"
+  },
+  {
+    "name": "Monica",
+    "email": "monica.ferreira@gmail.com",
+    "status": "Inativo",
+    "pending": true,
+    "age": 37,
+    "address": "Av. da Inspiração, 1010",
+    "other": "Escreve roteiros",
+    "interests": "Cinema",
+    "feelings": "Visionária",
+    "values": "Narrativa"
+  },
+  {
+    "name": "Alexandre",
+    "email": "alexandre@gmail.com",
+    "status": "Ativo",
+    "pending": true,
+    "age": 48,
+    "address": "Rua do Horizonte, 250",
+    "other": "Gosta de pescar",
+    "interests": "Pesca",
+    "feelings": "Relaxado",
+    "values": "Paciência"
   }
 ]
 
-db.forEach(register => {
-  fetch(`http://localhost:5204/api/registration/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(register)
-  })
-});
+function createDB(token) {
+  db.forEach(register => {
+    fetch(`http://localhost:5204/api/registration/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(register)
+    })
+  });
+}

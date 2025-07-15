@@ -1,3 +1,5 @@
+let apiUrl = "http://localhost:5204";
+
 let pageTheme = localStorage.getItem("theme");
 
 let html = {}
@@ -10,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function getLoginElements() {
-  html.users = { name: "Davi Rodrigues", email: "davi@gmail.com", password: "senha123" };
   html.loginButton = document.getElementById("login");
   html.emailInput = document.getElementById("email");
   html.passwordInput = document.getElementById("password");
@@ -24,15 +25,25 @@ function getLoginElements() {
   })
 }
 
-function tryLogin() {
+async function tryLogin() {
   let login = { email: html.emailInput.value, password: html.passwordInput.value }
 
-  let inputLogin = JSON.stringify([login.email, login.password]);
-  let storedLogin = JSON.stringify([html.users.email, html.users.password]);
 
   if (checkValidEmail(login.email)) {
-    if (inputLogin == storedLogin) {
-      localStorage.setItem("login", JSON.stringify(html.users))
+    let token;
+    await fetch(`${apiUrl}/api/authentication/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(login)
+    }).then(response => { return response.json() })
+      .then(data => {
+        token = data.token;
+      });
+
+    if (token) {
+      localStorage.setItem("login", JSON.stringify({ "name": "Davi", "token": token }))
       window.location = "../dashboard/dashboard.html";
     }
     else {

@@ -84,6 +84,7 @@ async function saveRegistration(event, id = undefined) {
             fetch(`${apiUrl}/api/registration/`, {
                 method: httpMethod,
                 headers: {
+                    "Authorization": `Bearer ${loggedUser.token}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(newRegister)
@@ -98,7 +99,10 @@ async function saveRegistration(event, id = undefined) {
 
 async function deleteRegistration(id) {
     await fetch(`${apiUrl}/api/registration/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Bearer ${loggedUser.token}`
+        }
     })
     registrationsCache = {};
     updateTable();
@@ -108,7 +112,11 @@ async function deleteRegistration(id) {
 async function editRegistration(id) {
     let editItem;
 
-    await fetch(`${apiUrl}/api/registration/${id}`)
+    await fetch(`${apiUrl}/api/registration/${id}`, {
+        headers: {
+            "Authorization": `Bearer ${loggedUser.token}`,
+        }
+    })
         .then(response => { return response.json() })
         .then(data => {
             editItem = data;
@@ -207,7 +215,11 @@ async function checkFieldsValidity(id, newRegister) {
 
 async function checkExistingEmail(id = crypto.randomUUID(), email) {
     let availableEmail;
-    await fetch(`${apiUrl}/api/registration/checkEmail?id=${id}&email=${email}`)
+    await fetch(`${apiUrl}/api/registration/checkEmail?id=${id}&email=${email}`, {
+        headers: {
+            "Authorization": `Bearer ${loggedUser.token}`,
+        }
+    })
         .then(response => { return response.json() })
         .then(data => { availableEmail = data; });
 

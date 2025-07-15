@@ -199,7 +199,12 @@ function sortTable(order = "default") {
 }
 
 async function getRegistrations(start = 0, increment = 10) {
-    await fetch(`${apiUrl}/api/registration/${html.endpoint}?start=${start}&increment=${increment}&${html.params}`)
+    await fetch(`${apiUrl}/api/registration/${html.endpoint}?start=${start}&increment=${increment}&${html.params}`, {
+        headers: {
+            "Authorization": `Bearer ${loggedUser.token}`,
+            "Content-Type": "application/json"
+        },
+    })
         .then(response => { return response.json() })
         .then(data => {
             registrations = data.registrations;

@@ -1,47 +1,31 @@
 namespace Api.Modules.Registrations
 {
-    public class Registration
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Status { get; set; }
-        public bool Pending { get; set; }
-        public DateTime Date { get; set; }
-        public int Age { get; set; }
-        public string Address { get; set; }
-        public string Other { get; set; }
-        public string Interests { get; set; }
-        public string Feelings { get; set; }
-        public string Values { get; set; }
-
-        public Registration(
-        Guid id,
-        string name,
-        string email,
-        string status,
-        bool pending,
-        DateTime date,
-        int age,
-        string address,
-        string other,
-        string interests,
-        string feelings,
-        string values
+    public class Registration(
+    Guid id,
+    string name,
+    string email,
+    string status,
+    bool pending,
+    DateTime date,
+    int age,
+    string address,
+    string other,
+    string interests,
+    string feelings,
+    string values
         )
-        {
-            Id = id;
-            Name = name;
-            Email = email;
-            Status = status;
-            Pending = pending;
-            Date = date;
-            Age = age;
-            Address = address;
-            Other = other;
-            Interests = interests;
-            Feelings = feelings;
-            Values = values;
-        }
+    {
+        public Guid Id { get; set; } = id;
+        public string Name { get; set; } = name;
+        public string Email { get; set; } = email;
+        public string Status { get; set; } = status;
+        public bool Pending { get; set; } = pending;
+        public DateTime Date { get; set; } = date;
+        public int Age { get; set; } = age;
+        public string Address { get; set; } = address;
+        public string Other { get; set; } = other;
+        public string Interests { get; set; } = interests;
+        public string Feelings { get; set; } = feelings;
+        public string Values { get; set; } = values;
     }
 }

@@ -32,8 +32,10 @@ function getDashboardElements() {
 
 async function insertDashboardData() {
     await updateTable();
+    if (html.registrationsLength == 0) createDB(loggedUser.token);
     html.orderReverse = true;
     await sortTable("date");
+
 
     html.dashboard.tableTop.insertAdjacentHTML('beforeend',
         `
