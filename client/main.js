@@ -33,7 +33,7 @@ function loadHeader() {
         <div class="login">
             <span id="themeIcon" class="material-symbols-outlined"></span>
             <span id="userDisplay"></span>
-            <a href="../login/login.html" id="exit">SAIR</a>
+            <a href="../authentication/login/login.html" id="exit">SAIR</a>
         </div>
     </header>
     `);
@@ -205,7 +205,13 @@ async function getRegistrations(start = 0, increment = 10) {
             "Content-Type": "application/json"
         },
     })
-        .then(response => { return response.json() })
+        .then(response => { 
+            if(response.status == 401){
+                localStorage.removeItem("login");
+                window.location = "../authentication/login/login.html";
+            }
+            return response.json() 
+        })
         .then(data => {
             registrations = data.registrations;
             html.registrationsLength = data.registrationsLength;
@@ -218,50 +224,4 @@ async function updateTable(start = 0, increment = 10) {
     await getRegistrations(start, increment);
     loadPaging(start, increment);
     loadTableContent();
-}
-
-function applyTheme(theme = "default") {
-    let themeColors = {
-        default: {
-            '--main-color': "white",
-            '--second-color': "rgb(225, 225, 225)",
-            '--font-color': "rgb(74, 74, 74)",
-            '--highlight-color': "rgb(195, 195, 195)",
-            '--border-color': "rgb(203, 203, 203)",
-            "--activeBackground": "rgb(204, 255, 204)",
-            "--activeFontColor": "rgb(0, 100, 0)",
-            "--inactiveBackground": "rgb(255, 215, 204)",
-            "--inactiveFontColor": "rgb(150, 0, 0)",
-        },
-        dark: {
-            '--main-color': "rgb(24, 26, 27)",
-            '--second-color': "rgb(44, 47, 49)",
-            '--font-color': "rgb(210, 210, 210)",
-            '--highlight-color': "rgb(70, 75, 78)",
-            '--border-color': "rgb(60, 64, 66)",
-            "--activeBackground": "rgb(154, 205, 154)",
-            "--activeFontColor": "rgb(0, 100, 0)",
-            "--inactiveBackground": "rgb(205, 165, 154)",
-            "--inactiveFontColor": "rgb(150, 0, 0)",
-        }
-    };
-
-    let themeVariables = [
-        "--main-color",
-        "--second-color",
-        "--font-color",
-        "--highlight-color",
-        "--border-color",
-        "--activeBackground",
-        "--inactiveBackground"
-    ]
-
-    themeVariables.forEach(variable => {
-        document.documentElement.style.setProperty(variable, themeColors[theme][variable])
-    });
-
-    localStorage.setItem("theme", theme);
-    pageTheme = theme;
-
-    html.themeIcon.innerText = theme == "dark" ? `light_mode` : `dark_mode`;
 }

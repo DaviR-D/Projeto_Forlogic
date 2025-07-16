@@ -6,6 +6,13 @@ namespace Api.Modules.Authentication
     [Route("api/[controller]")]
     public class AuthenticationController(AuthenticationService service) : ControllerBase
     {
+        [HttpPost("signup")]
+        public IActionResult Create([FromBody] UserDto user)
+        {
+            service.CreateUser(user);
+            return Ok();
+        }
+
         [HttpPost]
         public ActionResult Authenticate([FromBody] UserDto user)
         {

@@ -27,12 +27,16 @@ builder.Services.AddAuthentication(options =>
     });
 
 List<RegistrationDto> registrationsMock = [];
-List<User> usersMock = [new User("Davi", "davi@gmail.com", "senha123")];
+List<User> usersMock = [];
+
 
 builder.Services.AddTransient<AuthenticationService>();
 
 builder.Services.AddSingleton(registrationsMock);
 builder.Services.AddSingleton(usersMock);
+
+AuthenticationService service = new(usersMock);
+service.CreateUser(new UserDto("Davi", "davi@gmail.com", "senha123"));
 
 builder.Services.AddCors(options =>
 {
@@ -52,6 +56,8 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+app.UseCors("localhost");
+
 app.UseAuthentication();
 
 app.UseAuthorization();
@@ -63,8 +69,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
-app.UseCors("localhost");
 
 app.UseHttpsRedirection();
 
