@@ -6,7 +6,7 @@ namespace Api.Modules.Registrations
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class RegistrationController(IRegistrationService service, List<RegistrationDto> registrations) : ControllerBase
+    public class RegistrationController(IRegistrationService service, List<Registration> registrations) : ControllerBase
     {
         [HttpPost]
         public IActionResult Create([FromBody] RegistrationDto registration)
@@ -20,6 +20,12 @@ namespace Api.Modules.Registrations
         {
             var registration = service.GetSingleRegistration(id);
             return Ok(registration);
+        }
+
+        [HttpGet("stats")]
+        public IActionResult GetStats()
+        {
+            return Ok(service.GetRegistrationsStats());
         }
 
         [HttpGet("page")]
@@ -41,13 +47,6 @@ namespace Api.Modules.Registrations
         {
             var results = service.SearchRegistrations(query, start, increment);
             return Ok(results);
-        }
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var registrations = service.GetAllRegistrations();
-            return Ok(registrations);
         }
 
         [HttpPut]

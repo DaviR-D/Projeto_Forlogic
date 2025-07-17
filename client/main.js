@@ -205,15 +205,31 @@ async function getRegistrations(start = 0, increment = 10) {
             "Content-Type": "application/json"
         },
     })
-        .then(response => { 
-            if(response.status == 401){
+        .then(response => {
+            if (response.status == 401) {
                 localStorage.removeItem("login");
                 window.location = "../authentication/login/login.html";
             }
-            return response.json() 
+            return response.json()
         })
         .then(data => {
-            registrations = data.registrations;
+            registrations = data;
+        });
+
+    await fetch(`${apiUrl}/api/registration/stats`, {
+        headers: {
+            "Authorization": `Bearer ${loggedUser.token}`,
+            "Content-Type": "application/json"
+        },
+    })
+        .then(response => {
+            if (response.status == 401) {
+                localStorage.removeItem("login");
+                window.location = "../authentication/login/login.html";
+            }
+            return response.json()
+        })
+        .then(data => {
             html.registrationsLength = data.registrationsLength;
             html.lastMonthRegistrations = data.lastMonthRegistrations;
             html.pendingRegistrations = data.pendingRegistrations;

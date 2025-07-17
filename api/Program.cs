@@ -7,7 +7,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var key = AuthenticationSettings.PrivateKey;
+AuthenticationSettings? authSettings = builder.Configuration.GetSection("AuthenticationSettings").Get<AuthenticationSettings>();
+string key = authSettings.PrivateKey;
 
 builder.Services.AddAuthentication(options =>
 {
@@ -26,16 +27,14 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-List<RegistrationDto> registrationsMock = [];
+List<Registration> registrationsMock = [];
 List<User> usersMock = [];
-
-
-builder.Services.AddTransient<AuthenticationService>();
 
 builder.Services.AddSingleton(registrationsMock);
 builder.Services.AddSingleton(usersMock);
+builder.Services.AddSingleton(authSettings);
 
-AuthenticationService service = new(usersMock);
+AuthenticationService service = new(usersMock, authSettings);
 service.CreateUser(new UserDto("Davi", "davi@gmail.com", "senha123"));
 
 builder.Services.AddCors(options =>
@@ -48,6 +47,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 
 builder.Services.AddControllers();

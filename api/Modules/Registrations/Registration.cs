@@ -27,5 +27,6 @@ namespace Api.Modules.Registrations
         public string Interests { get; set; } = interests;
         public string Feelings { get; set; } = feelings;
         public string Values { get; set; } = values;
+        public bool Deleted { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Api.Modules.Authentication
 {
-    public class AuthenticationService(List<User> users)
+    public class AuthenticationService(List<User> users, AuthenticationSettings auth)
     {
         public void CreateUser(UserDto user)
         {
@@ -33,11 +33,11 @@ namespace Api.Modules.Authentication
             }
             return null;
         }
-        private static string GenerateToken(User user)
+        private string GenerateToken(User user)
         {
             var handler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes(AuthenticationSettings.PrivateKey);
+            var key = Encoding.ASCII.GetBytes(auth.PrivateKey);
 
             var credentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),
@@ -60,6 +60,15 @@ namespace Api.Modules.Authentication
             claimsIdentity.AddClaim(new Claim(type: ClaimTypes.Name, value: user.Name));
 
             return claimsIdentity;
+        }
+        public bool VerifyAvailableEmail(Guid id, string email)
+        {
+            User? existingEmail = users.FirstOrDefault(user => user.Email == email);
+            if (existingEmail != null)
+            {
+                return existingEmail.Id.Equals(id);
+            }
+            return true;
         }
     }
 }
