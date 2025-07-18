@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Api.Modules.Authentication;
-using Api.Modules.Registrations;
+using Api.Modules.Clients;
 using System.Text;
+using Api.Modules.Repositories;
+using Api.Modules.Clients.Commands.CreateClient;
+using Api.Modules.Clients.Interfaces;
+using Api.Modules.Clients.Queries.GetPagedClients;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +31,7 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-List<Registration> registrationsMock = [];
+List<Client> registrationsMock = [];
 List<User> usersMock = [];
 
 builder.Services.AddSingleton(registrationsMock);
@@ -48,7 +52,10 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<AuthenticationService>();
-builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+builder.Services.AddScoped<ClientRepository>();
+//builder.Services.AddScoped<IClientHandler<IClientOutput, IClientInput>, GetPagedClientsHandler>();
+//builder.Services.AddScoped<IClientHandler<IClientOutput, IClientInput>, CreateClientHandler>();
+
 
 builder.Services.AddControllers();
 

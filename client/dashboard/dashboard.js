@@ -32,7 +32,7 @@ function getDashboardElements() {
 
 async function insertDashboardData() {
     await updateTable();
-    if (html.registrationsLength == 0) createDB(loggedUser.token);
+    if (html.clientsLength == 0) createDB(loggedUser.token);
     html.orderReverse = true;
     await sortTable("date");
 
@@ -43,9 +43,9 @@ async function insertDashboardData() {
         `
     )
 
-    html.dashboard.total.innerText = html.registrationsLength;
-    html.dashboard.pending.innerText = html.pendingRegistrations;
-    html.dashboard.lastMonth.innerText = html.lastMonthRegistrations;
+    html.dashboard.total.innerText = html.clientsLength;
+    html.dashboard.pending.innerText = html.pendingClients;
+    html.dashboard.lastMonth.innerText = html.lastMonthClients;
 
     navLink = document.getElementById("dashboardNav")
     navLink.style.backgroundColor = "var(--highlight-color)";

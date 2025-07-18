@@ -58,7 +58,7 @@ function insertRegisterData() {
     }
 }
 
-async function saveRegistration(event, id = undefined) {
+async function saveClient(event, id = undefined) {
     event.preventDefault();
     resetFieldsStyle();
 
@@ -69,7 +69,7 @@ async function saveRegistration(event, id = undefined) {
             email: html.register.emailInput.value,
             status: html.register.statusCheck.checked ? "Ativo" : "Inativo",
             pending: true,
-            date: id ? registrations.filter((register) => register.id == id)[0].date : new Date(),
+            date: id ? clients.filter((register) => register.id == id)[0].date : new Date(),
             age: html.register.ageInput.value,
             address: html.register.addressInput.value,
             other: html.register.otherInput.value,
@@ -81,7 +81,7 @@ async function saveRegistration(event, id = undefined) {
         if (await checkFieldsValidity(id, newRegister)) {
             httpMethod = id == undefined ? "POST" : "PUT";
 
-            fetch(`${apiUrl}/api/registration/`, {
+            fetch(`${apiUrl}/api/client/`, {
                 method: httpMethod,
                 headers: {
                     "Authorization": `Bearer ${loggedUser.token}`,
@@ -97,22 +97,22 @@ async function saveRegistration(event, id = undefined) {
     }
 }
 
-async function deleteRegistration(id) {
-    await fetch(`${apiUrl}/api/registration/${id}`, {
+async function deleteClient(id) {
+    await fetch(`${apiUrl}/api/client/${id}`, {
         method: 'DELETE',
         headers: {
             "Authorization": `Bearer ${loggedUser.token}`
         }
     })
-    registrationsCache = {};
+    clientsCache = {};
     updateTable();
     hideDeleteConfirmation()
 }
 
-async function editRegistration(id) {
+async function editClient(id) {
     let editItem;
 
-    await fetch(`${apiUrl}/api/registration/${id}`, {
+    await fetch(`${apiUrl}/api/client/${id}`, {
         headers: {
             "Authorization": `Bearer ${loggedUser.token}`,
         }
@@ -146,11 +146,11 @@ function hideRegisterModal() {
 }
 
 function showDeleteConfirmation(id) {
-    let deletedUser = registrations.filter((register) => register.id == id)[0].name
+    let deletedUser = clients.filter((register) => register.id == id)[0].name
     html.register.alertTitle.innerText = `Você tem certeza que deseja deletar ${deletedUser}?`;
     document.body.classList.add("blur");
     html.register.alertModal.showModal();
-    html.register.alertDeleteButton.onclick = () => deleteRegistration(id);
+    html.register.alertDeleteButton.onclick = () => deleteClient(id);
 }
 
 function hideDeleteConfirmation() {
@@ -215,7 +215,7 @@ async function checkFieldsValidity(id, newRegister) {
 
 async function checkExistingEmail(id = crypto.randomUUID(), email) {
     let availableEmail;
-    await fetch(`${apiUrl}/api/registration/checkEmail?id=${id}&email=${email}`, {
+    await fetch(`${apiUrl}/api/client/checkEmail?id=${id}&email=${email}`, {
         headers: {
             "Authorization": `Bearer ${loggedUser.token}`,
         }

@@ -7,8 +7,8 @@ let html = {};
 html.endpoint = "page"
 html.params = ""
 
-let registrations = [];
-let registrationsCache = {};
+let clients = [];
+let clientsCache = {};
 
 let pageTheme = localStorage.getItem("theme");
 
@@ -48,7 +48,7 @@ function loadHeader() {
     html.userDisplay.innerText = loggedUser.name;
 
     html.search.addEventListener("input", function () {
-        registrationsCache = {}
+        clientsCache = {}
         html.arrow = {};
         html.tableOrder = "default"
         html.endpoint = html.search.value.length > 0 ? `page/search` : "page";
@@ -94,7 +94,7 @@ function loadTable() {
         <article id="tableContainer">
             <div id="tableTop"></div>
             <div id="tableWrapper">
-                <table id="registrations"></table>
+                <table id="clients"></table>
             </div>
             <div class="tablePaging">
                 <button id="previousButton" class="material-symbols-outlined">arrow_back</button>
@@ -104,7 +104,7 @@ function loadTable() {
         </article>
         `
     )
-    html.registrations = document.getElementById("registrations");
+    html.clients = document.getElementById("clients");
     html.pageNumber = document.getElementById("pageNumber");
     html.nextButton = document.getElementById("nextButton");
     html.previousButton = document.getElementById("previousButton");
@@ -114,7 +114,7 @@ function loadTable() {
 }
 
 async function loadTableContent() {
-    renderedRegistrations =
+    renderedClients =
         [`
         <tr id="tableHeader">
             <th class="column" onclick="sortTable('name')">Nome ${html.arrow.name ? html.arrow.name : ""}</th>
@@ -123,8 +123,8 @@ async function loadTableContent() {
             <th class="column" onclick="sortTable('date')">Data ${html.arrow.date ? html.arrow.date : ""}</th>
         </tr>`
         ];
-    registrations.forEach(register => {
-        renderedRegistrations.push(
+    clients.forEach(register => {
+        renderedClients.push(
             `
             <tr>
                 <td>${register.name}</td>
@@ -132,7 +132,7 @@ async function loadTableContent() {
                 <td><span style="border-radius:5px; padding:5px;" class=${register.status == "Ativo" ? "active" : "inactive"}>${register.status}</span></td>
                 <td>${new Date(register.date).toLocaleDateString('pt-BR')}</td>
                 <td class="actions" style="display: none;">
-                    <button class="editButton material-symbols-outlined" onclick="editRegistration('${register.id}')">edit</button>
+                    <button class="editButton material-symbols-outlined" onclick="editClient('${register.id}')">edit</button>
                     <button class="deleteButton material-symbols-outlined" onclick="showDeleteConfirmation('${register.id}')">delete</button>
                 </td>
             </tr>
@@ -141,31 +141,31 @@ async function loadTableContent() {
     });
 
     if (search.value.length > 0) {
-        searchResults.innerText = `${renderedRegistrations.length - 1} resultados`
+        searchResults.innerText = `${renderedClients.length - 1} resultados`
     } else {
         searchResults.innerText = "";
     }
 
-    html.registrations.innerHTML = renderedRegistrations.join('');
+    html.clients.innerHTML = renderedClients.join('');
     html.addActions?.();
 }
 
 async function loadPaging(start = 0, increment = 10) {
-    let length = html.registrationsLength;
+    let length = html.clientsLength;
 
     let totalPages = Math.ceil(length / increment);
     let currentPage = Math.round(start / increment) + 1;
 
     html.pageNumber.innerText = `${currentPage}/${totalPages}`;
 
-    registrationsCache[currentPage] = registrations;
+    clientsCache[currentPage] = clients;
 
     let nextPageStart = currentPage == totalPages ? start : (start + increment);
     let previousPageStart = currentPage == 1 ? 0 : (start - increment);
 
     html.nextButton.onclick = () => {
-        if (registrationsCache[currentPage + 1] != undefined) {
-            registrations = registrationsCache[currentPage + 1];
+        if (clientsCache[currentPage + 1] != undefined) {
+            clients = clientsCache[currentPage + 1];
             loadTableContent();
             loadPaging(nextPageStart);
         }
@@ -174,8 +174,8 @@ async function loadPaging(start = 0, increment = 10) {
     };
     html.previousButton.onclick = () => {
         if (currentPage == 1) return () => { };
-        else if (registrationsCache[currentPage - 1] != undefined) {
-            registrations = registrationsCache[currentPage - 1];
+        else if (clientsCache[currentPage - 1] != undefined) {
+            clients = clientsCache[currentPage - 1];
             loadTableContent();
             loadPaging(previousPageStart);
         }
@@ -184,7 +184,7 @@ async function loadPaging(start = 0, increment = 10) {
 }
 
 function sortTable(order = "default") {
-    registrationsCache = {};
+    clientsCache = {};
     html.arrow = {};
     html.arrow[order] = "";
 
@@ -198,8 +198,8 @@ function sortTable(order = "default") {
     updateTable();
 }
 
-async function getRegistrations(start = 0, increment = 10) {
-    await fetch(`${apiUrl}/api/registration/${html.endpoint}?start=${start}&increment=${increment}&${html.params}`, {
+async function getClients(start = 0, increment = 10) {
+    await fetch(`${apiUrl}/api/client/${html.endpoint}?start=${start}&increment=${increment}&${html.params}`, {
         headers: {
             "Authorization": `Bearer ${loggedUser.token}`,
             "Content-Type": "application/json"
@@ -213,10 +213,10 @@ async function getRegistrations(start = 0, increment = 10) {
             return response.json()
         })
         .then(data => {
-            registrations = data;
+            clients = data;
         });
 
-    await fetch(`${apiUrl}/api/registration/stats`, {
+    await fetch(`${apiUrl}/api/client/stats`, {
         headers: {
             "Authorization": `Bearer ${loggedUser.token}`,
             "Content-Type": "application/json"
@@ -230,14 +230,14 @@ async function getRegistrations(start = 0, increment = 10) {
             return response.json()
         })
         .then(data => {
-            html.registrationsLength = data.registrationsLength;
-            html.lastMonthRegistrations = data.lastMonthRegistrations;
-            html.pendingRegistrations = data.pendingRegistrations;
+            html.clientsLength = data.clientsLength;
+            html.lastMonthClients = data.lastMonthClients;
+            html.pendingClients = data.pendingClients;
         });
 }
 
 async function updateTable(start = 0, increment = 10) {
-    await getRegistrations(start, increment);
+    await getClients(start, increment);
     loadPaging(start, increment);
     loadTableContent();
 }

@@ -22,9 +22,9 @@ function insertReportData() {
 
 async function printTable() {
     document.body.classList.add("blur");
-    await updateTable(0, html.registrationsLength);
+    await updateTable(0, html.clientsLength);
     window.print();
-    registrationsCache = {};
+    clientsCache = {};
     updateTable();
     document.body.classList.remove("blur");
 }

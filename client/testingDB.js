@@ -603,7 +603,7 @@ db = [
 
 function createDB(token) {
   db.forEach(register => {
-    fetch(`http://localhost:5204/api/registration/`, {
+    fetch(`http://localhost:5204/api/client/`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`,
