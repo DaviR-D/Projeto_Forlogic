@@ -119,7 +119,7 @@ async function editClient(id) {
     })
         .then(response => { return response.json() })
         .then(data => {
-            editItem = data;
+            editItem = data.client;
         });
 
     registerModal.dataset.userId = id;
@@ -221,7 +221,7 @@ async function checkExistingEmail(id = crypto.randomUUID(), email) {
         }
     })
         .then(response => { return response.json() })
-        .then(data => { availableEmail = data; });
+        .then(data => { availableEmail = data.isAvailable; });
 
     if (!availableEmail) {
         highlightInvalidField(html.register.emailInput, "Email já cadastrado");

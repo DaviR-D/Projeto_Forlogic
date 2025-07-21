@@ -23,6 +23,11 @@ async function trySignup() {
             },
             body: JSON.stringify(newUser)
         })
-        window.location = "../login/login.html";
+            .then(response => { return response.json() })
+            .then(data => html.message = data.message)
+        if (html.message == "Email already in use")
+            html.errorMessage.innerText = "Este email já está em uso";
+        else
+            window.location = "../login/login.html";
     }
 }

@@ -213,7 +213,7 @@ async function getClients(start = 0, increment = 10) {
             return response.json()
         })
         .then(data => {
-            clients = data;
+            clients = data.page;
         });
 
     await fetch(`${apiUrl}/api/client/stats`, {
