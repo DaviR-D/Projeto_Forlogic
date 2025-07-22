@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Api.Modules.Clients.Application.Commands.CreateClient;
 using Api.Modules.Clients.Application.Queries.GetPagedClients;
-using Api.Modules.Clients.Infrastructure.Repositories;
 using Api.Modules.Clients.Presentation.ClientDTOs;
 using Api.Modules.Clients.Application.Queries.GetClientsStats;
 using Api.Modules.Clients.Application.Queries.GetSortedClients;
@@ -11,18 +10,19 @@ using Api.Modules.Clients.Application.Commands.DeleteClient;
 using Api.Modules.Clients.Application.Queries.VerifyAvailableEmail;
 using Api.Modules.Clients.Application.Commands.UpdateClient;
 using Api.Modules.Clients.Application.Queries.SearchClients;
+using Api.Modules.Authentication.Application;
 
 namespace Api.Modules.Clients.Presentation
 {
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class ClientController(ClientRepository repository) : ControllerBase
+    public class ClientController(ClientsHandlerFactory factory) : ControllerBase
     {
         [HttpPost]
         public IActionResult Create([FromBody] ClientDto client)
         {
-            var handler = new CreateClientHandler(repository);
+            var handler = factory.GetHandler("Create");
             handler.Handle(new CreateClientCommand(client));
             return Ok();
         }
@@ -30,7 +30,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpGet("{id}")]
         public IActionResult GetSingle([FromRoute] Guid id)
         {
-            var handler = new GetSingleClientHandler(repository);
+            var handler = factory.GetHandler("GetSingle");
             var response = handler.Handle(new GetSingleClientQuery(id));
             return Ok(response);
         }
@@ -38,7 +38,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpGet("stats")]
         public IActionResult GetStats()
         {
-            var handler = new GetClientsStatsHandler(repository);
+            var handler = factory.GetHandler("GetStats");
             var response = handler.Handle(new GetClientsStatsQuery());
             return Ok(response);
         }
@@ -46,7 +46,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpGet("page")]
         public IActionResult GetPage(int start, int increment)
         {
-            var handler = new GetPagedClientsHandler(repository);
+            var handler = factory.GetHandler("GetPage");
             var response = handler.Handle(new GetPagedClientsQuery(start, increment));
             return Ok(response);
         }
@@ -54,7 +54,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpGet("page/sorted")]
         public IActionResult GetSortedPage(string sortKey, bool descending, int start, int increment)
         {
-            var handler = new GetSortedClientsHandler(repository);
+            var handler = factory.GetHandler("GetSortedPage");
             var response = handler.Handle(new GetSortedClientsQuery(sortKey, descending, start, increment));
             return Ok(response);
         }
@@ -62,7 +62,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpGet("page/search")]
         public IActionResult SearchClients(int start, int increment, string query = "")
         {
-            var handler = new SearchClientsHandler(repository);
+            var handler = factory.GetHandler("SearchClients");
             var response = handler.Handle(new SearchClientsQuery(start, increment, query));
             return Ok(response);
         }
@@ -70,7 +70,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpPut]
         public IActionResult Update([FromBody] ClientDto client)
         {
-            var handler = new UpdateClientHandler(repository);
+            var handler = factory.GetHandler("Update");
             handler.Handle(new UpdateClientCommand(client));
             return Ok();
         }
@@ -78,7 +78,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] Guid id)
         {
-            var handler = new DeleteClientHandler(repository);
+            var handler = factory.GetHandler("Delete");
             handler.Handle(new DeleteClientCommand(id));
             return Ok();
         }
@@ -86,7 +86,7 @@ namespace Api.Modules.Clients.Presentation
         [HttpGet("checkEmail")]
         public IActionResult CheckEmail(Guid id, string email)
         {
-            var handler = new VerifyAvailableEmailHandler(repository);
+            var handler = factory.GetHandler("CheckEmail");
             var response = handler.Handle(new VerifyAvailableEmailQuery(id, email));
             return Ok(response);
         }

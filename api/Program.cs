@@ -6,10 +6,8 @@ using Api.Modules.Clients.Infrastructure.Repositories;
 using Api.Modules.Authentication.Application;
 using Api.Modules.Authentication.Domain;
 using Api.Modules.Authentication.Presentation.UserDTOs;
-using Api.Modules.Authentication.Presentation;
 using Api.Modules.Authentication.Infrastructure.Repositories;
 using Api.Shared.Configurations;
-using Api.Shared.Interfaces;
 using Api.Modules.Clients.Application.Queries.GetPagedClients;
 using Api.Modules.Clients.Application.Commands.CreateClient;
 using Api.Modules.Clients.Application.Queries.GetClientsStats;
@@ -52,9 +50,12 @@ builder.Services.AddSingleton(usersMock);
 builder.Services.AddSingleton(authSettings);
 builder.Services.AddScoped<UserRepository>();
 
+
+
 UserRepository repository = new(usersMock);
-AuthenticationController controller = new(repository, authSettings);
-controller.Create(new UserDto("Davi", "davi@gmail.com", "senha123"));
+
+var handler = new CreateUserHandler(repository);
+handler.Handle(new CreateUserCommand(new UserDto("Davi", "davi@gmail.com", "senha123")));
 
 builder.Services.AddCors(options =>
 {
@@ -66,18 +67,20 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<AuthenticationHandlerFactory>();
+builder.Services.AddScoped<ClientsHandlerFactory>();
 builder.Services.AddScoped<ClientRepository>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, GetPagedClientsHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, GetClientsStatsHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, GetSingleClientHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, GetSortedClientsHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, SearchClientsHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, VerifyAvailableEmailHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, CreateClientHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, DeleteClientHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, UpdateClientHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, AuthenticateHandler>();
-builder.Services.AddScoped<IRequestHandler<IRequestOutput, IRequestInput>, CreateUserHandler>();
+builder.Services.AddScoped<GetPagedClientsHandler>();
+builder.Services.AddScoped<GetClientsStatsHandler>();
+builder.Services.AddScoped<GetSingleClientHandler>();
+builder.Services.AddScoped<GetSortedClientsHandler>();
+builder.Services.AddScoped<SearchClientsHandler>();
+builder.Services.AddScoped<VerifyAvailableEmailHandler>();
+builder.Services.AddScoped<CreateClientHandler>();
+builder.Services.AddScoped<DeleteClientHandler>();
+builder.Services.AddScoped<UpdateClientHandler>();
+builder.Services.AddScoped<AuthenticateHandler>();
+builder.Services.AddScoped<CreateUserHandler>();
 
 
 builder.Services.AddControllers();
