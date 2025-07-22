@@ -6,7 +6,7 @@ namespace Api.Modules.Clients.Infrastructure.Repositories
 {
     public class ClientRepository(List<Client> clients)
     {
-        private readonly List<Client> _activeClients = [..clients.Where(client => client.Deleted == false)];
+        private readonly List<Client> _activeClients = [.. clients.Where(client => client.Deleted == false)];
         public void Create(ClientDto client)
         {
             client.Id = Guid.NewGuid();

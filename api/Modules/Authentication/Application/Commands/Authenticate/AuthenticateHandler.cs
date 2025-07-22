@@ -24,9 +24,13 @@ namespace Api.Modules.Authentication.Application.Commands.Authenticate
                 byte[] encodedPassword = Encoding.UTF8.GetBytes(password);
                 byte[] passwordHash = SHA256.HashData(encodedPassword);
 
-                if (Convert.ToBase64String(passwordHash) == user.Password) return new AuthenticateResponse(GenerateToken(user));
+                if (Convert.ToBase64String(passwordHash) == user.Password)
+                    return new AuthenticateResponse(token: GenerateToken(user));
+                else
+                    return new AuthenticateResponse(message: "incorrect password");
+
             }
-            return null;
+            return new AuthenticateResponse(message: "incorrect email");
         }
         private string GenerateToken(User user)
         {

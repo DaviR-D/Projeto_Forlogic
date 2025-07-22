@@ -15,6 +15,8 @@ namespace Api.Modules.Clients.Application.Commands.CreateClient
             {
                 if (VerifyAvailableEmail(command.Client.Id, command.Client.Email))
                     repository.Create(command.Client);
+                else
+                    return new CreateClientResponse(message: "email already in use");
             }
             return new CreateClientResponse();
         }

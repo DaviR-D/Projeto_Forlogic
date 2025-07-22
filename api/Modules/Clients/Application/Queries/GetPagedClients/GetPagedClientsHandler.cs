@@ -13,7 +13,7 @@ namespace Api.Modules.Clients.Application.Queries.GetPagedClients
             List<Client> activeClients = repository.GetAll();
             List<Client> slicedClients = [.. activeClients.Skip(query.Start).Take(query.Increment)];
             var response = new GetPagedClientsResponse(DtoMapper.ToPreviewDto(slicedClients));
-            
+
             return response;
         }
     }

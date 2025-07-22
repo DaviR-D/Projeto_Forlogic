@@ -9,7 +9,7 @@ namespace Api.Modules.Clients.Application.Queries.GetSingleClient
         public IRequestOutput Handle(IRequestInput input)
         {
             var query = (GetSingleClientQuery)input;
-            var response = new GetSingleClientResponse(repository.GetOne(query.Id)); 
+            var response = new GetSingleClientResponse(repository.GetOne(query.Id));
             return response;
         }
     }

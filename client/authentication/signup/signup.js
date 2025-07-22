@@ -25,7 +25,7 @@ async function trySignup() {
         })
             .then(response => { return response.json() })
             .then(data => html.message = data.message)
-        if (html.message == "Email already in use")
+        if (html.message == "email already in use")
             html.errorMessage.innerText = "Este email já está em uso";
         else
             window.location = "../login/login.html";

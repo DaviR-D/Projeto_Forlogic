@@ -23,8 +23,8 @@ namespace Api.Modules.Clients.Presentation
         public IActionResult Create([FromBody] ClientDto client)
         {
             var handler = factory.GetHandler("Create");
-            handler.Handle(new CreateClientCommand(client));
-            return Ok();
+            var response = handler.Handle(new CreateClientCommand(client));
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -71,16 +71,16 @@ namespace Api.Modules.Clients.Presentation
         public IActionResult Update([FromBody] ClientDto client)
         {
             var handler = factory.GetHandler("Update");
-            handler.Handle(new UpdateClientCommand(client));
-            return Ok();
+            var response = handler.Handle(new UpdateClientCommand(client));
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] Guid id)
         {
             var handler = factory.GetHandler("Delete");
-            handler.Handle(new DeleteClientCommand(id));
-            return Ok();
+            var response = handler.Handle(new DeleteClientCommand(id));
+            return Ok(response);
         }
 
         [HttpGet("checkEmail")]

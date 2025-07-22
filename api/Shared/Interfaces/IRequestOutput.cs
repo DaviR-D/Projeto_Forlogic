@@ -2,5 +2,6 @@
 {
     public interface IRequestOutput
     {
+        public string? Message { get; set; }
     }
 }

@@ -5,6 +5,6 @@ namespace Api.Modules.Authentication.Application.Commands.Authenticate
 {
     public class AuthenticateCommand(UserDto user) : IRequestInput
     {
-        public UserDto UserCredentials { get; set; } = user; 
+        public UserDto UserCredentials { get; set; } = user;
     }
 }

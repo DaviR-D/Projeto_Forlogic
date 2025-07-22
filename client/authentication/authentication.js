@@ -26,6 +26,7 @@ async function tryLogin() {
 
   if (checkValidEmail(login.email)) {
     let token;
+    let responseMessage;
     await fetch(`${apiUrl}/api/authentication/`, {
       method: "POST",
       headers: {
@@ -35,6 +36,7 @@ async function tryLogin() {
     }).then(response => { return response.json() })
       .then(data => {
         token = data.token;
+        responseMessage = data.message;
       });
 
     if (token) {
@@ -42,8 +44,11 @@ async function tryLogin() {
       localStorage.setItem("login", JSON.stringify({ "name": tokenData.unique_name, "token": token }))
       window.location = "../../dashboard/dashboard.html";
     }
-    else {
-      html.errorMessage.innerText = "Login incorreto!";
+    else if (responseMessage == "incorrect email") {
+      html.errorMessage.innerText = "Email incorreto";
+    }
+    else if (responseMessage == "incorrect password") {
+      html.errorMessage.innerText = "Senha incorreta";
     }
   }
 }
@@ -53,7 +58,7 @@ function checkValidEmail(email) {
 
   let validEmail = regex.test(email);
 
-  if (!validEmail) html.errorMessage.innerText = "Insira um email válido!";
+  if (!validEmail) html.errorMessage.innerText = "Insira um email válido";
 
   return validEmail;
 }

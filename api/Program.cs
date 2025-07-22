@@ -1,24 +1,24 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Api.Modules.Clients.Domain;
-using Api.Modules.Clients.Infrastructure.Repositories;
-using Api.Modules.Authentication.Application;
-using Api.Modules.Authentication.Domain;
-using Api.Modules.Authentication.Presentation.UserDTOs;
-using Api.Modules.Authentication.Infrastructure.Repositories;
-using Api.Shared.Configurations;
+using Api.Modules.Authentication.Application.Commands.Authenticate;
+using Api.Modules.Clients.Application.Queries.VerifyAvailableEmail;
+using Api.Modules.Authentication.Application.Commands.CreateUser;
+using Api.Modules.Clients.Application.Queries.GetSortedClients;
 using Api.Modules.Clients.Application.Queries.GetPagedClients;
-using Api.Modules.Clients.Application.Commands.CreateClient;
 using Api.Modules.Clients.Application.Queries.GetClientsStats;
 using Api.Modules.Clients.Application.Queries.GetSingleClient;
-using Api.Modules.Clients.Application.Queries.GetSortedClients;
+using Api.Modules.Authentication.Infrastructure.Repositories;
 using Api.Modules.Clients.Application.Queries.SearchClients;
-using Api.Modules.Clients.Application.Queries.VerifyAvailableEmail;
 using Api.Modules.Clients.Application.Commands.DeleteClient;
 using Api.Modules.Clients.Application.Commands.UpdateClient;
-using Api.Modules.Authentication.Application.Commands.Authenticate;
-using Api.Modules.Authentication.Application.Commands.CreateUser;
+using Api.Modules.Clients.Application.Commands.CreateClient;
+using Api.Modules.Authentication.Presentation.UserDTOs;
+using Api.Modules.Clients.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Api.Modules.Authentication.Application;
+using Api.Modules.Authentication.Domain;
+using Microsoft.IdentityModel.Tokens;
+using Api.Modules.Clients.Domain;
+using Api.Shared.Configurations;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,12 +48,23 @@ List<User> usersMock = [];
 builder.Services.AddSingleton(registrationsMock);
 builder.Services.AddSingleton(usersMock);
 builder.Services.AddSingleton(authSettings);
+builder.Services.AddScoped<AuthenticationHandlerFactory>();
+builder.Services.AddScoped<ClientsHandlerFactory>();
 builder.Services.AddScoped<UserRepository>();
-
-
+builder.Services.AddScoped<ClientRepository>();
+builder.Services.AddScoped<AuthenticateHandler>();
+builder.Services.AddScoped<CreateUserHandler>();
+builder.Services.AddScoped<GetPagedClientsHandler>();
+builder.Services.AddScoped<GetClientsStatsHandler>();
+builder.Services.AddScoped<GetSingleClientHandler>();
+builder.Services.AddScoped<GetSortedClientsHandler>();
+builder.Services.AddScoped<SearchClientsHandler>();
+builder.Services.AddScoped<VerifyAvailableEmailHandler>();
+builder.Services.AddScoped<CreateClientHandler>();
+builder.Services.AddScoped<DeleteClientHandler>();
+builder.Services.AddScoped<UpdateClientHandler>();
 
 UserRepository repository = new(usersMock);
-
 var handler = new CreateUserHandler(repository);
 handler.Handle(new CreateUserCommand(new UserDto("Davi", "davi@gmail.com", "senha123")));
 
@@ -66,22 +77,6 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod();
     });
 });
-
-builder.Services.AddScoped<AuthenticationHandlerFactory>();
-builder.Services.AddScoped<ClientsHandlerFactory>();
-builder.Services.AddScoped<ClientRepository>();
-builder.Services.AddScoped<GetPagedClientsHandler>();
-builder.Services.AddScoped<GetClientsStatsHandler>();
-builder.Services.AddScoped<GetSingleClientHandler>();
-builder.Services.AddScoped<GetSortedClientsHandler>();
-builder.Services.AddScoped<SearchClientsHandler>();
-builder.Services.AddScoped<VerifyAvailableEmailHandler>();
-builder.Services.AddScoped<CreateClientHandler>();
-builder.Services.AddScoped<DeleteClientHandler>();
-builder.Services.AddScoped<UpdateClientHandler>();
-builder.Services.AddScoped<AuthenticateHandler>();
-builder.Services.AddScoped<CreateUserHandler>();
-
 
 builder.Services.AddControllers();
 

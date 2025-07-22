@@ -13,7 +13,7 @@ namespace Api.Modules.Authentication.Application.Commands.CreateUser
         {
             var command = (CreateUserCommand)input;
             var user = command.User;
-            if (!VerifyAvailableEmail(user.Email)) return new CreateUserResponse("Email already in use");
+            if (!VerifyAvailableEmail(user.Email)) return new CreateUserResponse("email already in use");
 
             string salt = new Guid().ToString();
             string password = user.Password + salt;

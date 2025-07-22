@@ -2,7 +2,8 @@
 
 namespace Api.Modules.Clients.Application.Commands.DeleteClient
 {
-    public class DeleteClientResponse : IRequestOutput
+    public class DeleteClientResponse(string? message = null) : IRequestOutput
     {
+        public string? Message { get; set; } = message;
     }
 }
