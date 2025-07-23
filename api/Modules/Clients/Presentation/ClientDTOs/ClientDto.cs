@@ -1,7 +1,7 @@
 namespace Api.Modules.Clients.Presentation.ClientDTOs
 {
     public class ClientDto(
-    Guid id,
+    Guid? id,
     string name,
     string email,
     string status,
@@ -15,7 +15,7 @@ namespace Api.Modules.Clients.Presentation.ClientDTOs
     string values
         )
     {
-        public Guid Id { get; set; } = id;
+        public Guid? Id { get; set; } = id;
         public string Name { get; set; } = name;
         public string Email { get; set; } = email;
         public string Status { get; set; } = status;

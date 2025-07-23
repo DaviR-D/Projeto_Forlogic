@@ -9,11 +9,11 @@ using Api.Modules.Clients.Application.Queries.SearchClients;
 using Api.Modules.Clients.Application.Queries.VerifyAvailableEmail;
 using Api.Shared.Interfaces;
 
-namespace Api.Modules.Authentication.Application
+namespace Api.Modules.Clients.Application
 {
     public class ClientsHandlerFactory(IServiceProvider service)
     {
-        private static readonly Dictionary<String, Type> Handlers = new()
+        private static readonly Dictionary<string, Type> Handlers = new()
         {
             { "Create", typeof(CreateClientHandler) },
             { "GetSingle", typeof(GetSingleClientHandler) },

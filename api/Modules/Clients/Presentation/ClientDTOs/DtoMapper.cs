@@ -25,7 +25,7 @@ namespace Api.Modules.Clients.Presentation.ClientDTOs
         public static Client ToEntity(ClientDto client)
         {
             return new Client(
-                id: client.Id,
+                id: (Guid)client.Id,
                 name: client.Name,
                 email: client.Email,
                 status: client.Status,

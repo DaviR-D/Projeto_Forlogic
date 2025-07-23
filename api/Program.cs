@@ -15,10 +15,16 @@ using Api.Modules.Clients.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Api.Modules.Authentication.Application;
 using Api.Modules.Authentication.Domain;
+using Api.Modules.Clients.Application;
 using Microsoft.IdentityModel.Tokens;
 using Api.Modules.Clients.Domain;
 using Api.Shared.Configurations;
 using System.Text;
+using Api.Modules.Logs.Application;
+using Api.Modules.Logs.Infrastructure.Repositories;
+using Api.Modules.Logs.Application.Commands.CreateLog;
+using Api.Modules.Logs.Application.Queries.GetLogs;
+using Api.Modules.Logs.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,14 +50,18 @@ builder.Services.AddAuthentication(options =>
 
 List<Client> registrationsMock = [];
 List<User> usersMock = [];
+List<Log> logsMock = [];
 
 builder.Services.AddSingleton(registrationsMock);
 builder.Services.AddSingleton(usersMock);
+builder.Services.AddSingleton(logsMock);
 builder.Services.AddSingleton(authSettings);
 builder.Services.AddScoped<AuthenticationHandlerFactory>();
 builder.Services.AddScoped<ClientsHandlerFactory>();
+builder.Services.AddScoped<LogHandlerFactory>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ClientRepository>();
+builder.Services.AddScoped<LogRepository>();
 builder.Services.AddScoped<AuthenticateHandler>();
 builder.Services.AddScoped<CreateUserHandler>();
 builder.Services.AddScoped<GetPagedClientsHandler>();
@@ -63,6 +73,8 @@ builder.Services.AddScoped<VerifyAvailableEmailHandler>();
 builder.Services.AddScoped<CreateClientHandler>();
 builder.Services.AddScoped<DeleteClientHandler>();
 builder.Services.AddScoped<UpdateClientHandler>();
+builder.Services.AddScoped<CreateLogHandler>();
+builder.Services.AddScoped<GetLogsHandler>();
 
 UserRepository repository = new(usersMock);
 var handler = new CreateUserHandler(repository);

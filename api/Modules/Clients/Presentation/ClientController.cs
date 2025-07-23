@@ -10,7 +10,7 @@ using Api.Modules.Clients.Application.Commands.DeleteClient;
 using Api.Modules.Clients.Application.Queries.VerifyAvailableEmail;
 using Api.Modules.Clients.Application.Commands.UpdateClient;
 using Api.Modules.Clients.Application.Queries.SearchClients;
-using Api.Modules.Authentication.Application;
+using Api.Modules.Clients.Application;
 
 namespace Api.Modules.Clients.Presentation
 {
@@ -84,7 +84,7 @@ namespace Api.Modules.Clients.Presentation
         }
 
         [HttpGet("checkEmail")]
-        public IActionResult CheckEmail(Guid id, string email)
+        public IActionResult CheckEmail(string email, Guid? id = null)
         {
             var handler = factory.GetHandler("CheckEmail");
             var response = handler.Handle(new VerifyAvailableEmailQuery(id, email));

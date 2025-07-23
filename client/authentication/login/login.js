@@ -9,6 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function parseToken(token) {
   const payload = token.split('.')[1];
   const decodedPayload = atob(payload.replace(/-/g, '+').replace(/_/g, ';'));
-  return JSON.parse(decodedPayload);
+  return JSON.parse(decodeURIComponent(decodedPayload));
 }
 

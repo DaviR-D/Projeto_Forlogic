@@ -15,7 +15,7 @@ function getSignupElements() {
 
 async function trySignup() {
     if (checkValidEmail(html.emailInput.value)) {
-        let newUser = { name: html.nameInput.value, email: html.emailInput.value, password: html.passwordInput.value }
+        let newUser = { name: encodeURIComponent(html.nameInput.value), email: html.emailInput.value, password: html.passwordInput.value }
         await fetch(`${apiUrl}/api/authentication/signup`, {
             method: "POST",
             headers: {

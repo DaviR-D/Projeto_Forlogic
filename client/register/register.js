@@ -58,7 +58,7 @@ function insertRegisterData() {
     }
 }
 
-async function saveClient(event, id = undefined) {
+async function saveClient(event, id = null) {
     event.preventDefault();
     resetFieldsStyle();
 
@@ -79,7 +79,7 @@ async function saveClient(event, id = undefined) {
         };
 
         if (await checkFieldsValidity(id, newRegister)) {
-            httpMethod = id == undefined ? "POST" : "PUT";
+            httpMethod = id == null ? "POST" : "PUT";
 
             fetch(`${apiUrl}/api/client/`, {
                 method: httpMethod,
@@ -158,7 +158,7 @@ function hideDeleteConfirmation() {
 }
 
 function clearFields() {
-    registerModal.dataset.userId = undefined;
+    registerModal.dataset.userId = null;
     html.register.nameInput.value = "";
     html.register.emailInput.value = "";
     html.register.ageInput.value = "";
@@ -213,9 +213,11 @@ async function checkFieldsValidity(id, newRegister) {
     return true;
 }
 
-async function checkExistingEmail(id = crypto.randomUUID(), email) {
+async function checkExistingEmail(id = null, email) {
     let availableEmail;
-    await fetch(`${apiUrl}/api/client/checkEmail?id=${id}&email=${email}`, {
+    let idParam = String(id) == "null" ? "" : `id=${id}&`;
+
+    await fetch(`${apiUrl}/api/client/checkEmail?${idParam}email=${email}`, {
         headers: {
             "Authorization": `Bearer ${loggedUser.token}`,
         }
@@ -269,6 +271,7 @@ function addInputEvents() {
         checkValidEmail(html.register.emailInput.value);
     })
     html.register.emailInput.addEventListener("blur", function () {
-        checkExistingEmail(registerModal.dataset.userId, html.register.emailInput.value);
+        if(html.register.emailInput.value.length > 0)
+            checkExistingEmail(registerModal.dataset.userId, html.register.emailInput.value);
     })
 }

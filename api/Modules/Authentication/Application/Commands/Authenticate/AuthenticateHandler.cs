@@ -36,7 +36,7 @@ namespace Api.Modules.Authentication.Application.Commands.Authenticate
         {
             var handler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes(auth.PrivateKey);
+            var key = Encoding.UTF8.GetBytes(auth.PrivateKey);
 
             var credentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),

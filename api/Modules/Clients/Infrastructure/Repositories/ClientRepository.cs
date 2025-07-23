@@ -20,12 +20,12 @@ namespace Api.Modules.Clients.Infrastructure.Repositories
         }
         public void Delete(Guid id)
         {
-            Client client = clients.First(c => c.Id == id);
+            Client? client = clients.FirstOrDefault(c => c.Id == id);
             client.Deleted = true;
         }
-        public Client GetOne(Guid id)
+        public Client? GetOne(Guid id)
         {
-            return _activeClients.First(c => c.Id == id);
+            return _activeClients.FirstOrDefault(c => c.Id == id);
         }
         public List<Client> GetAll()
         {

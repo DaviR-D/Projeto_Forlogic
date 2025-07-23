@@ -141,7 +141,7 @@ async function loadTableContent() {
     });
 
     if (search.value.length > 0) {
-        searchResults.innerText = `${renderedClients.length - 1} resultados`
+        searchResults.innerText = `${html.clientsLength} resultados`
     } else {
         searchResults.innerText = "";
     }
@@ -214,8 +214,14 @@ async function getClients(start = 0, increment = 10) {
         })
         .then(data => {
             clients = data.page;
+            html.clientsLength = data.resultsLength;
         });
 
+    if(html.endpoint != "page/search")
+        await getStats();
+}
+
+async function getStats() {
     await fetch(`${apiUrl}/api/client/stats`, {
         headers: {
             "Authorization": `Bearer ${loggedUser.token}`,

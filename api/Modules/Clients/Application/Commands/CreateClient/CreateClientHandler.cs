@@ -13,21 +13,17 @@ namespace Api.Modules.Clients.Application.Commands.CreateClient
             var command = (CreateClientCommand)input;
             lock (_lock)
             {
-                if (VerifyAvailableEmail(command.Client.Id, command.Client.Email))
+                if (VerifyAvailableEmail(command.Client.Email))
                     repository.Create(command.Client);
                 else
                     return new CreateClientResponse(message: "email already in use");
             }
             return new CreateClientResponse();
         }
-        public bool VerifyAvailableEmail(Guid id, string email)
+        public bool VerifyAvailableEmail(string email)
         {
             Client? existingEmail = repository.GetAll().FirstOrDefault(command => command.Email == email);
-            if (existingEmail != null)
-            {
-                return existingEmail.Id.Equals(id);
-            }
-            return true;
+            return existingEmail == null;
         }
     }
 }
