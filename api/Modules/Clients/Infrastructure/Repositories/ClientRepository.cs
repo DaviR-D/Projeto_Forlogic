@@ -11,12 +11,12 @@ namespace Api.Modules.Clients.Infrastructure.Repositories
         {
             client.Id = Guid.NewGuid();
             client.Date = DateTime.Now;
-            clients.Add(DtoMapper.ToEntity(client));
+            clients.Add(ClientDtoMapper.ToEntity(client));
         }
         public void Update(ClientDto client)
         {
             int clientIndex = clients.FindIndex(r => r.Id == client.Id);
-            clients[clientIndex] = DtoMapper.ToEntity(client);
+            clients[clientIndex] = ClientDtoMapper.ToEntity(client);
         }
         public void Delete(Guid id)
         {
@@ -25,7 +25,7 @@ namespace Api.Modules.Clients.Infrastructure.Repositories
         }
         public Client? GetOne(Guid id)
         {
-            return _activeClients.FirstOrDefault(c => c.Id == id);
+            return clients.FirstOrDefault(c => c.Id == id);
         }
         public List<Client> GetAll()
         {

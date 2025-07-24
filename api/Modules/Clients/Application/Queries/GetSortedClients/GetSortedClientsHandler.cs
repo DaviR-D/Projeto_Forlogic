@@ -13,7 +13,7 @@ namespace Api.Modules.Clients.Application.Queries.GetSortedClients
             var query = (GetSortedClientsQuery)input;
             List<Client> sortedClients = repository.Sort(query.SortKey, query.Descending);
             List<Client> slicedClients = [.. sortedClients.Skip(query.Start).Take(query.Increment)];
-            var response = new GetSortedClientsResponse(DtoMapper.ToPreviewDto(slicedClients));
+            var response = new GetSortedClientsResponse(ClientDtoMapper.ToPreviewDto(slicedClients));
 
             return response;
         }

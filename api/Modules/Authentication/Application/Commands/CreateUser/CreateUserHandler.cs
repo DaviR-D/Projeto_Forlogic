@@ -15,12 +15,12 @@ namespace Api.Modules.Authentication.Application.Commands.CreateUser
             var user = command.User;
             if (!VerifyAvailableEmail(user.Email)) return new CreateUserResponse("email already in use");
 
-            string salt = new Guid().ToString();
+            string salt = Guid.NewGuid().ToString();
             string password = user.Password + salt;
             byte[] encodedPassword = Encoding.UTF8.GetBytes(password);
             byte[] passwordHash = SHA256.HashData(encodedPassword);
 
-            User newUser = new(user.Name, user.Email, Convert.ToBase64String(passwordHash), salt);
+            User newUser = new(Guid.NewGuid(), user.Name, user.Email, Convert.ToBase64String(passwordHash), salt);
             repository.Create(newUser);
 
             return new CreateUserResponse();

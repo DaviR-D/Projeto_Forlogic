@@ -12,5 +12,9 @@ namespace Api.Modules.Authentication.Infrastructure.Repositories
         {
             return users;
         }
+        public User? GetOne(Guid id)
+        {
+            return users.FirstOrDefault(user => user.Id == id);
+        }
     }
 }

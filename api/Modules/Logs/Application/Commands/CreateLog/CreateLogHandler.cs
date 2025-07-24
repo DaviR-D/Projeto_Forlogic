@@ -9,9 +9,10 @@ namespace Api.Modules.Logs.Application.Commands.CreateLog
         public IRequestOutput Handle(IRequestInput input) 
         {
             var command = (CreateLogCommand)input;
-            command.Log.Id = new Guid();
+            command.Log.Id = Guid.NewGuid();
+            command.Log.UserId = command.UserId;
             command.Log.TimeStamp = DateTime.Now;
-            repository.Create(DtoMapper.ToEntity(command.Log));
+            repository.Create(LogDtoMapper.ToEntity(command.Log));
             return new CreateLogResponse();
         }
     }

@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+    await updateTable();
     let content = document.getElementById("mainContent")
     content.insertAdjacentHTML('afterbegin',
         `
@@ -31,7 +32,6 @@ function getDashboardElements() {
 }
 
 async function insertDashboardData() {
-    await updateTable();
     if (html.clientsLength == 0) createDB(loggedUser.token);
     html.orderReverse = true;
     await sortTable("date");

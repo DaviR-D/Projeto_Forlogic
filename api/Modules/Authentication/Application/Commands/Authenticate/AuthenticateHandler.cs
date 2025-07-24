@@ -57,6 +57,7 @@ namespace Api.Modules.Authentication.Application.Commands.Authenticate
         {
             var claimsIdentity = new ClaimsIdentity();
             claimsIdentity.AddClaim(new Claim(type: ClaimTypes.Name, value: user.Name));
+            claimsIdentity.AddClaim(new Claim(type: ClaimTypes.NameIdentifier, value: user.Id.ToString()));
 
             return claimsIdentity;
         }

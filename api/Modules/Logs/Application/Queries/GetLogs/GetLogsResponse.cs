@@ -3,9 +3,9 @@ using Api.Shared.Interfaces;
 
 namespace Api.Modules.Logs.Application.Queries.GetLogs
 {
-    public class GetLogsResponse( List<LogDto> logs, string? message = null) : IRequestOutput
+    public class GetLogsResponse( List<GetLogDto> logs, string? message = null) : IRequestOutput
     {
         public string? Message { get; set; } = message;
-        public List<LogDto> Logs { get; set; } = logs;
+        public List<GetLogDto> Logs { get; set; } = logs;
     }
 }
